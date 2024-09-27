@@ -5,6 +5,6 @@ export async function POST(): Promise<NextResponse> {
   const data = await blockNumber();
   return NextResponse.json({
     ...data,
-    result: parseInt(data.result),
+    result: parseInt(data.result as string),
   });
 }

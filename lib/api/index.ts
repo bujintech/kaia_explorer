@@ -1,10 +1,9 @@
-import { _fetch, BASE_NODE_RPC, ResponseData } from "../utils/nodeFetch";
+import { _fetchByRpc as _fetch, BASE_NODE_RPC, ResponseData } from "../utils/fetchProxy";
 
 type Params = {
   jsonrpc?: "2.0";
   method?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  params?: any[];
+  params?: unknown[];
   id?: number;
 };
 type FetchReturnType = Promise<ResponseData>;
@@ -16,7 +15,6 @@ const formatFetchConfig = (params: Params): Parameters<typeof fetch>[1] => {
     params: params?.params || [],
     id: params?.id || 1,
   };
-  console.log(_body);
   return {
     method: "POST",
     headers: {
