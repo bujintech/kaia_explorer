@@ -1,11 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import BlockList from "@/components/blockList";
+import TransactionsList from "@/components/transactionList";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Blocks = () => {
+const Transactions = () => {
   const [dataSource, setDataSource] = useState([]);
   const router = useRouter();
 
@@ -14,7 +14,7 @@ const Blocks = () => {
   };
 
   const initData = async () => {
-    const { data } = await axios.post("/api/block/list/1");
+    const { data } = await axios.post("/api/transaction/list/1");
     setDataSource(data.result);
   };
 
@@ -24,10 +24,10 @@ const Blocks = () => {
 
   return (
     <>
-      <h1 onClick={onBlockDetail}>Blocks list</h1>
-      <BlockList dataSource={dataSource}></BlockList>
+      <h1 onClick={onBlockDetail}>transactions list</h1>
+      <TransactionsList dataSource={dataSource}></TransactionsList>
     </>
   );
 };
 
-export default Blocks;
+export default Transactions;
