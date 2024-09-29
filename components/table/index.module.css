@@ -1,9 +1,7 @@
-.header {
-  display: flex;
-  justify-content: space-between;
+.table {
 }
 
-.body > div {
-  display: flex;
-  justify-content: space-between;
+.table table {
+  text-align: center;
+  width: 100% !important;
 }

@@ -11,27 +11,29 @@ interface _Props {
   dataSource: any[];
 }
 
-const Nav = ({ columns, dataSource }: _Props) => {
+const Table = ({ columns, dataSource }: _Props) => {
   return (
-    <div>
-      <div className={style.header}>
-        {columns.map((item, index) => {
-          return <div key={index}>{item.title}</div>;
-        })}
-      </div>
-      <div className={style.body}>
-        {dataSource.map((dataItem, index) => {
-          return (
-            <div key={index}>
+    <div className={style.table}>
+      <table>
+        <thead>
+          <tr>
+            {columns.map((columnsItem, index) => {
+              return <th key={index}>{columnsItem.title}</th>;
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {dataSource.map((dataItem, index) => (
+            <tr key={index}>
               {columns.map((columnsItem, index) => {
-                return <div key={index}>{dataItem[columnsItem.dataIndex]}</div>;
+                return <td key={index}>{dataItem[columnsItem.dataIndex]}</td>;
               })}
-            </div>
-          );
-        })}
-      </div>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
-export default Nav;
+export default Table;
