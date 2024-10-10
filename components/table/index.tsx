@@ -1,17 +1,18 @@
+import { ReactNode } from "react";
 import style from "./index.module.css";
 
-interface _Columns {
+export interface Columns<T> {
   title: string;
-  dataIndex: string;
+  dataIndex: keyof T;
+  render?: (record: T, index: number) => ReactNode;
 }
 
-interface _Props {
-  columns: _Columns[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  dataSource: any[];
+interface Props<T> {
+  dataSource: T[];
+  columns: Columns<T>[];
 }
 
-const Table = ({ columns, dataSource }: _Props) => {
+function Table<T>({ dataSource, columns }: Props<T>) {
   return (
     <div className={style.table}>
       <table>
@@ -26,7 +27,12 @@ const Table = ({ columns, dataSource }: _Props) => {
           {dataSource.map((dataItem, index) => (
             <tr key={index}>
               {columns.map((columnsItem, index) => {
-                return <td key={index}>{dataItem[columnsItem.dataIndex]}</td>;
+                let renderNode = dataItem[columnsItem.dataIndex] as ReactNode;
+                if (typeof columnsItem.render === "function") {
+                  renderNode = columnsItem.render(dataItem, index);
+                }
+
+                return <td key={index}>{renderNode}</td>;
               })}
             </tr>
           ))}
@@ -34,6 +40,6 @@ const Table = ({ columns, dataSource }: _Props) => {
       </table>
     </div>
   );
-};
+}
 
 export default Table;

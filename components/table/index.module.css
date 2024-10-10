@@ -1,7 +1,10 @@
-.table {
+.table table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: left;
 }
 
-.table table {
-  text-align: center;
-  width: 100% !important;
+.table td {
+  word-wrap: break-word;
 }

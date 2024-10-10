@@ -7,7 +7,7 @@ const Nav = () => {
         <Link href="/blocks">Blocks</Link>
       </li>
       <li>
-        <Link href="/transactions">Transactions</Link>
+        <Link href="/txs">Transactions</Link>
       </li>
       <li>
         <Link href="/gcInfo">GC Info</Link>
