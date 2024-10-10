@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "kaiaScan",
-  description: "kaiaScan blockchain",
+  description: "kaiaScan explorer",
 };
 
 export default function RootLayout({

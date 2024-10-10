@@ -1,0 +1,10 @@
+.pagination {
+}
+
+.pagination span {
+  cursor: pointer;
+}
+
+.pagination span:hover {
+  color: red;
+}
