@@ -6,7 +6,7 @@ type Params = {
   params?: unknown[];
   id?: number;
 };
-type FetchReturnType = Promise<ResponseData>;
+type FetchReturnType<T> = Promise<ResponseData<T>>;
 
 const formatFetchConfig = (params: Params): Parameters<typeof fetch>[1] => {
   const _body = {
@@ -24,100 +24,100 @@ const formatFetchConfig = (params: Params): Parameters<typeof fetch>[1] => {
   };
 };
 
-const clientVersion = (params?: Params): FetchReturnType =>
+const clientVersion = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "web3_clientVersion" }));
 
-const sha3 = (params?: Params): FetchReturnType =>
+const sha3 = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "web3_sha3" }));
 
-const version = (params?: Params): FetchReturnType =>
+const version = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "net_version" }));
 
-const syncing = (params?: Params): FetchReturnType =>
+const syncing = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_syncing" }));
 
-const gasPrice = (params?: Params): FetchReturnType =>
+const gasPrice = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_gasPrice" }));
 
-const accounts = (params?: Params): FetchReturnType =>
+const accounts = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_accounts" }));
 
-const blockNumber = (params?: Params): FetchReturnType =>
+const blockNumber = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_blockNumber" }));
 
-const getBalance = (params?: Params): FetchReturnType =>
+const getBalance = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getBalance" }));
 
-const getStorageAt = (params?: Params): FetchReturnType =>
+const getStorageAt = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getStorageAt" }));
 
-const getTransactionCount = (params?: Params): FetchReturnType =>
+const getTransactionCount = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getTransactionCount" }));
 
-const getBlockTransactionCountByHash = (params?: Params): FetchReturnType =>
+const getBlockTransactionCountByHash = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(
     BASE_NODE_RPC,
     formatFetchConfig({ ...(params || {}), method: "eth_getBlockTransactionCountByHash" })
   );
 
-const getBlockTransactionCountByNumber = (params?: Params): FetchReturnType =>
+const getBlockTransactionCountByNumber = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(
     BASE_NODE_RPC,
     formatFetchConfig({ ...(params || {}), method: "eth_getBlockTransactionCountByNumber" })
   );
 
-const getUncleCountByBlockHash = (params?: Params): FetchReturnType =>
+const getUncleCountByBlockHash = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getUncleCountByBlockHash" }));
 
-const getUncleCountByBlockNumber = (params?: Params): FetchReturnType =>
+const getUncleCountByBlockNumber = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getUncleCountByBlockNumber" }));
 
-const getCode = (params?: Params): FetchReturnType =>
+const getCode = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getCode" }));
 
-const sendRawTransaction = (params?: Params): FetchReturnType =>
+const sendRawTransaction = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_sendRawTransaction" }));
 
-const call = (params?: Params): FetchReturnType =>
+const call = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_call" }));
 
-const estimateGas = (params?: Params): FetchReturnType =>
+const estimateGas = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_estimateGas" }));
 
-const getBlockByHash = (params?: Params): FetchReturnType =>
+const getBlockByHash = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getBlockByHash" }));
 
-const getBlockByNumber = (params?: Params): FetchReturnType =>
+const getBlockByNumber = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getBlockByNumber" }));
 
-const getTransactionByHash = (params?: Params): FetchReturnType =>
+const getTransactionByHash = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getTransactionByHash" }));
 
-const getTransactionByBlockHashAndIndex = (params?: Params): FetchReturnType =>
+const getTransactionByBlockHashAndIndex = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(
     BASE_NODE_RPC,
     formatFetchConfig({ ...(params || {}), method: "eth_getTransactionByBlockHashAndIndex" })
   );
 
-const getTransactionByBlockNumberAndIndex = (params?: Params): FetchReturnType =>
+const getTransactionByBlockNumberAndIndex = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(
     BASE_NODE_RPC,
     formatFetchConfig({ ...(params || {}), method: "eth_getTransactionByBlockNumberAndIndex" })
   );
 
-const getTransactionReceipt = (params?: Params): FetchReturnType =>
+const getTransactionReceipt = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getTransactionReceipt" }));
 
-const getUncleByBlockHashAndIndex = (params?: Params): FetchReturnType =>
+const getUncleByBlockHashAndIndex = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getUncleByBlockHashAndIndex" }));
 
-const getUncleByBlockNumberAndIndex = (params?: Params): FetchReturnType =>
+const getUncleByBlockNumberAndIndex = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(
     BASE_NODE_RPC,
     formatFetchConfig({ ...(params || {}), method: "eth_getUncleByBlockNumberAndIndex" })
   );
 
-const getLogs = (params?: Params): FetchReturnType =>
+const getLogs = <T>(params?: Params): FetchReturnType<T> =>
   _fetch(BASE_NODE_RPC, formatFetchConfig({ ...(params || {}), method: "eth_getLogs" }));
 
 export {
