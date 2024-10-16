@@ -1,6 +1,4 @@
-import { PutCommand } from "@aws-sdk/lib-dynamodb";
-import docClient from "./db";
-import { formatJsonToGzip, splitStringAtThirdFromEnd } from "./util";
+import { compressJson, splitGroupToNumber } from "@/lib/db";
 
 export interface BlockResponseData {
   baseFeePerGas: string;
@@ -44,75 +42,61 @@ export interface TxResponseData {
   s: string;
 }
 
-async function blockItemTask(data: BlockResponseData) {
-  const _data = { ...data, transactions: [] };
-  const RESULT = formatJsonToGzip(_data);
+function getblockItem(data: BlockResponseData) {
+  const tx_total = data.transactions?.length || 0;
+  const _data = { ...data, transactions: [], transactionsTotal: tx_total };
+  const RESULT = compressJson(_data);
 
   const _blockNumber = parseInt(data.number, 16).toString();
-  const [GS4PK_blockNumber, GS4SK_blockNumber] = splitStringAtThirdFromEnd(_blockNumber);
 
-  const Item = {
-    PK: data.hash, // 块hash、交易hash
-    SK: "BLOCK", // 块 、交易
+  return {
+    PK: data.hash,
+    SK: "BLOCK",
 
-    RESULT: JSON.stringify(RESULT), // 结果
+    GS1PK: `BLOCK#${splitGroupToNumber(_blockNumber)}`,
+    GS1SK: _blockNumber,
 
-    GS1PK: `BLOCK#${_blockNumber}`,
-    GS1SK: "BLOCK",
+    GS2PK: `FROM#${data.miner}`,
+    GS2SK: _blockNumber,
 
-    GS2PK: `MINER#${data.miner}`,
-    GS2SK: data.miner,
+    GS3PK: "0",
+    GS3SK: "0",
 
-    GS3PK: `0000000`, //TODO
-    GS3SK: "0000000",
+    GS4PK: `0`,
+    GS4SK: "0",
 
-    GS4PK: `BLOCK#${GS4PK_blockNumber}`, //块 以千单位拆分 例如：166628001 => 166628、001
-    GS4SK: `${GS4SK_blockNumber}#BLOCK`,
-
-    CHAIN: "KAIA", // 固定：KAIA
+    RESULT: JSON.stringify(RESULT),
+    CHAIN: "KAIA",
     TYPE: "BLOCK",
   };
-  const command = new PutCommand({
-    TableName: "devEVM",
-    Item: Item,
-  });
-  return await docClient.send(command);
 }
 
-async function transactionItemTask(data: TxResponseData) {
+function getTransactionItem(data: TxResponseData) {
   const _data = { ...data, v: "", r: "", s: "" };
 
-  const RESULT = formatJsonToGzip(_data);
-
+  const RESULT = compressJson(_data);
   const _blockNumber = parseInt(data.blockNumber, 16).toString();
-  const [GS4PK_blockNumber, GS4SK_blockNumber] = splitStringAtThirdFromEnd(_blockNumber);
 
-  const Item = {
-    PK: data.hash, // 块hash、交易hash
-    SK: "TX", // 块 、交易
+  return {
+    PK: data.hash,
+    SK: "TX",
 
-    RESULT: JSON.stringify(RESULT), // 结果
-
-    GS1PK: `TX#${_blockNumber}`,
-    GS1SK: "TX",
+    GS1PK: `TX#${splitGroupToNumber(_blockNumber)}`,
+    GS1SK: `${_blockNumber}#${parseInt(data.transactionIndex, 16).toString()}`,
 
     GS2PK: `FROM#${data.from}`,
-    GS2SK: data.from,
+    GS2SK: parseInt(data.nonce, 16).toString(),
 
-    GS3PK: `0000000`, //TODO
-    GS3SK: "0000000",
+    GS3PK: `To#${data.to}`,
+    GS3SK: `${_blockNumber}#${parseInt(data.transactionIndex, 16).toString()}`,
 
-    GS4PK: `BLOCK#${GS4PK_blockNumber}`, //块 以千单位拆分 例如：166628001 => 166628、001
-    GS4SK: `${GS4SK_blockNumber}#BLOCK`,
+    GS4PK: `0`,
+    GS4SK: "0",
 
-    CHAIN: "KAIA", // 固定：KAIA
+    RESULT: JSON.stringify(RESULT),
+    CHAIN: "KAIA",
     TYPE: "TX",
   };
-  const command = new PutCommand({
-    TableName: "devEVM",
-    Item: Item,
-  });
-  return await docClient.send(command);
 }
 
-export { blockItemTask, transactionItemTask };
+export { getblockItem, getTransactionItem };
