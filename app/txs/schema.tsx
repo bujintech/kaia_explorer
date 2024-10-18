@@ -2,11 +2,11 @@ import type { Columns } from "@/components/table";
 import Link from "next/link";
 
 export interface DataType {
-  txHash: string;
+  hash: string;
   blockNumber: string;
   createdAt: string;
-  fromAddress: string;
-  toAddress: string;
+  from: string;
+  to: string;
   methodName: string;
   amount: string;
   txFee: string;
@@ -15,13 +15,23 @@ export interface DataType {
 export const columns: Columns<DataType>[] = [
   {
     title: "TX Hash",
-    dataIndex: "txHash",
-    render: ({ txHash }) => <Link href={`/tx/${txHash}`}>{txHash}</Link>,
+    dataIndex: "hash",
+    render: ({ hash }) => <Link href={`/tx/${hash}`}>{hash}</Link>,
   },
-  { title: "Block", dataIndex: "blockNumber" },
-  { title: "Age", dataIndex: "createdAt" },
-  { title: "From", dataIndex: "fromAddress" },
-  { title: "To", dataIndex: "toAddress" },
+  {
+    title: "Block",
+    dataIndex: "blockNumber",
+    render: ({ blockNumber }) => {
+      const _blockNumber = parseInt(blockNumber, 16).toString();
+      return <Link href={`/block/${_blockNumber}`}>{_blockNumber}</Link>;
+    },
+  },
+  {
+    title: "Age",
+    dataIndex: "createdAt",
+  },
+  { title: "From", dataIndex: "from" },
+  { title: "To", dataIndex: "to" },
   { title: "Method", dataIndex: "methodName" },
   { title: "Tx Type", dataIndex: "blockNumber" },
   { title: "Amount(KLAY)", dataIndex: "amount" },

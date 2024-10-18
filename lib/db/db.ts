@@ -4,6 +4,7 @@ import {
   PutCommand,
   BatchWriteCommand,
   GetCommand,
+  BatchGetCommand,
   QueryCommand,
 } from "@aws-sdk/lib-dynamodb";
 
@@ -13,6 +14,7 @@ import type {
   BatchWriteCommandOutput,
   GetCommandInput,
   GetCommandOutput,
+  BatchGetCommandOutput,
   QueryCommandInput,
   QueryCommandOutput,
 } from "@aws-sdk/lib-dynamodb";
@@ -44,14 +46,9 @@ class DB {
       TableName: this.tableName,
       ...params,
     });
-
-    try {
-      return await this.docClient.send(command);
-    } catch (error) {
-      console.error("Error putting item:", error);
-      throw error;
-    }
+    return await this.docClient.send(command);
   }
+
   public async batchWrite(
     params: {
       PutRequest?: { Item: Record<string, string> };
@@ -63,12 +60,18 @@ class DB {
         [this.tableName]: params,
       },
     });
-    try {
-      return await this.docClient.send(command);
-    } catch (error) {
-      console.error("Error batchWrite item:", error);
-      throw error;
-    }
+    return await this.docClient.send(command);
+  }
+
+  public async batchGetItem(params: Record<string, string>[]): Promise<BatchGetCommandOutput> {
+    const command = new BatchGetCommand({
+      RequestItems: {
+        [this.tableName]: {
+          Keys: params,
+        },
+      },
+    });
+    return await this.docClient.send(command);
   }
 
   public async getItem(params: Omit<GetCommandInput, "TableName">): Promise<GetCommandOutput> {
@@ -76,26 +79,15 @@ class DB {
       TableName: this.tableName,
       ...params,
     });
-
-    try {
-      return await this.docClient.send(command);
-    } catch (error) {
-      console.error("Error getting item:", error);
-      throw error;
-    }
+    return await this.docClient.send(command);
   }
+
   public async query(params: Omit<QueryCommandInput, "TableName">): Promise<QueryCommandOutput> {
     const command = new QueryCommand({
       TableName: this.tableName,
       ...params,
     });
-
-    try {
-      return await this.docClient.send(command);
-    } catch (error) {
-      console.error("Error querying items:", error);
-      throw error;
-    }
+    return await this.docClient.send(command);
   }
 }
 

@@ -11,9 +11,9 @@ function decompressJson(compressedData: string): Record<string, unknown> {
   return JSON.parse(uncompressedData.toString());
 }
 
-function splitGroupToNumber(val: string | number): string {
+function splitGroupToNumber(val: string | number): number {
   const _val = Number(val);
-  return Math.floor(_val / 10).toString();
+  return Math.floor(_val / 10);
 }
 
 export { compressJson, decompressJson, splitGroupToNumber };

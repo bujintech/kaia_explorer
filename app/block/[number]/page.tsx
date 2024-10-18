@@ -14,6 +14,7 @@ const BlockDetail = ({ params: { number } }: { params: { number: string } }) => 
 
   const fetchBlockData = async (_number: string) => {
     const { data } = await axios.post(`/api/block/${_number}`);
+    console.log(data);
     setData(data.result);
   };
 

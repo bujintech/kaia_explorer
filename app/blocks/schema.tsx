@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Columns } from "@/components/table";
 import dayjs from "@/lib/utils/day";
 export interface DataType {
-  blockNumber: string;
+  number: string;
   createdAt: string;
   txCount: string;
   minerName: string;
@@ -14,8 +14,11 @@ export interface DataType {
 export const columns: Columns<DataType>[] = [
   {
     title: "Block",
-    dataIndex: "blockNumber",
-    render: ({ blockNumber }) => <Link href={`/block/${blockNumber}`}>{blockNumber}</Link>,
+    dataIndex: "number",
+    render: ({ number }) => {
+      const blockNumber = parseInt(number, 16).toString();
+      return <Link href={`/block/${blockNumber}`}>{blockNumber}</Link>;
+    },
   },
   {
     title: "Time Ago",

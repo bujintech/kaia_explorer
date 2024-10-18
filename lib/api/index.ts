@@ -1,4 +1,6 @@
-import { _fetchByRpc as _fetch, BASE_NODE_RPC, ResponseData } from "../utils/fetchProxy";
+import { _fetchByRpc as _fetch, ResponseData } from "../utils/fetchProxy";
+
+const BASE_NODE_RPC = process.env.BASE_NODE_RPC as string;
 
 type Params = {
   jsonrpc?: "2.0";

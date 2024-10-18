@@ -1,7 +1,3 @@
-// export const BASE_NODE_RPC = process.env.BASE_NODE_RPC;
-export const BASE_NODE_RPC =
-  "https://rpc.ankr.com/klaytn/452fcd62a28e28193d74a5dbe1ba1d001f63962461ec355117b539c1158222db";
-
 export interface ResponseData<T> {
   result?: T;
   error?: {
