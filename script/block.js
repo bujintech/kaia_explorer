@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-require-imports */
 require("dotenv").config();
 const { batchWrite, compressJson } = require("./db");
@@ -27,8 +26,8 @@ function getblockItem(data) {
   };
 }
 
-function getTransactionItem(data) {
-  const _data = { ...data, v: "", r: "", s: "" };
+function getTransactionItem(data, timestamp) {
+  const _data = { ...data, timestamp, v: "", r: "", s: "" };
 
   const RESULT = compressJson(_data);
   const _blockNumber = parseInt(data.blockNumber, 16).toString();
@@ -77,7 +76,7 @@ async function taskItem(blockNumber) {
   const result = data.result;
   if (result && result.hash) {
     const blockItem = getblockItem(result);
-    const txs = [...(result.transactions || [])].map(getTransactionItem);
+    const txs = [...(result.transactions || [])].map((v) => getTransactionItem(v, result.timestamp));
 
     const dataList = [blockItem, ...txs].map((Item) => {
       return {

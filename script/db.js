@@ -64,7 +64,7 @@ const putItem = async (params) => {
     TableName: TABLE_NAME,
     ...params,
   });
-  return await this.docClient.send(command);
+  return await docClient.send(command);
 };
 
 const query = async (params) => {

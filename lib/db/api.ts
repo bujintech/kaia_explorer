@@ -43,13 +43,15 @@ export const getTransactionsByBlockNumber = async (blockNumber: number): Promise
 
 export const getGcInfoList = async (): Promise<GcResponseData[]> => {
   const data = await db.query({
-    KeyConditionExpression: `PK = :PK`,
+    KeyConditionExpression: `PK = :PK `,
     ExpressionAttributeValues: {
       ":PK": `GC`,
     },
   });
+
   const list = (Array.isArray(data.Items) ? data.Items : []).map((v) => {
-    return decompressJson<GcResponseData>(v.RESULT);
+    return JSON.parse(v.RESULT);
+    // return decompressJson<GcResponseData>(v.RESULT);
   });
   return list;
 };

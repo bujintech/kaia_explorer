@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 
-const { compressJson, batchWrite } = require("./db");
+const { compressJson, batchWrite, putItem } = require("./db");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
@@ -19,32 +19,41 @@ function extractScriptTag(htmlString) {
 
 const url = "https://kaiascan.io/gc-info";
 
-const getItemData = ({ address, type, version }, data) => {
-  delete data.contracts;
-  delete data.squareId;
-  delete data.squareLink;
+const startTask = async (data) => {
   const RESULT = data || compressJson(data);
-  return {
-    PK: "GC",
-    SK: `GC#${address}`,
 
-    GS2PK: address,
-    GS2SK: `GC#${type}#${version}`,
+  const name = data.name?.toLocaleLowerCase();
+  if (!name) return;
+
+  const Item = {
+    PK: `GC`,
+    SK: name,
 
     RESULT: JSON.stringify(RESULT),
     CHAIN: "KAIA",
   };
+  await putItem({ Item });
 };
 
-const startTask = async (data) => {
-  const contracts = Array.isArray(data.contracts) ? data.contracts : [];
-  const listData = contracts.map((contract) => {
-    const Item = getItemData(contract, data);
-    return {
-      PutRequest: { Item },
-    };
+const startGcConfig = async (list) => {
+  const map = {};
+  list.forEach(({ contracts = [], name }) => {
+    if (Array.isArray(contracts)) {
+      contracts.forEach(({ address }) => {
+        map[address] = (name || "").toLocaleLowerCase();
+      });
+    }
   });
-  await batchWrite(listData);
+
+  await putItem({
+    Item: {
+      PK: `GC_CONFIG`,
+      SK: "GC_CONFIG",
+
+      RESULT: JSON.stringify(map),
+      CHAIN: "KAIA",
+    },
+  });
 };
 
 const main = async () => {
@@ -55,12 +64,19 @@ const main = async () => {
   try {
     const data1 = JSON.parse(str.slice(19, -1))[1];
     const { governanceCouncils } = JSON.parse(data1.slice(3, -1))[3];
+    if (!Array.isArray(governanceCouncils)) {
+      console.log("governanceCouncils is not array");
+      return;
+    }
 
     let item = governanceCouncils.pop();
     while (item) {
       await startTask(item);
       item = governanceCouncils.pop();
     }
+
+    await startGcConfig(governanceCouncils);
+
     console.log("GC Info data synchronization completed ～～～～～");
   } catch (e) {
     console.log(e);
