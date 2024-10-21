@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { blockNumber } from "@/lib/api";
+import { blockNumber } from "@/lib/rpcApi";
 
 export async function POST(): Promise<NextResponse> {
   const data = await blockNumber();
