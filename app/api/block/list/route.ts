@@ -1,33 +1,32 @@
 import { NextResponse, NextRequest } from "next/server";
-import { db, splitGroupToNumber, decompressJson } from "@/lib/db";
+import { getBlockByNumber } from "@/lib/db/api";
 
-const LIMIT = 10;
+const LIMIT = 18;
 
-async function queryItem(blockGroup: number): Promise<Record<string, any>[]> {
-  const data = await db.query({
-    KeyConditionExpression: `GS1PK = :GS1PK`,
-    ExpressionAttributeValues: {
-      ":GS1PK": `BLOCK#${blockGroup}`,
-    },
-    IndexName: "GS1",
-    Limit: LIMIT,
-    ScanIndexForward: false,
-  });
-  return data;
-  const total = data.Items?.length || 0;
+async function queryBlockList(blockNumber: number, list: unknown[] = []) {
+  const data = await getBlockByNumber(blockNumber);
 
-  const marginTotal = LIMIT - total;
+  if (!data) return { list, blockNumber };
 
-  if (total > 0 && marginTotal > 0) {
-    const list = await queryItem(blockGroup - 1);
-    return (data.Items || []).concat(list);
+  const _list = [...list, data];
+
+  if (_list.length < LIMIT) {
+    return await queryBlockList(blockNumber - 1, _list);
   }
 
-  return data.Items || [];
+  return {
+    list: [...list, data],
+    blockNumber,
+  };
 }
 
-export async function POST(): Promise<NextResponse> {
-  const blockGroup = splitGroupToNumber(166887913);
-  const a = await queryItem(blockGroup);
-  return NextResponse.json({ a });
+export async function POST(res: NextRequest): Promise<NextResponse> {
+  const { data } = (await res.json()) as { data: { startWith: number } };
+  const { list, blockNumber } = await queryBlockList(data.startWith);
+
+  return NextResponse.json({
+    code: 0,
+    endBlockNumber: blockNumber - 1,
+    result: list,
+  });
 }

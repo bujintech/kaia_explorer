@@ -40,18 +40,6 @@ export interface TxResponseData {
   s: string;
 }
 
-export interface PutInputItem {
-  PK: string;
-  SK: string; // 块 、交易
-  RESULT: string; // 结果
-  GS1PK: string;
-  GS1SK: string;
-  GS2PK: string;
-  GS2SK: string;
-  GS3PK: string; //TODO
-  GS3SK: string;
-  GS4PK: string; //块 以千单位拆分 例如：166628001 => 166628、001
-  GS4SK: string;
-  CHAIN: string; // 固定：KAIA
-  TYPE: string;
+export interface GcResponseData {
+  aly: string;
 }

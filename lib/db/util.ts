@@ -5,15 +5,10 @@ function compressJson(jsonObj: Record<string, unknown>): string {
   return gzipSync(jsonString).toString("base64");
 }
 
-function decompressJson(compressedData: string): Record<string, unknown> {
+function decompressJson<T>(compressedData: string): T {
   const buffer = Buffer.from(compressedData, "base64");
   const uncompressedData = gunzipSync(buffer);
   return JSON.parse(uncompressedData.toString());
 }
 
-function splitGroupToNumber(val: string | number): number {
-  const _val = Number(val);
-  return Math.floor(_val / 10);
-}
-
-export { compressJson, decompressJson, splitGroupToNumber };
+export { compressJson, decompressJson };

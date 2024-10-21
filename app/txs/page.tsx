@@ -8,7 +8,12 @@ import { columns } from "./schema";
 
 const Transactions = () => {
   const { dataSource, pageSize, pageNumber, total, setPageSize } = useTable({
-    apiFunction: (pageSize: number) => axios.post(`/api/transaction/list/${pageSize}`),
+    apiFunction: () =>
+      axios.post(`/api/transaction/list`, {
+        data: {
+          startWith: 166887911,
+        },
+      }),
   });
 
   return (

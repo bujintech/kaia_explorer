@@ -8,7 +8,12 @@ import { columns } from "./schema";
 
 const Blocks = () => {
   const { dataSource, loading, pageSize, pageNumber, total, setPageSize } = useTable({
-    apiFunction: (pageSize: number) => axios.post(`/api/block/list`),
+    apiFunction: () =>
+      axios.post(`/api/block/list`, {
+        data: {
+          startWith: 166887916,
+        },
+      }),
   });
 
   return (
