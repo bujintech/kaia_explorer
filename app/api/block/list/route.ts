@@ -1,10 +1,10 @@
 import { NextResponse, NextRequest } from "next/server";
-import { getBlockByNumber } from "@/lib/db/api";
+import { queryBlockByNumber } from "@/lib/db/api";
 
 const LIMIT = 18;
 
 async function queryBlockList(blockNumber: number, list: unknown[] = []) {
-  const data = await getBlockByNumber(blockNumber);
+  const data = await queryBlockByNumber(blockNumber);
 
   if (!data) return { list, blockNumber };
 

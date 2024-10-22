@@ -2,7 +2,7 @@ import db from "./db";
 import { decompressJson } from "./util";
 import type { BlockResponseData, TxResponseData, GcResponseData } from "./type";
 
-export const getBlockByNumber = async (blockNumber: number): Promise<BlockResponseData | null> => {
+export const queryBlockByNumber = async (blockNumber: number): Promise<BlockResponseData | null> => {
   const data = await db.query({
     KeyConditionExpression: `GS1PK = :GS1PK AND GS1SK = :GS1SK`,
     ExpressionAttributeValues: {
@@ -18,7 +18,9 @@ export const getBlockByNumber = async (blockNumber: number): Promise<BlockRespon
   return null;
 };
 
-export const getTransactionsByBlockNumber = async (blockNumber: number): Promise<TxResponseData[] | null> => {
+export const queryTransactionsByBlockNumber = async (
+  blockNumber: number
+): Promise<TxResponseData[] | null> => {
   const data = await db.query({
     KeyConditionExpression: `GS1PK = :GS1PK `,
     ExpressionAttributeValues: {
@@ -41,7 +43,7 @@ export const getTransactionsByBlockNumber = async (blockNumber: number): Promise
   }
 };
 
-export const getGcInfoList = async (): Promise<GcResponseData[]> => {
+export const queryGcInfoList = async (): Promise<GcResponseData[]> => {
   const data = await db.query({
     KeyConditionExpression: `PK = :PK `,
     ExpressionAttributeValues: {
@@ -54,4 +56,23 @@ export const getGcInfoList = async (): Promise<GcResponseData[]> => {
     // return decompressJson<GcResponseData>(v.RESULT);
   });
   return list;
+};
+
+export const queryDataByHash = async (
+  hash: string
+): Promise<{ type: "TX" | "BLOCK"; data: unknown } | null> => {
+  const data = await db.query({
+    KeyConditionExpression: `PK = :PK `,
+    ExpressionAttributeValues: {
+      ":PK": hash,
+    },
+  });
+  const itemData = data.Items?.[0];
+
+  if (!itemData) return null;
+
+  return {
+    type: itemData.SK,
+    data: decompressJson(itemData.RESULT),
+  };
 };

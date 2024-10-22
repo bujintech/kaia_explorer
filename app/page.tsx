@@ -3,6 +3,7 @@
 import dayjs from "@/lib/utils/day";
 import { useEffect } from "react";
 import Nav from "@/components/nav";
+import SearchInput from "@/components/searchInput";
 
 export default function Home() {
   useEffect(() => {
@@ -15,8 +16,8 @@ export default function Home() {
 
   return (
     <>
-      22
       <Nav></Nav>
+      <SearchInput></SearchInput>
     </>
   );
 }

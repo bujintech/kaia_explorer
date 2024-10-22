@@ -1,10 +1,10 @@
 import { NextResponse, NextRequest } from "next/server";
-import { getTransactionsByBlockNumber } from "@/lib/db/api";
+import { queryTransactionsByBlockNumber } from "@/lib/db/api";
 
 const LIMIT = 13;
 
 async function queryTxList(blockNumber: number, list: unknown[] = [], count: number = 5) {
-  const txs = await getTransactionsByBlockNumber(166887902);
+  const txs = await queryTransactionsByBlockNumber(166887902);
   console.log(111, list?.length);
 
   if (!txs) return { list, blockNumber };

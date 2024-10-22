@@ -18,11 +18,13 @@ export interface BlockResponseData {
   timestamp: string;
   totalDifficulty: string;
   transactions: TxResponseData[];
+  transactionsTotal: number;
   transactionsRoot: string;
   uncles: [];
 }
 
 export interface TxResponseData {
+  timestamp: string;
   blockHash: string;
   blockNumber: string;
   from: string;
