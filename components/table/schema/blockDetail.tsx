@@ -2,7 +2,7 @@ import type { Columns } from "@/components/table";
 import type { TxResponseData } from "@/lib/db/type";
 import Link from "next/link";
 
-export const columns: Columns<TxResponseData>[] = [
+const columns: Columns<TxResponseData>[] = [
   {
     title: "TX Hash",
     dataIndex: "hash",
@@ -20,3 +20,4 @@ export const columns: Columns<TxResponseData>[] = [
   { title: "Amount(KLAY)", dataIndex: "blockNumber" },
   { title: "TX Fee(KLAY)", dataIndex: "blockNumber" },
 ];
+export default columns;

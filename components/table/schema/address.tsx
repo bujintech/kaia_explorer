@@ -1,18 +1,9 @@
 import type { Columns } from "@/components/table";
 import Link from "next/link";
 
-export interface DataType {
-  hash: string;
-  blockNumber: string;
-  createdAt: string;
-  from: string;
-  to: string;
-  methodName: string;
-  amount: string;
-  txFee: string;
-}
+import type { TxResponseData } from "@/lib/db/type";
 
-export const columns: Columns<DataType>[] = [
+const columns: Columns<TxResponseData>[] = [
   {
     title: "TX Hash",
     dataIndex: "hash",
@@ -28,12 +19,14 @@ export const columns: Columns<DataType>[] = [
   },
   {
     title: "Age",
-    dataIndex: "createdAt",
+    dataIndex: "timestamp",
   },
   { title: "From", dataIndex: "from" },
   { title: "To", dataIndex: "to" },
-  { title: "Method", dataIndex: "methodName" },
+  { title: "Method", dataIndex: "blockNumber" },
   { title: "Tx Type", dataIndex: "blockNumber" },
-  { title: "Amount(KLAY)", dataIndex: "amount" },
-  { title: "TX Fee(KLAY)", dataIndex: "txFee" },
+  { title: "Amount(KLAY)", dataIndex: "blockNumber" },
+  { title: "TX Fee(KLAY)", dataIndex: "blockNumber" },
 ];
+
+export default columns;

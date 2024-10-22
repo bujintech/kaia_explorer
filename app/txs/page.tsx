@@ -1,9 +1,8 @@
 "use client";
 
 import axios from "axios";
-import Table from "@/components/table";
+import Table, { txsColumns } from "@/components/table";
 import useTable from "@/hooks/useTable";
-import { columns } from "./schema";
 
 function Transactions() {
   const { dataSource } = useTable({
@@ -18,7 +17,7 @@ function Transactions() {
   return (
     <>
       <h1>transactions list</h1>
-      <Table columns={columns} dataSource={dataSource}></Table>
+      <Table columns={txsColumns} dataSource={dataSource}></Table>
     </>
   );
 }

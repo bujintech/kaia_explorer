@@ -11,7 +11,7 @@ export interface DataType {
   burntFees: string;
 }
 
-export const columns: Columns<DataType>[] = [
+const columns: Columns<DataType>[] = [
   {
     title: "Block",
     dataIndex: "number",
@@ -31,3 +31,5 @@ export const columns: Columns<DataType>[] = [
   { title: "Rewards(KLAY)", dataIndex: "reward" },
   { title: "Burnt Fee", dataIndex: "burntFees" },
 ];
+
+export default columns;

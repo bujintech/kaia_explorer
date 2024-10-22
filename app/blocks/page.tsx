@@ -1,9 +1,8 @@
 "use client";
 
 import axios from "axios";
-import Table from "@/components/table";
+import Table, { blockColumns } from "@/components/table";
 import useTable from "@/hooks/useTable";
-import { columns } from "./schema";
 
 function Blocks() {
   const { dataSource, loading } = useTable({
@@ -18,7 +17,7 @@ function Blocks() {
   return (
     <>
       <h1 style={{ color: loading ? "red" : "blue" }}>Blocks list</h1>
-      <Table columns={columns} dataSource={dataSource}></Table>
+      <Table columns={blockColumns} dataSource={dataSource}></Table>
     </>
   );
 }

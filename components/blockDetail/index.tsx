@@ -1,5 +1,4 @@
-import Table from "@/components/table";
-import { columns } from "./schema";
+import Table, { blockDetailColumns } from "@/components/table";
 import style from "./index.module.css";
 import { hexToDecimal } from "@/lib/utils";
 import { queryTransactionsByBlockNumber } from "@/lib/db";
@@ -33,7 +32,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         <span>Total TXS:</span>
         <span>{data.transactionsTotal}</span>
       </div>
-      <Table<TxResponseData> columns={columns} dataSource={txList || []}></Table>
+      <Table<TxResponseData> columns={blockDetailColumns} dataSource={txList || []}></Table>
     </div>
   );
 }
