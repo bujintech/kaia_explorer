@@ -24,10 +24,10 @@ export async function queryBlockByHash(hash: string = ""): Promise<BlockResponse
       SK: "BLOCK",
     },
   });
-  const Item = data.Item || null;
-  if (Item?.RESULT) return decompressJson<BlockResponseData>(Item.RESULT);
+  if (data?.Item?.RESULT) return decompressJson<BlockResponseData>(data.Item.RESULT);
   return null;
 }
+
 export async function queryTransactionByHash(hash: string = ""): Promise<TxResponseData | null> {
   const data = await db.getItem({
     Key: {
@@ -35,8 +35,8 @@ export async function queryTransactionByHash(hash: string = ""): Promise<TxRespo
       SK: "TX",
     },
   });
-  const Item = data.Item || null;
-  if (Item?.RESULT) return decompressJson<TxResponseData>(Item.RESULT);
+
+  if (data?.Item?.RESULT) return decompressJson<TxResponseData>(data.Item.RESULT);
   return null;
 }
 
@@ -81,21 +81,44 @@ export async function queryDataByHash(hash: string): Promise<{ type: "TX" | "BLO
   };
 }
 
-export async function queryGcInfoByName(gcName: string): Promise<GcResponseData[]> {
+export async function queryTransactionByAddress(address: string): Promise<TxResponseData[]> {
   const data = await db.query({
-    KeyConditionExpression: `PK = :PK AND SK = :SK`,
+    KeyConditionExpression: `GS2PK = :GS2PK`,
     ExpressionAttributeValues: {
-      ":PK": `GC`,
-      ":SK": gcName || "",
+      ":GS2PK": `${address}`,
+    },
+    ScanIndexForward: true,
+    IndexName: "GS2",
+  });
+  return (Array.isArray(data.Items) ? data.Items : []).map((v) => {
+    return decompressJson<TxResponseData>(v.RESULT);
+  });
+}
+
+export async function queryGcConfig(): Promise<Record<string, string> | null> {
+  const data = await db.getItem({
+    Key: {
+      PK: "GC_CONFIG",
+      SK: "GC_CONFIG",
     },
   });
 
-  const list = (Array.isArray(data.Items) ? data.Items : []).map((v) => {
-    return JSON.parse(v.RESULT);
-    // return decompressJson<GcResponseData>(v.RESULT);
-  });
-  return list;
+  if (data?.Item?.RESULT) return JSON.parse(data.Item.RESULT);
+  return null;
 }
+
+export async function queryGcInfoByName(gcName: string = ""): Promise<GcResponseData | null> {
+  const data = await db.getItem({
+    Key: {
+      PK: "GC",
+      SK: gcName,
+    },
+  });
+
+  if (data?.Item?.RESULT) return JSON.parse(data.Item.RESULT);
+  return null;
+}
+
 export async function queryGcInfoList(): Promise<GcResponseData[]> {
   const data = await db.query({
     KeyConditionExpression: `PK = :PK `,
@@ -106,7 +129,6 @@ export async function queryGcInfoList(): Promise<GcResponseData[]> {
 
   const list = (Array.isArray(data.Items) ? data.Items : []).map((v) => {
     return JSON.parse(v.RESULT);
-    // return decompressJson<GcResponseData>(v.RESULT);
   });
   return list;
 }

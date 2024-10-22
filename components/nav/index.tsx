@@ -1,6 +1,6 @@
 import Link from "next/link";
 import style from "./index.module.css";
-const Nav = () => {
+function Nav() {
   return (
     <ul className={style.nav}>
       <li>
@@ -14,6 +14,6 @@ const Nav = () => {
       </li>
     </ul>
   );
-};
+}
 
 export default Nav;

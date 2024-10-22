@@ -6,7 +6,7 @@ import style from "./index.module.css";
 
 import { getValueType, hexToDecimal } from "@/lib/utils";
 
-const SearchInput = () => {
+function SearchInput() {
   const [value, setValue] = useState<string>("");
   const router = useRouter();
 
@@ -30,7 +30,6 @@ const SearchInput = () => {
   }, [value]);
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(111, e.target.value);
     setValue(e.target.value);
   }, []);
 
@@ -50,12 +49,12 @@ const SearchInput = () => {
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
-        placeholder={"blockNumber、block hash、tx hash、address"}
+        placeholder={"blockNumber、blockHash、txHash、address"}
         className={style.input}
       />
       <span onClick={onSearch}>确定</span>
     </>
   );
-};
+}
 
 export default SearchInput;

@@ -43,5 +43,21 @@ export interface TxResponseData {
 }
 
 export interface GcResponseData {
-  aly: string;
+  squareId: number;
+  name: string;
+  squareLink: string;
+  thumbnail: string;
+  totalStaking: string;
+  websites: [];
+  joinedAt: string;
+  apy: string;
+  description: string;
+  categories: { id: number; name: string }[];
+  contracts: {
+    address: string;
+    type: string;
+    version: number;
+  }[];
+  summary: string;
+  isFoundation: boolean;
 }

@@ -1,7 +1,7 @@
 import style from "./index.module.css";
 import type { TxResponseData } from "@/lib/db/type";
 
-const TransactionDetail = ({ data }: { data: TxResponseData }) => {
+function TransactionDetail({ data }: { data: TxResponseData }) {
   return (
     <div className={style.txDetail}>
       TX
@@ -35,6 +35,6 @@ const TransactionDetail = ({ data }: { data: TxResponseData }) => {
       </div>
     </div>
   );
-};
+}
 
 export default TransactionDetail;
