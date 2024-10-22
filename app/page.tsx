@@ -1,6 +1,6 @@
 "use client";
 
-import dayjs from "@/lib/utils/day";
+import { dayjs } from "@/lib/utils";
 import { useEffect } from "react";
 import Nav from "@/components/nav";
 import SearchInput from "@/components/searchInput";

@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { queryBlockByNumber } from "@/lib/db/api";
+import { queryBlockByNumber } from "@/lib/db";
 
 const LIMIT = 18;
 

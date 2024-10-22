@@ -6,7 +6,7 @@ import Pagination from "@/components/pagination";
 import useTable from "@/hooks/useTable";
 import { columns } from "./schema";
 
-const Blocks = () => {
+function Blocks() {
   const { dataSource, loading, pageSize, pageNumber, total, setPageSize } = useTable({
     apiFunction: () =>
       axios.post(`/api/block/list`, {
@@ -28,6 +28,6 @@ const Blocks = () => {
       ></Pagination>
     </>
   );
-};
+}
 
 export default Blocks;

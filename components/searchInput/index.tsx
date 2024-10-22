@@ -25,11 +25,12 @@ const SearchInput = () => {
     } else if (type === "hash") {
       router.push(`hash/${value}`);
     } else {
-      router.push(`search?keyword=${value}`);
+      router.push(`search?keyword=${encodeURIComponent(value)}`);
     }
   }, [value]);
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(111, e.target.value);
     setValue(e.target.value);
   }, []);
 

@@ -1,11 +1,13 @@
 import BlockDetail from "@/app/hash/components/block";
 import TxDetail from "@/app/hash/components/trabsactions";
-import { queryDataByHash } from "@/lib/db/api";
+import { queryDataByHash } from "@/lib/db";
+
 import type { BlockResponseData, TxResponseData } from "@/lib/db/type";
+import Empty from "@/components/empty";
 
 async function Hash({ params: { hash } }: { params: { hash: string } }) {
   const result = await queryDataByHash(hash);
-  if (!result) return null;
+  if (!result) return <Empty type="hash"></Empty>;
 
   const { type, data } = result;
 

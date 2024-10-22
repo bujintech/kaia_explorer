@@ -2,13 +2,13 @@ import Table from "@/components/table";
 import { columns } from "./schema";
 import style from "./index.module.css";
 import { hexToDecimal } from "@/lib/utils";
-import { queryTransactionsByBlockNumber } from "@/lib/db/api";
-import type { BlockResponseData } from "@/lib/db/type";
+import { queryTransactionsByBlockNumber } from "@/lib/db";
+import type { BlockResponseData, TxResponseData } from "@/lib/db/type";
 
 async function BlockDetail({ data }: { data: BlockResponseData }) {
   const blockNumber = hexToDecimal(data.number);
 
-  const txList = (await queryTransactionsByBlockNumber(blockNumber)) as [];
+  const txList = await queryTransactionsByBlockNumber(blockNumber);
 
   return (
     <div className={style.blockDetail}>
@@ -33,7 +33,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         <span>Total TXS:</span>
         <span>{data.transactionsTotal}</span>
       </div>
-      <Table columns={columns} dataSource={txList || []}></Table>
+      <Table<TxResponseData> columns={columns} dataSource={txList || []}></Table>
     </div>
   );
 }

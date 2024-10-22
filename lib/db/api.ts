@@ -2,7 +2,7 @@ import db from "./db";
 import { decompressJson } from "./util";
 import type { BlockResponseData, TxResponseData, GcResponseData } from "./type";
 
-export const queryBlockByNumber = async (blockNumber: number): Promise<BlockResponseData | null> => {
+export async function queryBlockByNumber(blockNumber: number): Promise<BlockResponseData | null> {
   const data = await db.query({
     KeyConditionExpression: `GS1PK = :GS1PK AND GS1SK = :GS1SK`,
     ExpressionAttributeValues: {
@@ -16,15 +16,13 @@ export const queryBlockByNumber = async (blockNumber: number): Promise<BlockResp
 
   if (Item?.RESULT) return decompressJson<BlockResponseData>(Item.RESULT);
   return null;
-};
+}
 
-export const queryTransactionsByBlockNumber = async (
-  blockNumber: number
-): Promise<TxResponseData[] | null> => {
+export async function queryTransactionsByBlockNumber(blockNumber: number): Promise<TxResponseData[] | null> {
   const data = await db.query({
     KeyConditionExpression: `GS1PK = :GS1PK `,
     ExpressionAttributeValues: {
-      ":GS1PK": `${blockNumber}`,
+      ":GS1PK": blockNumber,
     },
     ScanIndexForward: true,
     IndexName: "GS1",
@@ -41,9 +39,23 @@ export const queryTransactionsByBlockNumber = async (
   } else {
     return null;
   }
-};
+}
+export async function queryGcInfoByName(gcName: string): Promise<GcResponseData[]> {
+  const data = await db.query({
+    KeyConditionExpression: `PK = :PK AND SK = :SK`,
+    ExpressionAttributeValues: {
+      ":PK": `GC`,
+      ":SK": gcName || "",
+    },
+  });
 
-export const queryGcInfoList = async (): Promise<GcResponseData[]> => {
+  const list = (Array.isArray(data.Items) ? data.Items : []).map((v) => {
+    return JSON.parse(v.RESULT);
+    // return decompressJson<GcResponseData>(v.RESULT);
+  });
+  return list;
+}
+export async function queryGcInfoList(): Promise<GcResponseData[]> {
   const data = await db.query({
     KeyConditionExpression: `PK = :PK `,
     ExpressionAttributeValues: {
@@ -56,15 +68,13 @@ export const queryGcInfoList = async (): Promise<GcResponseData[]> => {
     // return decompressJson<GcResponseData>(v.RESULT);
   });
   return list;
-};
+}
 
-export const queryDataByHash = async (
-  hash: string
-): Promise<{ type: "TX" | "BLOCK"; data: unknown } | null> => {
+export async function queryDataByHash(hash: string): Promise<{ type: "TX" | "BLOCK"; data: unknown } | null> {
   const data = await db.query({
     KeyConditionExpression: `PK = :PK `,
     ExpressionAttributeValues: {
-      ":PK": hash,
+      ":PK": hash || "",
     },
   });
   const itemData = data.Items?.[0];
@@ -75,4 +85,4 @@ export const queryDataByHash = async (
     type: itemData.SK,
     data: decompressJson(itemData.RESULT),
   };
-};
+}

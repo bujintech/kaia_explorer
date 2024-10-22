@@ -1,3 +1,7 @@
+export * from "./day";
+
+export * from "./fetchProxy";
+
 export function hexToDecimal(value: string) {
   const trimmedValue = value.trim();
 

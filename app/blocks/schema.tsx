@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Columns } from "@/components/table";
-import dayjs from "@/lib/utils/day";
+import { dayjs } from "@/lib/utils";
 export interface DataType {
   number: string;
   createdAt: string;
