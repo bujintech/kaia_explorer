@@ -13,8 +13,30 @@ export async function queryBlockByNumber(blockNumber: number): Promise<BlockResp
     IndexName: "GS1",
   });
   const Item = (Array.isArray(data.Items) ? data.Items : [])[0];
-
   if (Item?.RESULT) return decompressJson<BlockResponseData>(Item.RESULT);
+  return null;
+}
+
+export async function queryBlockByHash(hash: string = ""): Promise<BlockResponseData | null> {
+  const data = await db.getItem({
+    Key: {
+      PK: hash,
+      SK: "BLOCK",
+    },
+  });
+  const Item = data.Item || null;
+  if (Item?.RESULT) return decompressJson<BlockResponseData>(Item.RESULT);
+  return null;
+}
+export async function queryTransactionByHash(hash: string = ""): Promise<TxResponseData | null> {
+  const data = await db.getItem({
+    Key: {
+      PK: hash,
+      SK: "TX",
+    },
+  });
+  const Item = data.Item || null;
+  if (Item?.RESULT) return decompressJson<TxResponseData>(Item.RESULT);
   return null;
 }
 
@@ -22,11 +44,12 @@ export async function queryTransactionsByBlockNumber(blockNumber: number): Promi
   const data = await db.query({
     KeyConditionExpression: `GS1PK = :GS1PK `,
     ExpressionAttributeValues: {
-      ":GS1PK": blockNumber,
+      ":GS1PK": `${blockNumber}`,
     },
     ScanIndexForward: true,
     IndexName: "GS1",
   });
+
   const list = Array.isArray(data.Items) ? data.Items : [];
 
   const blockIndex = list.findIndex((v) => v.SK === "BLOCK");
@@ -40,6 +63,24 @@ export async function queryTransactionsByBlockNumber(blockNumber: number): Promi
     return null;
   }
 }
+
+export async function queryDataByHash(hash: string): Promise<{ type: "TX" | "BLOCK"; data: unknown } | null> {
+  const data = await db.query({
+    KeyConditionExpression: `PK = :PK `,
+    ExpressionAttributeValues: {
+      ":PK": hash || "",
+    },
+  });
+  const itemData = data.Items?.[0];
+
+  if (!itemData) return null;
+
+  return {
+    type: itemData.SK,
+    data: decompressJson(itemData.RESULT),
+  };
+}
+
 export async function queryGcInfoByName(gcName: string): Promise<GcResponseData[]> {
   const data = await db.query({
     KeyConditionExpression: `PK = :PK AND SK = :SK`,
@@ -68,21 +109,4 @@ export async function queryGcInfoList(): Promise<GcResponseData[]> {
     // return decompressJson<GcResponseData>(v.RESULT);
   });
   return list;
-}
-
-export async function queryDataByHash(hash: string): Promise<{ type: "TX" | "BLOCK"; data: unknown } | null> {
-  const data = await db.query({
-    KeyConditionExpression: `PK = :PK `,
-    ExpressionAttributeValues: {
-      ":PK": hash || "",
-    },
-  });
-  const itemData = data.Items?.[0];
-
-  if (!itemData) return null;
-
-  return {
-    type: itemData.SK,
-    data: decompressJson(itemData.RESULT),
-  };
 }

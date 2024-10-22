@@ -4,12 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import style from "./index.module.css";
 
-const GCInfo = () => {
+function GCInfo() {
   const [data, setData] = useState([]);
 
   const queryGcInfoData = useCallback(() => {
     axios.post("/api/gcInfo").then(({ data }) => {
-      console.log(data.result);
       setData(data.result);
     });
   }, []);
@@ -45,6 +44,6 @@ const GCInfo = () => {
       })}
     </>
   );
-};
+}
 
 export default GCInfo;

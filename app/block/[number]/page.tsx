@@ -1,4 +1,4 @@
-import BlockDetail from "@/app/hash/components/block";
+import BlockDetail from "@/components/blockDetail";
 import { queryBlockByNumber } from "@/lib/db";
 import Empty from "@/components/empty";
 

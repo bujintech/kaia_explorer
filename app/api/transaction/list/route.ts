@@ -5,7 +5,6 @@ const LIMIT = 13;
 
 async function queryTxList(blockNumber: number, list: unknown[] = []) {
   const txs = await queryTransactionsByBlockNumber(166887902);
-  console.log(111, list?.length);
 
   if (!txs) return { list, blockNumber };
 

@@ -12,7 +12,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
 
   return (
     <div className={style.blockDetail}>
-      BLOCK
+      BLOCK _ {blockNumber}
       <div>
         <span>Block:</span>
         <span>{data.number}</span>

@@ -1,5 +1,5 @@
-import BlockDetail from "@/app/hash/components/block";
-import TxDetail from "@/app/hash/components/trabsactions";
+import BlockDetail from "@/components/blockDetail";
+import TxDetail from "@/components/transactionDetail";
 import { queryDataByHash } from "@/lib/db";
 
 import type { BlockResponseData, TxResponseData } from "@/lib/db/type";
