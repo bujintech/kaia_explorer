@@ -132,8 +132,7 @@ export async function queryGcInfoList(): Promise<GcResponseData[]> {
     },
   });
 
-  const list = (Array.isArray(data.Items) ? data.Items : []).map((v) => {
+  return (Array.isArray(data.Items) ? data.Items : []).map((v) => {
     return decompressJson<GcResponseData>(v.RESULT);
   });
-  return list;
 }
