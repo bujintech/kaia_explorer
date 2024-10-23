@@ -26,7 +26,7 @@ const TABLE_NAME = process.env.TABLE_NAME as string;
 
 class DB {
   private docClient: DynamoDBDocumentClient;
-  private tableName: string;
+  public tableName: string;
 
   constructor(tableName: string) {
     this.tableName = tableName;

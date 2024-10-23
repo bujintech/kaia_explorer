@@ -1,32 +1,41 @@
 import { NextResponse, NextRequest } from "next/server";
-import { queryBlockByNumber } from "@/lib/db";
+import { queryListFromBatch } from "@/lib/db";
 
-const LIMIT = 18;
+const LIMIT = 15;
 
-async function queryBlockList(blockNumber: number, list: unknown[] = []) {
-  const data = await queryBlockByNumber(blockNumber);
+async function getBlockList(blockNumber: number) {
+  let _blockNumber = blockNumber;
 
-  if (!data) return { list, blockNumber };
+  const params = [];
 
-  const _list = [...list, data];
-
-  if (_list.length < LIMIT) {
-    return await queryBlockList(blockNumber - 1, _list);
+  while (_blockNumber >= 0 && blockNumber - _blockNumber < LIMIT) {
+    params.push({
+      PK: `${_blockNumber}`,
+      SK: `BLOCK#${_blockNumber}`,
+    });
+    _blockNumber = _blockNumber - 1;
   }
 
+  const list = await queryListFromBatch(params);
+
   return {
-    list: [...list, data],
-    blockNumber,
+    list,
+    blockNumber: _blockNumber,
   };
 }
 
 export async function POST(res: NextRequest): Promise<NextResponse> {
   const { data } = (await res.json()) as { data: { startWith: number } };
-  const { list, blockNumber } = await queryBlockList(data.startWith);
 
-  return NextResponse.json({
-    code: 0,
-    endBlockNumber: blockNumber - 1,
-    result: list,
-  });
+  const startBlockNumber = Number(data.startWith);
+
+  let obj = { code: 0, endBlockNumber: 0, result: [] };
+
+  if (!isNaN(startBlockNumber) && startBlockNumber >= 0) {
+    const { list, blockNumber } = await getBlockList(startBlockNumber);
+
+    obj = { code: 0, endBlockNumber: blockNumber, result: list as [] };
+  }
+
+  return NextResponse.json(obj);
 }

@@ -3,15 +3,15 @@ import { queryTransactionsByBlockNumber } from "@/lib/db";
 
 const LIMIT = 13;
 
-async function queryTxList(blockNumber: number, list: unknown[] = []) {
-  const txs = await queryTransactionsByBlockNumber(166887902);
+async function getTxList(blockNumber: number, list: unknown[] = []) {
+  const txs = await queryTransactionsByBlockNumber(blockNumber);
 
   if (!txs) return { list, blockNumber };
 
   const _list = [...list, ...txs];
 
   if (_list.length < LIMIT) {
-    return await queryTxList(blockNumber - 1, _list);
+    return await getTxList(blockNumber - 1, _list);
   }
 
   return {
@@ -23,15 +23,15 @@ async function queryTxList(blockNumber: number, list: unknown[] = []) {
 export async function POST(res: NextRequest): Promise<NextResponse> {
   const { data } = (await res.json()) as { data: { startWith: number } };
 
-  const blockStartWith = data.startWith;
+  const startBlockNumber = Number(data.startWith);
 
-  const { list, blockNumber } = await queryTxList(blockStartWith);
+  let obj = { code: 0, endBlockNumber: 0, result: [] };
 
-  const result = {
-    code: 0,
-    endBlockNumber: blockNumber - 1,
-    result: list,
-  };
+  if (!isNaN(startBlockNumber) && startBlockNumber >= 0) {
+    const { list, blockNumber } = await getTxList(startBlockNumber);
 
-  return NextResponse.json(result);
+    obj = { code: 0, endBlockNumber: blockNumber, result: list as [] };
+  }
+
+  return NextResponse.json(obj);
 }

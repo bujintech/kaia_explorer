@@ -20,7 +20,7 @@ function extractScriptTag(htmlString) {
 const url = "https://kaiascan.io/gc-info";
 
 const startTask = async (data) => {
-  const RESULT = data || compressJson(data);
+  const RESULT = compressJson(data);
 
   const name = data.name?.toLocaleLowerCase();
   if (!name) return;

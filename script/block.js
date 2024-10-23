@@ -12,11 +12,16 @@ function getblockItem(data) {
   const _blockNumber = parseInt(data.number, 16).toString();
 
   return {
-    PK: data.hash,
-    SK: "BLOCK",
+    // PK: data.hash,
+    // SK: "BLOCK",
 
-    GS1PK: _blockNumber,
-    GS1SK: `BLOCK#${_blockNumber}`,
+    // GS1PK: _blockNumber,
+    // GS1SK: `BLOCK#${_blockNumber}`,
+    PK: _blockNumber,
+    SK: `BLOCK#${_blockNumber}`,
+
+    GS1PK: data.hash,
+    GS1SK: "BLOCK",
 
     GS2PK: data.miner,
     GS2SK: `BLOCK#${_blockNumber}`,
@@ -33,11 +38,16 @@ function getTransactionItem(data, timestamp) {
   const _blockNumber = parseInt(data.blockNumber, 16).toString();
 
   return {
-    PK: data.hash,
-    SK: "TX",
+    // PK: data.hash,
+    // SK: "TX",
 
-    GS1PK: _blockNumber,
-    GS1SK: `TX#${parseInt(data.transactionIndex, 16)}`,
+    // GS1PK: _blockNumber,
+    // GS1SK: `TX#${parseInt(data.transactionIndex, 16)}`,
+    PK: _blockNumber,
+    SK: `TX#${_blockNumber}#${parseInt(data.transactionIndex, 16)}`,
+
+    GS1PK: data.hash,
+    GS1SK: "TX",
 
     GS2PK: data.from,
     GS2SK: `TX#${_blockNumber}#${parseInt(data.nonce, 16)}`,
@@ -89,7 +99,7 @@ async function taskItem(blockNumber) {
 
 async function main() {
   let currentBlock = 166887901;
-  const max = 166887901;
+  const max = 166887915;
   while (currentBlock <= max) {
     try {
       await taskItem(currentBlock);
