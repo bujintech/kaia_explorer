@@ -50,7 +50,9 @@ export async function queryTransactionByHash(hash: string): Promise<TxResponseDa
   return null;
 }
 
-export async function queryTransactionsByBlockNumber(blockNumber: number): Promise<TxResponseData[] | null> {
+export async function queryBlockGroup(
+  blockNumber: number
+): Promise<{ txsList: TxResponseData[] | null; blockData: BlockResponseData | null }> {
   const data = await db.query({
     KeyConditionExpression: `PK = :PK `,
     ExpressionAttributeValues: {
@@ -60,16 +62,27 @@ export async function queryTransactionsByBlockNumber(blockNumber: number): Promi
 
   const list = Array.isArray(data.Items) ? data.Items : [];
 
-  const blockIndex = list.findIndex((v) => v.GS1SK === "BLOCK");
-  if (blockIndex >= 0) {
-    return list
-      .filter((v) => v.GS1SK === "TX")
-      .map((v) => {
-        return decompressJson<TxResponseData>(v.RESULT);
-      });
-  } else {
-    return null;
-  }
+  let blockData: BlockResponseData | null = null;
+  const txsList: TxResponseData[] = [];
+
+  list.map((v) => {
+    if (v.GS1SK === "TX") {
+      txsList.push(decompressJson(v.RESULT));
+    }
+    if (v.GS1SK === "BLOCK") {
+      blockData = decompressJson(v.RESULT);
+    }
+  });
+
+  return {
+    txsList: blockData ? txsList : null,
+    blockData,
+  };
+}
+
+export async function queryTransactionsByBlockNumber(blockNumber: number): Promise<TxResponseData[] | null> {
+  const { txsList } = await queryBlockGroup(blockNumber);
+  return txsList;
 }
 
 export async function queryTransactionByAddress(address: string): Promise<TxResponseData[]> {
