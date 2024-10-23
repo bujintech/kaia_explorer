@@ -50,7 +50,7 @@ const startGcConfig = async (list) => {
       PK: `GC_CONFIG`,
       SK: "GC_CONFIG",
 
-      RESULT: JSON.stringify(map),
+      RESULT: compressJson(map),
       CHAIN: "KAIA",
     },
   });
@@ -68,14 +68,13 @@ const main = async () => {
       console.log("governanceCouncils is not array");
       return;
     }
+    await startGcConfig(governanceCouncils);
 
     let item = governanceCouncils.pop();
     while (item) {
       await startTask(item);
       item = governanceCouncils.pop();
     }
-
-    await startGcConfig(governanceCouncils);
 
     console.log("GC Info data synchronization completed ～～～～～");
   } catch (e) {

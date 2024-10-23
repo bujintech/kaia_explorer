@@ -8,7 +8,7 @@ async function Address({ gcName }: { gcName: string }) {
   return (
     <div>
       <div>
-        <img src={data.thumbnail}></img>
+        <img height={100} src={data.thumbnail}></img>
         <div>{data.name}</div>
       </div>
 

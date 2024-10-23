@@ -108,7 +108,7 @@ export async function queryGcInfoByName(gcName: string): Promise<GcResponseData 
     },
   });
 
-  if (data?.Item?.RESULT) return JSON.parse(data.Item.RESULT);
+  if (data?.Item?.RESULT) return decompressJson(data.Item.RESULT);
   return null;
 }
 
