@@ -3,12 +3,14 @@ import { queryGcConfig, queryListFromBatch } from "@/lib/db";
 import { GcResponseData } from "@/lib/db/type";
 
 async function Search({ searchParams: { keyword } }: { searchParams: { keyword: string } }) {
+  const _keyword = (decodeURIComponent(keyword) || "").trim().toLocaleLowerCase();
+
   const gc_config = await queryGcConfig();
 
   const values = Array.from(
     new Set(
       ((gc_config && Object.values(gc_config)) || []).filter((v) => {
-        return v.includes(decodeURIComponent(keyword));
+        return v.includes(_keyword);
       })
     )
   );

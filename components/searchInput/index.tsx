@@ -30,7 +30,8 @@ function SearchInput() {
   }, [value]);
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    const val = (e.target.value || "").trim();
+    setValue(val);
   }, []);
 
   const onKeyDown = useCallback(
