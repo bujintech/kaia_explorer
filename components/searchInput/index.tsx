@@ -50,7 +50,7 @@ function SearchInput() {
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
-        placeholder={"blockNumber、blockHash、txHash、address"}
+        placeholder={"Search by Address / Txn Hash / Block /Block Hash / Domain Name"}
         className={style.input}
       />
       <span onClick={onSearch}>确定</span>
