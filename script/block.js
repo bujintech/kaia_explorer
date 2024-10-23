@@ -12,11 +12,6 @@ function getblockItem(data) {
   const _blockNumber = parseInt(data.number, 16).toString();
 
   return {
-    // PK: data.hash,
-    // SK: "BLOCK",
-
-    // GS1PK: _blockNumber,
-    // GS1SK: `BLOCK#${_blockNumber}`,
     PK: _blockNumber,
     SK: `BLOCK#${_blockNumber}`,
 
@@ -37,14 +32,11 @@ function getTransactionItem(data, timestamp) {
   const RESULT = compressJson(_data);
   const _blockNumber = parseInt(data.blockNumber, 16).toString();
 
-  return {
-    // PK: data.hash,
-    // SK: "TX",
+  const txIndex = String(parseInt(data.transactionIndex, 16)).padStart(3, 0);
 
-    // GS1PK: _blockNumber,
-    // GS1SK: `TX#${parseInt(data.transactionIndex, 16)}`,
+  return {
     PK: _blockNumber,
-    SK: `TX#${_blockNumber}#${parseInt(data.transactionIndex, 16)}`,
+    SK: `TX#${_blockNumber}#${txIndex}`,
 
     GS1PK: data.hash,
     GS1SK: "TX",
@@ -107,6 +99,7 @@ async function main() {
       console.log("blockNumber error:", currentBlock);
       // console.log(e);
     }
+    console.log("current block success", currentBlock);
     currentBlock++;
   }
 }
