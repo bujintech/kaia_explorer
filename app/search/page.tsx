@@ -29,21 +29,28 @@ async function Search({ searchParams: { keyword } }: { searchParams: { keyword: 
 
     const list = (await queryListFromBatch(params)) as GcResponseData[];
 
-    return list?.map((v) => {
-      return (
-        <div key={v.name} style={{ display: "flex" }}>
-          <div
-            style={{ width: 240 }}
-            dangerouslySetInnerHTML={{ __html: renderMatchText(v.name, _keyword) }}
-          ></div>
-          <div>
-            {v.contracts.map(({ address }) => (
-              <p key={address}>{address}</p>
-            ))}
-          </div>
-        </div>
-      );
-    });
+    return (
+      <>
+        <h4>address for GC</h4>
+        {list?.map((v) => {
+          return (
+            <div key={v.name} style={{ display: "flex" }}>
+              <div
+                style={{ width: 240 }}
+                dangerouslySetInnerHTML={{ __html: renderMatchText(v.name, _keyword) }}
+              ></div>
+              <div>
+                {v.contracts.map(({ address }) => (
+                  <p key={address}>{address}</p>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+        <h4>address for Token</h4>
+        <span> todo...</span>
+      </>
+    );
   } else {
     return <Empty type="search"></Empty>;
   }
