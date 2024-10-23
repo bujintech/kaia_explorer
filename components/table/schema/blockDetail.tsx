@@ -11,10 +11,11 @@ const columns: Columns<TxResponseData>[] = [
   {
     title: "Block",
     dataIndex: "blockNumber",
+    render: ({ blockNumber }) => parseInt(blockNumber, 16).toString(),
   },
   { title: "Age", dataIndex: "timestamp" },
-  { title: "From", dataIndex: "from" },
-  { title: "To", dataIndex: "to" },
+  { title: "From", dataIndex: "from", render: ({ from }) => <Link href={`/address/${from}`}>{from}</Link> },
+  { title: "To", dataIndex: "to", render: ({ to }) => <Link href={`/address/${to}`}>{to}</Link> },
   { title: "Method", dataIndex: "blockNumber" },
   { title: "TX Type", dataIndex: "blockNumber" },
   { title: "Amount(KLAY)", dataIndex: "blockNumber" },

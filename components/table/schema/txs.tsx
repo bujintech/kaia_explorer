@@ -1,18 +1,9 @@
 import type { Columns } from "@/components/table";
 import Link from "next/link";
+import { dayjs } from "@/lib/utils";
+import type { TxResponseData } from "@/lib/db/type";
 
-export interface DataType {
-  hash: string;
-  blockNumber: string;
-  createdAt: string;
-  from: string;
-  to: string;
-  methodName: string;
-  amount: string;
-  txFee: string;
-}
-
-const columns: Columns<DataType>[] = [
+const columns: Columns<TxResponseData>[] = [
   {
     title: "TX Hash",
     dataIndex: "hash",
@@ -28,14 +19,15 @@ const columns: Columns<DataType>[] = [
   },
   {
     title: "Age",
-    dataIndex: "createdAt",
+    dataIndex: "timestamp",
+    render: ({ timestamp }) => dayjs(Number(timestamp) * 1000).fromNow(),
   },
-  { title: "From", dataIndex: "from" },
-  { title: "To", dataIndex: "to" },
-  { title: "Method", dataIndex: "methodName" },
+  { title: "From", dataIndex: "from", render: ({ from }) => <Link href={`/address/${from}`}>{from}</Link> },
+  { title: "To", dataIndex: "to", render: ({ to }) => <Link href={`/address/${to}`}>{to}</Link> },
+  { title: "Method", dataIndex: "blockNumber" },
   { title: "Tx Type", dataIndex: "blockNumber" },
-  { title: "Amount(KLAY)", dataIndex: "amount" },
-  { title: "TX Fee(KLAY)", dataIndex: "txFee" },
+  { title: "Amount(KLAY)", dataIndex: "blockNumber" },
+  { title: "TX Fee(KLAY)", dataIndex: "blockNumber" },
 ];
 
 export default columns;

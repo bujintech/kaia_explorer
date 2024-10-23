@@ -1,17 +1,9 @@
 import Link from "next/link";
 import type { Columns } from "@/components/table";
+import type { BlockResponseData } from "@/lib/db/type";
 import { dayjs } from "@/lib/utils";
-export interface DataType {
-  number: string;
-  createdAt: string;
-  txCount: string;
-  minerName: string;
-  baseFee: string;
-  reward: string;
-  burntFees: string;
-}
 
-const columns: Columns<DataType>[] = [
+const columns: Columns<BlockResponseData>[] = [
   {
     title: "Block",
     dataIndex: "number",
@@ -22,14 +14,14 @@ const columns: Columns<DataType>[] = [
   },
   {
     title: "Time Ago",
-    dataIndex: "createdAt",
-    render: ({ createdAt }) => dayjs(Number(createdAt) * 1000).fromNow(),
+    dataIndex: "timestamp",
+    render: ({ timestamp }) => dayjs(Number(timestamp) * 1000).fromNow(),
   },
-  { title: "Total TXs", dataIndex: "txCount" },
-  { title: "Block proposer", dataIndex: "minerName" },
-  { title: "Base Fee", dataIndex: "baseFee" },
-  { title: "Rewards(KLAY)", dataIndex: "reward" },
-  { title: "Burnt Fee", dataIndex: "burntFees" },
+  { title: "Total TXs", dataIndex: "transactionsTotal" },
+  { title: "Block proposer", dataIndex: "miner" },
+  { title: "Base Fee", dataIndex: "number" },
+  { title: "Rewards(KLAY)", dataIndex: "number" },
+  { title: "Burnt Fee", dataIndex: "number" },
 ];
 
 export default columns;
