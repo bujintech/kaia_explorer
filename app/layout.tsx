@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <Nav></Nav>
 
-        <main>{children}</main>
+        <main style={{ minHeight: "calc(100% - 170px)" }}>{children}</main>
 
         <Footer></Footer>
       </body>
