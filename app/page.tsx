@@ -1,9 +1,12 @@
-import SearchInput from "@/components/searchInput";
+import Search from "@/components/search";
 
+import style from "./index.module.css";
 export default function Home() {
   return (
-    <>
-      <SearchInput></SearchInput>
-    </>
+    <div className={style.homePage}>
+      <div className={style.search}>
+        <Search></Search>
+      </div>
+    </div>
   );
 }

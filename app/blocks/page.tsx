@@ -18,7 +18,7 @@ function Blocks() {
 
   return (
     <div className={style.blocksPage}>
-      <div className={style.search}>
+      <div className="page_search">
         <Search></Search>
       </div>
 

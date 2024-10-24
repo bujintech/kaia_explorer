@@ -19,7 +19,7 @@ function Transactions() {
 
   return (
     <div className={style.txsPage}>
-      <div className={style.search}>
+      <div className="page_search">
         <Search></Search>
       </div>
 

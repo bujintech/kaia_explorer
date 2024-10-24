@@ -1,23 +1,6 @@
 .blocksPage {
 }
 
-.search input {
-  height: 80px;
-  width: 100%;
-  padding: 0 40px;
-  border: 2px solid #000;
-  border-right: none;
-  border-left: none;
-}
-
-.search span {
-  border: 2px solid #000;
-  border-right: none;
-  width: 100px;
-  background: url("/images/btnBg.png") no-repeat center #a8d778;
-  background-size: 70px 44px;
-}
-
 .blocksPage h1 {
   font-size: 96px;
   font-weight: bolder;
