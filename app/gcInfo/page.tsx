@@ -32,24 +32,29 @@ function GCInfo() {
       <div className={style.gcContainer}>
         {data.map((item: any, i) => {
           return (
-            <div key={i}>
-              <div className={style.info}>
-                <img src={item.thumbnail}></img>
-                <div>{item.name}</div>
-              </div>
+            <div key={i} className={style.itemwrap}>
+              <div className={style.iteminner}>
+                <div className={style.info}>
+                  <img src={item.thumbnail}></img>
+                  <div>{item.name}</div>
+                </div>
 
-              <div className={style.countMsg}>
-                <span>ToTal Staking</span>
-                <span>APY</span>
-              </div>
+                <div className={style.countMsg}>
+                  <span>ToTal Staking</span>
+                  <span>APY</span>
+                </div>
 
-              <div className={style.countMsg} style={{ fontWeight: "bold", borderTop: " 1px solid #3d4049" }}>
-                <span>{item.totalStaking}KALY</span>
-                <span>{item.apy}%</span>
-              </div>
+                <div
+                  className={style.countMsg}
+                  style={{ fontWeight: "bold", borderTop: " 1px solid #3d4049" }}
+                >
+                  <span>{item.totalStaking}KALY</span>
+                  <span>{item.apy}%</span>
+                </div>
 
-              <div className={style.des}>
-                <div>{item.description}</div>
+                <div className={style.des}>
+                  <div>{item.description}</div>
+                </div>
               </div>
             </div>
           );

@@ -9,29 +9,22 @@
 .gcContainer {
   padding: 0 40px;
   display: grid;
-  grid-template-columns: repeat(4, 24%); /* 创建三列 */
+  grid-template-columns: repeat(4, 24%);
   gap: 30px 1.3334%;
   margin-bottom: 90px;
 }
-.gcContainer > div {
-  position: relative;
-  background-color: #fff;
-  border-radius: 30px;
-  box-sizing: border-box;
-  padding: 30px;
-  box-shadow: 0 0 0 2px #000;
-}
-.gcContainer > div::after {
-  content: "";
-  box-shadow: 0 0 0 2px #000;
-  border-radius: 30px;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 10px;
-  left: 0px;
+.gcContainer .itemwrap {
   background-color: #b5b3b3;
-  z-index: -1;
+  box-shadow: 0 0 0 2px #000;
+  border-radius: 30px;
+}
+
+.gcContainer .iteminner {
+  background-color: #fff;
+  box-shadow: 0 0 0 2px #000;
+  border-radius: 30px;
+  transform: translateY(-10px);
+  padding: 30px;
 }
 
 .info {
