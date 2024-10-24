@@ -34,7 +34,7 @@ function GCInfo() {
           return (
             <div key={i}>
               <div className={style.info}>
-                <img object-fit="contain" src={item.thumbnail}></img>
+                <img src={item.thumbnail}></img>
                 <div>{item.name}</div>
               </div>
 
