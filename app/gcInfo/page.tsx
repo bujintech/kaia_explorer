@@ -16,7 +16,7 @@ function GCInfo() {
   }, []);
 
   useEffect(() => {
-    // queryGcInfoData();
+    queryGcInfoData();
   }, []);
 
   return (
@@ -33,21 +33,22 @@ function GCInfo() {
         {data.map((item: any, i) => {
           return (
             <div key={i}>
-              <div>
-                <img src={item.thumbnail}></img>
-              </div>
-              <div>
+              <div className={style.info}>
+                <img object-fit="contain" src={item.thumbnail}></img>
                 <div>{item.name}</div>
+              </div>
 
-                <div>
-                  {item.categories?.map((v: any) => (
-                    <span style={{ margin: 10, border: "1px solid red" }} key={v.name}>
-                      {v.name}
-                    </span>
-                  ))}
-                </div>
-                <div>Total Staking {item.totalStaking} (KLAY)</div>
-                <div>APY {item.apy} %</div>
+              <div className={style.countMsg}>
+                <span>ToTal Staking</span>
+                <span>APY</span>
+              </div>
+
+              <div className={style.countMsg} style={{ fontWeight: "bold", borderTop: " 1px solid #3d4049" }}>
+                <span>{item.totalStaking}KALY</span>
+                <span>{item.apy}%</span>
+              </div>
+
+              <div className={style.des}>
                 <div>{item.description}</div>
               </div>
             </div>

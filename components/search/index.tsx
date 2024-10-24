@@ -6,8 +6,8 @@ import style from "./index.module.css";
 
 import { getValueType, hexToDecimal } from "@/lib/utils";
 
-function SearchInput() {
-  const [value, setValue] = useState<string>("");
+function SearchInput({ defaultValue }: { defaultValue?: string }) {
+  const [value, setValue] = useState<string>(defaultValue || "");
   const router = useRouter();
 
   const onSearch = useCallback(() => {

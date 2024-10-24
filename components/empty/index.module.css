@@ -1,0 +1,21 @@
+.empty {
+  text-align: center;
+  padding-top: 180px;
+}
+.empty > img {
+  margin: 0 auto;
+}
+.empty > div {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+  margin: 30px 0 10px;
+}
+
+.empty > p {
+  font-size: 14px;
+  color: #666;
+}
+.empty > p:last-child {
+  margin-top: 20px;
+}
