@@ -4,6 +4,9 @@ import axios from "axios";
 import Table, { txsColumns } from "@/components/table";
 import useTable from "@/hooks/useTable";
 
+import Search from "@/components/search";
+import style from "./index.module.css";
+
 function Transactions() {
   const { dataSource } = useTable({
     apiFunction: () =>
@@ -15,10 +18,16 @@ function Transactions() {
   });
 
   return (
-    <>
-      <h1>transactions list</h1>
-      <Table columns={txsColumns} dataSource={dataSource}></Table>
-    </>
+    <div className={style.txsPage}>
+      <div className={style.search}>
+        <Search></Search>
+      </div>
+
+      <h1>Transactions</h1>
+      <div className={style.tableContainer}>
+        <Table columns={txsColumns} dataSource={dataSource}></Table>
+      </div>
+    </div>
   );
 }
 

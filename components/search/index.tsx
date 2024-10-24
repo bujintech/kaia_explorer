@@ -44,17 +44,16 @@ function SearchInput() {
   );
 
   return (
-    <>
+    <div className={style.searchIComponent}>
       <input
         type="text"
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
         placeholder={"Search by Address / Txn Hash / Block /Block Hash / Domain Name"}
-        className={style.input}
       />
-      <span onClick={onSearch}>确定</span>
-    </>
+      <span className={style.btn} onClick={onSearch}></span>
+    </div>
   );
 }
 

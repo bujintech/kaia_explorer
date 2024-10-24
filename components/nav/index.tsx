@@ -1,18 +1,32 @@
+import Image from "next/image";
 import Link from "next/link";
 import style from "./index.module.css";
+
 function Nav() {
   return (
-    <ul className={style.nav}>
-      <li>
-        <Link href="/blocks">Blocks</Link>
-      </li>
-      <li>
-        <Link href="/txs">Transactions</Link>
-      </li>
-      <li>
-        <Link href="/gcInfo">GC Info</Link>
-      </li>
-    </ul>
+    <div className={style.navComponent}>
+      <div className="flex fl_jb">
+        <div className={`${style.logo} flex fl_ae`}>
+          <Image alt="logo" width={90} height={96} src="/images/logo.png"></Image>
+          <Image alt="logo_text" width={334} height={46} src="/images/logo_text.png"></Image>
+        </div>
+
+        <ul className="flex fl_ac">
+          <li>
+            <Link href="/blocks">BLOCKS</Link>
+          </li>
+          <li>
+            <Link href="/txs">TRANSACTIONS</Link>
+          </li>
+          <li>
+            <Link href="/gcInfo">TOKEN</Link>
+          </li>
+          <li>
+            <Link href="/gcInfo">GC INFO</Link>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }
 

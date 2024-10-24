@@ -1,4 +1,5 @@
 import Nav from "@/components/nav";
+import Footer from "@/components/footer";
 
 import type { Metadata } from "next";
 import "./globals.css";
@@ -17,7 +18,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Nav></Nav>
-        {children}
+
+        <main>{children}</main>
+
+        <Footer></Footer>
       </body>
     </html>
   );

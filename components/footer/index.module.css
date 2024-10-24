@@ -1,0 +1,16 @@
+.footerComponent {
+  padding: 40px;
+  background-color: #a8d778;
+}
+
+.footerComponent > div:nth-child(1) img:nth-child(2) {
+  margin-top: 14px;
+  margin-left: 15px;
+}
+
+.footerComponent > div:nth-child(2) p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  line-height: 36px;
+}
