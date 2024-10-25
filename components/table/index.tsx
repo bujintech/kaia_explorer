@@ -2,12 +2,13 @@ import type { ReactNode } from "react";
 
 import addressColumns from "./schema/address";
 import blockColumns from "./schema/blocks";
+import blockColumns_home from "./schema/home_block";
 import blockDetailColumns from "./schema/blockDetail";
 import txsColumns from "./schema/txs";
 
 import style from "./index.module.css";
 
-export { addressColumns, blockColumns, txsColumns, blockDetailColumns };
+export { addressColumns, blockColumns, blockColumns_home, txsColumns, blockDetailColumns };
 
 export interface Columns<T> {
   title: string;

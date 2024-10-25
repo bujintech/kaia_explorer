@@ -21,7 +21,6 @@
 }
 .table tbody > tr > td {
   overflow: hidden;
-  padding: 0 15px;
 }
 
 .table tbody > tr:nth-child(even) {

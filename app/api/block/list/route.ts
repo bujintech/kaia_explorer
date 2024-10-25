@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { queryListFromBatch } from "@/lib/db";
 
-const LIMIT = 15;
+const LIMIT = 10;
 
 async function getBlockList(blockNumber: number) {
   let _blockNumber = blockNumber;

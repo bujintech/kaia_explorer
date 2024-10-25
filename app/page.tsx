@@ -4,6 +4,8 @@ import BlockHeight from "@/components/homeComponents/BlockHeight";
 import Place from "@/components/homeComponents/Place";
 import Network from "@/components/homeComponents/Network";
 import Kaia from "@/components/homeComponents/Kaia";
+import TableList from "@/components/homeComponents/TableList";
+import GcList from "@/components/homeComponents/GcList";
 
 import style from "./index.module.css";
 export default function Home() {
@@ -26,6 +28,8 @@ export default function Home() {
           <Kaia></Kaia>
         </div>
       </div>
+      <TableList></TableList>
+      <GcList></GcList>
     </div>
   );
 }
