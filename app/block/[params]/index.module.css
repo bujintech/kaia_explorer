@@ -19,7 +19,7 @@
   color: #333;
 }
 
-.detail div span:nth-child(1) {
+.detail div > span:nth-child(1) {
   display: block;
   width: 254px;
   flex-shrink: 0;
@@ -29,7 +29,7 @@
   background-position: 0 center;
 }
 
-.detail div span:nth-child(2) {
+.detail div > span:nth-child(2) {
   font-weight: bold;
 }
 

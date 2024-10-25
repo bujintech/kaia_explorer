@@ -18,7 +18,7 @@ function Transactions() {
 
   return (
     <div className={style.txsPage}>
-      <h1>Transactions</h1>
+      <div className={style.title}>Transactions</div>
       <div className={style.tableContainer}>
         <Table columns={txsColumns} dataSource={dataSource}></Table>
       </div>

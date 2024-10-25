@@ -18,7 +18,7 @@ function Blocks() {
 
   return (
     <div className={style.blocksPage}>
-      <h1>Blocks</h1>
+      <div className={style.title}>Blocks</div>
       <div className={style.tableContainer}>
         <Table columns={blockColumns} dataSource={dataSource}></Table>
       </div>

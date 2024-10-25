@@ -5,6 +5,8 @@
   text-align: left;
 }
 
+.table thead {
+}
 .table thead > tr {
   background-color: #a8d778;
   height: 70px;
@@ -19,6 +21,7 @@
 }
 .table tbody > tr > td {
   overflow: hidden;
+  padding: 0 15px;
 }
 
 .table tbody > tr:nth-child(even) {
