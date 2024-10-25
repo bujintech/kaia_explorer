@@ -1,20 +1,24 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useCallback, useState, useEffect } from "react";
 import style from "./index.module.css";
 
 import { getValueType, hexToDecimal } from "@/lib/utils";
 
 function SearchInput({ defaultValue }: { defaultValue?: string }) {
   const [value, setValue] = useState<string>(defaultValue || "");
+
   const router = useRouter();
 
+  const pathname = usePathname();
+
+  // useEffect(() => {
+  //   console.log("路由变化到:", pathname);
+  // }, [pathname]);
+
   const onSearch = useCallback(() => {
-    if (!value) {
-      alert("no value");
-      return;
-    }
+    if (!value) return;
 
     const type = getValueType(value);
 
@@ -43,8 +47,10 @@ function SearchInput({ defaultValue }: { defaultValue?: string }) {
     [onSearch]
   );
 
+  if (pathname === "/") return null;
+
   return (
-    <div className={style.searchIComponent}>
+    <div className={style.searchComponent}>
       <input
         type="text"
         value={value}

@@ -21,9 +21,7 @@ export default function RootLayout({
         <Nav></Nav>
 
         <main style={{ minHeight: "calc(100% - 170px)" }}>
-          <div className="page_search">
-            <Search></Search>
-          </div>
+          <Search></Search>
 
           {children}
         </main>
