@@ -65,21 +65,25 @@ function SearchInputWrap({ defaultValue }: { defaultValue?: string }) {
 
   useEffect(() => {
     if (pathname === "/") {
-      const node = document.getElementById("homePageSearchSolt");
+      const node = document?.getElementById("homePageSearchSolt");
       setPortalNode(node);
     } else {
       setPortalNode(null);
     }
   }, [pathname]);
 
-  return portalNode ? (
-    ReactDOM.createPortal(
-      <div className={style.searchComponent_home}>
-        <SearchInput></SearchInput>
-      </div>,
-      portalNode
-    )
-  ) : (
+  if (pathname === "/") {
+    return portalNode
+      ? ReactDOM.createPortal(
+          <div className={style.searchComponent_home}>
+            <SearchInput></SearchInput>
+          </div>,
+          portalNode
+        )
+      : null;
+  }
+
+  return (
     <div className={style.searchComponent_common}>
       <SearchInput defaultValue={defaultValue}></SearchInput>
     </div>

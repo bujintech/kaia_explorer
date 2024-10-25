@@ -110,9 +110,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* display: grid;
-  grid-template-columns: repeat(4, 24%);
-  gap: 1.3334%; */
 }
 .kaia .item {
   width: 25%;
@@ -152,4 +149,46 @@
   font-size: 32px;
   font-weight: bolder;
   margin-bottom: 20px;
+}
+
+.gcList > div {
+  margin-top: 90px;
+}
+
+.gcList .item {
+  width: 25%;
+  height: 300px;
+  border-radius: 30px;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+.gcList .item:nth-child(odd) {
+  background-color: #a8d778;
+}
+
+.gcList .item:nth-child(even) {
+  background-color: #f5e761;
+}
+.gcList .more {
+  width: 260px;
+  border-radius: 40px;
+  box-shadow: 0 0 0 2px #000;
+  margin: 50px auto 90px;
+  background-color: #91ac76;
+  cursor: pointer;
+}
+.gcList .more > a {
+  display: block;
+  background-color: #a8d778;
+  border-radius: 40px;
+  box-shadow: 0 0 0 2px #000;
+  transform: translateY(-8px);
+  line-height: 80px;
+  text-align: center;
+  font-size: 32px;
+  color: #3d4049;
+  transition: transform 0.2s;
+}
+.gcList .more:active > a {
+  transform: translateY(0px);
 }
