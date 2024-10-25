@@ -17,12 +17,28 @@ async function Address({ params: { address } }: { params: { address: string } })
 
   return (
     <div className={style.addressPage}>
-      <div className={style.title}>Address</div>
+      {/* {gcName && gcData ? (
+        <div className={style.gcTitle}>
+          
+          <div>{gcData.name}</div>
+        </div>
+      ) : (
+        <div className={style.title}>Address</div>
+      )} */}
+
+      {gcName && gcData ? (
+        <div className={style.gcTitle}>
+          <img src={gcData.thumbnail}></img>
+          <div>{gcData.name}</div>
+        </div>
+      ) : (
+        <div className={style.title}>Address</div>
+      )}
 
       <div className={`${style.detail} ${style.card}`}>
-        <div style={{ display: `${gcName ? "flex" : "none"}` }}>
+        <div style={{ display: `${gcName && gcData ? "flex" : "none"}` }}>
           <span>Label</span>
-          <span>{gcName}</span>
+          <span>{gcData?.name}</span>
         </div>
         <div>
           <span>Address</span>
