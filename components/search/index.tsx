@@ -2,6 +2,7 @@
 
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useCallback, useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import style from "./index.module.css";
 
 import { getValueType, hexToDecimal } from "@/lib/utils";
@@ -10,12 +11,6 @@ function SearchInput({ defaultValue }: { defaultValue?: string }) {
   const [value, setValue] = useState<string>(defaultValue || "");
 
   const router = useRouter();
-
-  const pathname = usePathname();
-
-  // useEffect(() => {
-  //   console.log("路由变化到:", pathname);
-  // }, [pathname]);
 
   const onSearch = useCallback(() => {
     if (!value) return;
@@ -47,10 +42,8 @@ function SearchInput({ defaultValue }: { defaultValue?: string }) {
     [onSearch]
   );
 
-  if (pathname === "/") return null;
-
   return (
-    <div className={style.searchComponent}>
+    <>
       <input
         type="text"
         value={value}
@@ -58,9 +51,39 @@ function SearchInput({ defaultValue }: { defaultValue?: string }) {
         onKeyDown={onKeyDown}
         placeholder={"Search by Address / Txn Hash / Block /Block Hash / Domain Name"}
       />
-      <span className={style.btn} onClick={onSearch}></span>
+      <span className={style.btn} onClick={onSearch}>
+        <span></span>
+      </span>
+    </>
+  );
+}
+
+function SearchInputWrap({ defaultValue }: { defaultValue?: string }) {
+  const [portalNode, setPortalNode] = useState<HTMLElement | null>(null);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname === "/") {
+      const node = document.getElementById("homePageSearchSolt");
+      setPortalNode(node);
+    } else {
+      setPortalNode(null);
+    }
+  }, [pathname]);
+
+  return portalNode ? (
+    ReactDOM.createPortal(
+      <div className={style.searchComponent_home}>
+        <SearchInput></SearchInput>
+      </div>,
+      portalNode
+    )
+  ) : (
+    <div className={style.searchComponent_common}>
+      <SearchInput defaultValue={defaultValue}></SearchInput>
     </div>
   );
 }
 
-export default SearchInput;
+export default SearchInputWrap;

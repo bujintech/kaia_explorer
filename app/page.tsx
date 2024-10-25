@@ -12,6 +12,7 @@ export default function Home() {
       <div className="flex">
         <div>
           <Welcome></Welcome>
+          <div id="homePageSearchSolt"></div>
           <Place></Place>
         </div>
         <div>
