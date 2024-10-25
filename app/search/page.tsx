@@ -54,10 +54,6 @@ async function SearchPage({ searchParams: { keyword = "" } }: { searchParams: { 
 
   return (
     <div className={style.searchPage}>
-      <div className="page_search">
-        <Search defaultValue={decodeURIComponent(keyword)}></Search>
-      </div>
-
       {searchData.length === 0 ? <Empty></Empty> : renderContent(searchData, _keyword)}
     </div>
   );

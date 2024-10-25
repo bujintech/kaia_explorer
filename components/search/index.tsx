@@ -19,13 +19,13 @@ function SearchInput({ defaultValue }: { defaultValue?: string }) {
     const type = getValueType(value);
 
     if (type === "number") {
-      router.push(`block/${hexToDecimal(value)}`);
+      router.push(`/block/${hexToDecimal(value)}`);
     } else if (type === "address") {
-      router.push(`address/${value}`);
+      router.push(`/address/${value}`);
     } else if (type === "hash") {
-      router.push(`hash/${value}`);
+      router.push(`/hash/${value}`);
     } else {
-      router.push(`search?keyword=${encodeURIComponent(value)}`);
+      router.push(`/search?keyword=${encodeURIComponent(value)}`);
     }
   }, [value]);
 
