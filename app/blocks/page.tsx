@@ -1,6 +1,6 @@
 "use client";
 
-import Search from "@/components/search";
+import UpIcon from "@/components/upIcon";
 import axios from "axios";
 import Table, { blockColumns } from "@/components/table";
 import useTable from "@/hooks/useTable";
@@ -18,14 +18,12 @@ function Blocks() {
 
   return (
     <div className={style.blocksPage}>
-      <div className="page_search">
-        <Search></Search>
-      </div>
-
       <h1>Blocks</h1>
       <div className={style.tableContainer}>
         <Table columns={blockColumns} dataSource={dataSource}></Table>
       </div>
+
+      <UpIcon></UpIcon>
     </div>
   );
 }

@@ -18,7 +18,7 @@ function SearchEmpty() {
 }
 
 function Empty({ type }: Props) {
-  return <div className={style.empty}>{!type && <SearchEmpty></SearchEmpty>}</div>;
+  return <div className={style.emptyComponent}>{!type && <SearchEmpty></SearchEmpty>}</div>;
 }
 
 export default Empty;

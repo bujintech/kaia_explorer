@@ -4,7 +4,6 @@
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import style from "./index.module.css";
-import Search from "@/components/search";
 
 function GCInfo() {
   const [data, setData] = useState(new Array(11).fill({}));
@@ -21,10 +20,6 @@ function GCInfo() {
 
   return (
     <div className={style.gcPage}>
-      <div className="page_search">
-        <Search></Search>
-      </div>
-
       <div className={style.title}>
         <span>GC Information</span>
       </div>
@@ -48,8 +43,8 @@ function GCInfo() {
                   className={style.countMsg}
                   style={{ fontWeight: "bold", borderTop: " 1px solid #3d4049" }}
                 >
-                  <span>{item.totalStaking}KALY</span>
-                  <span>{item.apy}%</span>
+                  <span>{item.totalStaking || "0"}KALY</span>
+                  <span>{item.apy || "0"}%</span>
                 </div>
 
                 <div className={style.des}>

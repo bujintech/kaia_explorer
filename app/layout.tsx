@@ -1,4 +1,5 @@
 import Nav from "@/components/nav";
+import Search from "@/components/search";
 import Footer from "@/components/footer";
 
 import type { Metadata } from "next";
@@ -19,7 +20,13 @@ export default function RootLayout({
       <body>
         <Nav></Nav>
 
-        <main style={{ minHeight: "calc(100% - 170px)" }}>{children}</main>
+        <main style={{ minHeight: "calc(100% - 170px)" }}>
+          <div className="page_search">
+            <Search></Search>
+          </div>
+
+          {children}
+        </main>
 
         <Footer></Footer>
       </body>

@@ -66,22 +66,6 @@ ol {
   align-items: self-end;
 }
 
-.pd_40 {
-  padding: 40px;
-}
-.pd_40_t {
-  padding-top: 40px;
-}
-.pd_40_r {
-  padding-right: 40px;
-}
-.pd_40_b {
-  padding-bottom: 40px;
-}
-.pd_40_l {
-  padding-left: 40px;
-}
-
 .page_search input {
   height: 80px;
   width: 100%;

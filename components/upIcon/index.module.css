@@ -1,0 +1,13 @@
+.upComponent {
+  width: 134px;
+  height: 134px;
+  border: 1px solid #a8d778;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 214px;
+  right: 100px;
+
+  background: url("/images/upIcon.png") no-repeat rgba(255, 255, 255, 0.4);
+  background-size: 64px 94px;
+  background-position: center;
+}

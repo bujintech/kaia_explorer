@@ -14,7 +14,7 @@ function Nav() {
         </Link>
 
         <ul className="flex fl_ac">
-          <li className={style.active}>
+          <li>
             <Link href="/blocks">BLOCKS</Link>
           </li>
           <li>
