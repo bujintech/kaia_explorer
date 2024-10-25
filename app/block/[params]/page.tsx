@@ -1,4 +1,7 @@
-import { queryBlockByNumber, queryBlockByHash } from "@/lib/db";
+import Table, { blockDetailColumns } from "@/components/table";
+import type { BlockResponseData, TxResponseData } from "@/lib/db/type";
+
+import { queryBlockByNumber, queryBlockByHash, queryTransactionsByBlockNumber } from "@/lib/db";
 import { isHash, hexToDecimal } from "@/lib/utils";
 import Empty from "@/components/empty";
 import style from "./index.module.css";
@@ -12,6 +15,10 @@ async function BlockDetail({ params: { params } }: { params: { params: string } 
   }
 
   if (!data) return <Empty></Empty>;
+
+  const blockNumber = hexToDecimal(data.number);
+
+  const txList = await queryTransactionsByBlockNumber(blockNumber);
 
   return (
     <div className={style.blockDetailPage}>
@@ -59,6 +66,10 @@ async function BlockDetail({ params: { params } }: { params: { params: string } 
           <span>Validators</span>
           <span>{data.gasUsed}</span>
         </div>
+      </div>
+
+      <div className={`${style.card}`}>
+        <Table<TxResponseData> columns={blockDetailColumns} dataSource={txList || []}></Table>
       </div>
     </div>
   );
