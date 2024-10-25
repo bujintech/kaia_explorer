@@ -27,6 +27,7 @@
 .navComponent a:active {
   transform: translateY(0px);
 }
+
 .navComponent a:hover {
   transform: translateY(0px);
 }

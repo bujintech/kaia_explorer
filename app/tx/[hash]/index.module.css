@@ -1,0 +1,49 @@
+.title {
+  height: 118px;
+  line-height: 118px;
+  font-size: 40px;
+  padding: 0 40px;
+}
+.card {
+  background-color: #fff;
+  margin: 0 40px 30px;
+  padding: 30px;
+  border-radius: 30px;
+}
+
+.detail div {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  height: 56px;
+  font-size: 20px;
+  color: #333;
+}
+
+.detail div span:nth-child(1) {
+  display: block;
+  width: 254px;
+  flex-shrink: 0;
+  padding-left: 28px;
+  background: url("/images/txIcon/txhash.png") no-repeat;
+  background-size: 18px auto;
+  background-position: 0 center;
+}
+
+.detail div span:nth-child(2) {
+  font-weight: bold;
+}
+
+.detail div:nth-child(2) > span:nth-child(1) {
+  background-image: url("/images/txIcon/block.png");
+}
+.detail div:nth-child(3) > span:nth-child(1) {
+  background-image: url("/images/txIcon/ft.png");
+}
+.detail div:nth-child(4) > span:nth-child(1) {
+  background-image: url("/images/txIcon/age.png");
+}
+.detail div:nth-child(5) > span:nth-child(1) {
+  background-image: url("/images/txIcon/amount.png");
+}
+.detail div:nth-child(6) > span:nth-child(1) {
+  background-image: url("/images/txIcon/txnfee.png");
+}
