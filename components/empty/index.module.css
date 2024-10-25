@@ -8,7 +8,7 @@
 .emptyComponent > div {
   font-size: 18px;
   color: #333;
-  font-weight: bold;
+  font-weight: 500;
   margin: 30px 0 10px;
 }
 

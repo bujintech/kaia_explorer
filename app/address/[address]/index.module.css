@@ -19,9 +19,11 @@
 
 .detail div {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  height: 56px;
   font-size: 20px;
+  line-height: 56px;
   color: #333;
+  display: flex;
+  align-items: flex-start;
 }
 
 .detail div > span:nth-child(1) {
@@ -29,15 +31,38 @@
   width: 254px;
   flex-shrink: 0;
   padding-left: 28px;
-  background: url("/images/txIcon/txhash.png") no-repeat;
+  background: url("/images/addressIcon/label.png") no-repeat;
   background-size: 18px auto;
   background-position: 0 center;
 }
 
 .detail div > span:nth-child(2) {
-  font-weight: bold;
+  font-weight: 500;
+}
+
+.gcAddress span {
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 56px;
+}
+.gcAddress span:nth-child(1) {
+  display: inline-block;
+  width: 100px;
+  color: #666;
+  text-transform: capitalize;
 }
 
 .detail div:nth-child(2) > span:nth-child(1) {
-  background-image: url("/images/txIcon/block.png");
+  background-image: url("/images/addressIcon/address.png");
+}
+
+.detail div:nth-child(3) > span:nth-child(1) {
+  background-image: url("/images/addressIcon/balance.png");
+}
+
+.detail div:nth-child(4) > span:nth-child(1) {
+  background-image: url("/images/addressIcon/key.png");
+}
+.detail div:nth-child(5) > span:nth-child(1) {
+  background-image: url("/images/addressIcon/total.png");
 }

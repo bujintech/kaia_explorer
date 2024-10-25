@@ -13,27 +13,27 @@ async function TransactionDetail({ params: { hash } }: { params: { hash: string 
       <div className={style.title}>TRANSACTIONS</div>
 
       <div className={`${style.detail} ${style.card}`}>
-        <div className="flex fl_ac">
+        <div>
           <span>TXN Hash</span>
           <span>{data.hash}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Block</span>
           <span>{data.blockNumber}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>From-To</span>
           <span>{data.from}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Age</span>
           <span>{data.timestamp}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Amount</span>
           <span>{data.gas}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>TXN Fee</span>
           <span>{data.gasPrice}</span>
         </div>

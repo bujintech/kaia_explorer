@@ -1,6 +1,6 @@
-import type { TxResponseData } from "@/lib/db/type";
+import type { GcResponseData, TxResponseData } from "@/lib/db/type";
 import Table, { addressColumns } from "@/components/table";
-import { queryGcConfig, queryTransactionByAddress } from "@/lib/db";
+import { queryGcConfig, queryTransactionByAddress, queryGcInfoByName } from "@/lib/db";
 import style from "./index.module.css";
 
 async function Address({ params: { address } }: { params: { address: string } }) {
@@ -10,26 +10,48 @@ async function Address({ params: { address } }: { params: { address: string } })
 
   const gcName = gc_config && gc_config[address];
 
+  let gcData = null;
+  if (gcName) {
+    gcData = (await queryGcInfoByName(gcName)) as GcResponseData;
+  }
+
   return (
     <div className={style.addressPage}>
       <div className={style.title}>Address</div>
 
       <div className={`${style.detail} ${style.card}`}>
-        <div className="flex fl_ac">
-          <span>Address</span>
-          <span>111</span>
+        <div style={{ display: `${gcName ? "flex" : "none"}` }}>
+          <span>Label</span>
+          <span>{gcName}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
+          <span>Address</span>
+          {gcName && gcData ? (
+            <span className={style.gcAddress}>
+              {gcData.contracts.map((v) => {
+                return (
+                  <p key={v.address}>
+                    <span>{v.type.toLocaleLowerCase()}:</span>
+                    <span>{v.address}</span>
+                  </p>
+                );
+              })}
+            </span>
+          ) : (
+            <span>{address}</span>
+          )}
+        </div>
+        <div>
           <span>Balance</span>
           <span>111</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Key</span>
           <span>222</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Totao TXs</span>
-          <span>333</span>
+          <span>{(txs || []).length}</span>
         </div>
       </div>
       <div className={`${style.card}`}>

@@ -25,44 +25,44 @@ async function BlockDetail({ params: { params } }: { params: { params: string } 
       <div className={style.title}>BLOCK</div>
 
       <div className={`${style.detail} ${style.card}`}>
-        <div className="flex fl_ac">
+        <div>
           <span>Age</span>
           <span>{data.timestamp}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Hash</span>
           <span>{data.hash}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Parent Hash</span>
           <span>{data.parentHash}</span>
         </div>
 
-        <div className="flex fl_ac">
+        <div>
           <span>Total TXs</span>
           <span>{data.transactionsTotal}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Block Proposer</span>
           <span>{data.miner}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Gas Limit</span>
           <span>{data.gasLimit}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Gas Fee</span>
           <span>{data.gasUsed}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Burnt Fee</span>
           <span>{data.gasUsed}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Block Rewards</span>
           <span>{data.gasUsed}</span>
         </div>
-        <div className="flex fl_ac">
+        <div>
           <span>Validators</span>
           <span>{data.gasUsed}</span>
         </div>
