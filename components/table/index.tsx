@@ -48,7 +48,11 @@ function Table<T>({ dataSource, columns, loading }: Props<T>) {
               <tr key={index}>
                 {columns.map((columnsItem, index) => {
                   if (typeof columnsItem.render === "function") {
-                    return <td key={index}>{columnsItem.render(dataItem, index)}</td>;
+                    return (
+                      <td key={index}>
+                        <div>{columnsItem.render(dataItem, index)}</div>
+                      </td>
+                    );
                   }
                   return (
                     <td key={index}>

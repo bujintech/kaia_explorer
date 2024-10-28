@@ -1,14 +1,14 @@
 "use client";
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useCallback, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import style from "./index.module.css";
 
 import { getValueType, hexToDecimal } from "@/lib/utils";
 
-function SearchInput({ defaultValue }: { defaultValue?: string }) {
-  const [value, setValue] = useState<string>(defaultValue || "");
+function SearchInput() {
+  const [value, setValue] = useState<string>("");
 
   const router = useRouter();
 
@@ -58,7 +58,7 @@ function SearchInput({ defaultValue }: { defaultValue?: string }) {
   );
 }
 
-function SearchInputWrap({ defaultValue }: { defaultValue?: string }) {
+function SearchInputWrap() {
   const [portalNode, setPortalNode] = useState<HTMLElement | null>(null);
 
   const pathname = usePathname();
@@ -85,7 +85,7 @@ function SearchInputWrap({ defaultValue }: { defaultValue?: string }) {
 
   return (
     <div className={style.searchComponent_common}>
-      <SearchInput defaultValue={defaultValue}></SearchInput>
+      <SearchInput></SearchInput>
     </div>
   );
 }
