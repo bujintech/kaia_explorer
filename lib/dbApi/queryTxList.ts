@@ -1,6 +1,6 @@
 import { queryTransactionsByBlockNumber } from "./index";
 import type { TxResponseData } from "./type";
-const LIMIT = 13;
+const LIMIT = 10;
 
 export default async function queryTxList(
   blockNumber: number,

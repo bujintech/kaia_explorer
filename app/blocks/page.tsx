@@ -22,7 +22,6 @@ function Blocks() {
       <div className={style.tableContainer}>
         <Table columns={blockColumns} dataSource={dataSource}></Table>
       </div>
-
       <UpIcon></UpIcon>
     </div>
   );
