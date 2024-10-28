@@ -34,7 +34,7 @@ function GCInfo() {
                 </div>
 
                 <div className={style.countMsg}>
-                  <span>ToTal Staking</span>
+                  <span>Total Staking</span>
                   <span>APY</span>
                 </div>
 

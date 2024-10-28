@@ -21,7 +21,7 @@ function Nav() {
             <Link href="/txs">TRANSACTIONS</Link>
           </li>
           <li>
-            <Link href="/gcInfo">TOKEN</Link>
+            <Link href="/token">TOKEN</Link>
           </li>
           <li>
             <Link href="/gcInfo">GC INFO</Link>

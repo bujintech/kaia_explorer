@@ -36,7 +36,7 @@ function GcList() {
 
                   <div className={style.countMsg}>
                     <div className="flex fl_jb">
-                      <span>ToTal Staking</span>
+                      <span>Total Staking</span>
                       <span>{item.totalStaking || "0"}KALY</span>
                     </div>
                     <div className="flex fl_jb">
