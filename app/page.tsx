@@ -11,8 +11,8 @@ import style from "./index.module.css";
 export default function Home() {
   return (
     <div className={style.homePage}>
-      <div className="flex">
-        <div>
+      <div className="flex fl_jb">
+        <div className="flex fl_jb" style={{ flexDirection: "column" }}>
           <Welcome></Welcome>
           <div id="homePageSearchSolt"></div>
           <Place></Place>
@@ -20,7 +20,7 @@ export default function Home() {
         <div>
           <div className="flex">
             <Chart></Chart>
-            <div>
+            <div className="flex fl_jb" style={{ flexDirection: "column" }}>
               <BlockHeight></BlockHeight>
               <Network></Network>
             </div>

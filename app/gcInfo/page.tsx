@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
@@ -25,7 +24,7 @@ function GCInfo() {
       </div>
 
       <div className={style.gcContainer}>
-        {data.map((item: any, i) => {
+        {data.map((item, i) => {
           return (
             <div key={i} className={style.itemwrap}>
               <div className={style.iteminner}>
@@ -41,7 +40,7 @@ function GCInfo() {
 
                 <div
                   className={style.countMsg}
-                  style={{ fontWeight: "bold", borderTop: " 1px solid #3d4049" }}
+                  style={{ fontWeight: "bold", borderTop: "1px solid #3d4049" }}
                 >
                   <span>{item.totalStaking || "0"}KALY</span>
                   <span>{item.apy || "0"}%</span>
