@@ -47,11 +47,14 @@ function Table<T>({ dataSource, columns, loading }: Props<T>) {
             dataSource.map((dataItem, index) => (
               <tr key={index}>
                 {columns.map((columnsItem, index) => {
-                  let renderNode = dataItem[columnsItem.dataIndex] as ReactNode;
                   if (typeof columnsItem.render === "function") {
-                    renderNode = columnsItem.render(dataItem, index);
+                    return <td key={index}>{columnsItem.render(dataItem, index)}</td>;
                   }
-                  return <td key={index}>{renderNode}</td>;
+                  return (
+                    <td key={index}>
+                      <div>{dataItem[columnsItem.dataIndex] as ReactNode}</div>
+                    </td>
+                  );
                 })}
               </tr>
             ))}
