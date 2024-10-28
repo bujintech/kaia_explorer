@@ -3,6 +3,7 @@
 import axios from "axios";
 import Table, { blockColumns_home } from "@/components/table";
 import useTable from "@/hooks/useTable";
+import Link from "next/link";
 import style from "./index.module.css";
 
 function TableList() {
@@ -18,11 +19,15 @@ function TableList() {
   return (
     <div className={style.tableList}>
       <div>
-        <div className={style.title}>RECENT BLOCK</div>
+        <div className={style.title}>
+          <Link href="/blocks">RECENT BLOCK</Link>
+        </div>
         <Table columns={blockColumns_home} dataSource={dataSource}></Table>
       </div>
       <div>
-        <div className={style.title}>RECENT TRANSACTIONS</div>
+        <div className={style.title}>
+          <Link href="/blocks">RECENT TRANSACTIONS</Link>
+        </div>
         <Table columns={blockColumns_home} dataSource={dataSource}></Table>
       </div>
     </div>

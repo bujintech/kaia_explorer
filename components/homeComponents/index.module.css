@@ -141,6 +141,10 @@
   display: flex;
   margin-top: 90px;
 }
+.tableList a:hover {
+  color: #a8d778;
+  text-decoration: underline;
+}
 
 .tableList > div {
   width: 50%;
