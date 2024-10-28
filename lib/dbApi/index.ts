@@ -138,7 +138,11 @@ export async function queryGcInfoList(): Promise<GcResponseData[]> {
     },
   });
 
-  return (Array.isArray(data.Items) ? data.Items : []).map((v) => {
-    return decompressJson<GcResponseData>(v.RESULT);
-  });
+  return (Array.isArray(data.Items) ? data.Items : [])
+    .map((v) => {
+      return decompressJson<GcResponseData>(v.RESULT);
+    })
+    .sort((a, b) => {
+      return Number(b.total_staking) - Number(a.total_staking);
+    });
 }

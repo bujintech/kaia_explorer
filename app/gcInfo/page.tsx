@@ -42,7 +42,7 @@ function GCInfo() {
                   className={style.countMsg}
                   style={{ fontWeight: "bold", borderTop: "1px solid #3d4049" }}
                 >
-                  <span>{item.totalStaking || "0"}KALY</span>
+                  <span>{item.total_staking || "0"}KALY</span>
                   <span>{item.apy || "0"}%</span>
                 </div>
 
