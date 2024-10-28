@@ -6,6 +6,7 @@
   table-layout: fixed;
   border-collapse: collapse;
   text-align: left;
+  white-space: nowrap;
 }
 
 .table thead > tr {
