@@ -1,21 +1,8 @@
-"use client";
-
-import { useCallback, useEffect, useState } from "react";
-import axios from "axios";
+import { queryGcInfoList } from "@/lib/dbApi";
 import style from "./index.module.css";
 
-function GCInfo() {
-  const [data, setData] = useState(new Array(11).fill({}));
-
-  const queryGcInfoData = useCallback(() => {
-    axios.post("/api/gcInfo").then(({ data }) => {
-      setData(data.result);
-    });
-  }, []);
-
-  useEffect(() => {
-    queryGcInfoData();
-  }, []);
+async function GCInfo() {
+  const data = await queryGcInfoList();
 
   return (
     <div className={style.gcPage}>
