@@ -3,16 +3,12 @@ import Empty from "@/components/empty";
 import TxDetail from "@/components/txDetail";
 import style from "./index.module.css";
 
-async function TransactionDetail({ params: { hash } }: { params: { hash: string } }) {
+async function TxDetailPage({ params: { hash } }: { params: { hash: string } }) {
   const data = await queryTransactionByHash(hash);
 
-  if (!data) return <Empty></Empty>;
-
   return (
-    <div className={style.txDetailPage}>
-      <TxDetail data={data}></TxDetail>
-    </div>
+    <div className={style.txDetailPage}>{data ? <TxDetail data={data}></TxDetail> : <Empty></Empty>}</div>
   );
 }
 
-export default TransactionDetail;
+export default TxDetailPage;

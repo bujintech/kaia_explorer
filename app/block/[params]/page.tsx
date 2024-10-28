@@ -12,11 +12,9 @@ async function BlockDetailPage({ params: { params } }: { params: { params: strin
     data = await queryBlockByNumber(hexToDecimal(params));
   }
 
-  if (!data) return <Empty></Empty>;
-
   return (
-    <div className={style.blockDetailPage}>
-      <BlockDetail data={data}></BlockDetail>
+    <div className={style.txDetailPage}>
+      {data ? <BlockDetail data={data}></BlockDetail> : <Empty></Empty>}
     </div>
   );
 }
