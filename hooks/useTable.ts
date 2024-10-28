@@ -8,11 +8,11 @@ export interface UseTableProps {
 }
 
 function useTable({ apiFunction }: UseTableProps) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [pageSize, setPageSize] = useState<number>(1);
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   const fetchData = useCallback(() => {
     setLoading(true);

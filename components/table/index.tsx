@@ -18,11 +18,20 @@ export interface Columns<T> {
 }
 
 interface Props<T> {
-  dataSource: T[];
+  loading?: boolean;
+  dataSource: T[] | null;
   columns: Columns<T>[];
 }
 
-function Table<T>({ dataSource, columns }: Props<T>) {
+function Loading() {
+  return <div className={style.loading}>Loading...</div>;
+}
+
+function NoData() {
+  return <div className={style.noData}>No Data</div>;
+}
+
+function Table<T>({ dataSource, columns, loading }: Props<T>) {
   return (
     <div className={style.table}>
       <table>
@@ -34,19 +43,22 @@ function Table<T>({ dataSource, columns }: Props<T>) {
           </tr>
         </thead>
         <tbody>
-          {dataSource.map((dataItem, index) => (
-            <tr key={index}>
-              {columns.map((columnsItem, index) => {
-                let renderNode = dataItem[columnsItem.dataIndex] as ReactNode;
-                if (typeof columnsItem.render === "function") {
-                  renderNode = columnsItem.render(dataItem, index);
-                }
-                return <td key={index}>{renderNode}</td>;
-              })}
-            </tr>
-          ))}
+          {dataSource &&
+            dataSource.map((dataItem, index) => (
+              <tr key={index}>
+                {columns.map((columnsItem, index) => {
+                  let renderNode = dataItem[columnsItem.dataIndex] as ReactNode;
+                  if (typeof columnsItem.render === "function") {
+                    renderNode = columnsItem.render(dataItem, index);
+                  }
+                  return <td key={index}>{renderNode}</td>;
+                })}
+              </tr>
+            ))}
         </tbody>
       </table>
+      {loading && <Loading></Loading>}
+      {dataSource && dataSource.length === 0 && <NoData></NoData>}
     </div>
   );
 }

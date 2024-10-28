@@ -7,7 +7,7 @@ import useTable from "@/hooks/useTable";
 import style from "./index.module.css";
 
 function Blocks() {
-  const { dataSource } = useTable({
+  const { dataSource, loading } = useTable({
     apiFunction: () =>
       axios.post(`/api/block/list`, {
         data: {
@@ -20,7 +20,7 @@ function Blocks() {
     <div className={style.blocksPage}>
       <div className={style.title}>Blocks</div>
       <div className={style.tableContainer}>
-        <Table columns={blockColumns} dataSource={dataSource}></Table>
+        <Table loading={loading} columns={blockColumns} dataSource={dataSource}></Table>
       </div>
       <UpIcon></UpIcon>
     </div>

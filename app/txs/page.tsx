@@ -7,7 +7,7 @@ import useTable from "@/hooks/useTable";
 import style from "./index.module.css";
 
 function Transactions() {
-  const { dataSource } = useTable({
+  const { dataSource, loading } = useTable({
     apiFunction: () =>
       axios.post(`/api/transaction/list`, {
         data: {
@@ -20,7 +20,7 @@ function Transactions() {
     <div className={style.txsPage}>
       <div className={style.title}>Transactions</div>
       <div className={style.tableContainer}>
-        <Table columns={txsColumns} dataSource={dataSource}></Table>
+        <Table loading={loading} columns={txsColumns} dataSource={dataSource}></Table>
       </div>
     </div>
   );

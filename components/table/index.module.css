@@ -1,3 +1,6 @@
+.table {
+  min-height: 300px;
+}
 .table table {
   width: 100%;
   table-layout: fixed;
@@ -44,4 +47,19 @@
 
 .table tbody > tr:nth-child(even) {
   background-color: #fbffd2;
+}
+
+.noData {
+  background: url("/images/no_data.png") no-repeat;
+  background-size: 190px 170px;
+  background-position: center;
+  text-align: center;
+  padding-top: 200px;
+}
+
+.loading {
+  text-align: center;
+  font-size: 24px;
+  color: #999;
+  padding: 30px;
 }
