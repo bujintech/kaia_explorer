@@ -18,7 +18,13 @@ const columns: Columns<BlockResponseData>[] = [
     render: ({ timestamp }) => dayjs(Number(timestamp) * 1000).fromNow(),
   },
   { title: "Total TXs", dataIndex: "transactionsTotal" },
-  { title: "Block proposer", dataIndex: "miner" },
+  {
+    title: "Block proposer",
+    dataIndex: "miner",
+    render: ({ miner }) => {
+      return <Link href={`/address/${miner}`}>{miner}</Link>;
+    },
+  },
   { title: "Base Fee", dataIndex: "number" },
   { title: "Rewards(KLAY)", dataIndex: "number" },
   { title: "Burnt Fee", dataIndex: "number" },
