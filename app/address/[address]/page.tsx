@@ -1,12 +1,12 @@
-import type { GcResponseData, TxResponseData } from "@/lib/db/type";
+import type { GcResponseData, TxResponseData } from "@/lib/dbApi/type";
 import Table, { addressColumns } from "@/components/table";
-import { queryGcConfig, queryTransactionByAddress, queryGcInfoByName } from "@/lib/db";
+import { queryGcConfig, queryTransactionsByAddress, queryGcInfoByName } from "@/lib/dbApi";
 import style from "./index.module.css";
 
 async function Address({ params: { address } }: { params: { address: string } }) {
   const gc_config = await queryGcConfig();
 
-  const txs = await queryTransactionByAddress(address);
+  const txs = await queryTransactionsByAddress(address);
 
   const gcName = gc_config && gc_config[address];
 

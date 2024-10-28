@@ -1,5 +1,5 @@
 import type { Columns } from "@/components/table";
-import type { TxResponseData } from "@/lib/db/type";
+import type { TxResponseData } from "@/lib/dbApi/type";
 import Link from "next/link";
 
 const columns: Columns<TxResponseData>[] = [

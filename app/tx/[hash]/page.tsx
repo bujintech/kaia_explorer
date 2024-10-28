@@ -1,7 +1,6 @@
-import { queryTransactionByHash } from "@/lib/db";
+import { queryTransactionByHash } from "@/lib/dbApi";
 import Empty from "@/components/empty";
 import style from "./index.module.css";
-import type { TxResponseData } from "@/lib/db/type";
 
 async function TransactionDetail({ params: { hash } }: { params: { hash: string } }) {
   const data = await queryTransactionByHash(hash);

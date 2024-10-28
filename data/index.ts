@@ -1,4 +1,4 @@
-import { queryGcConfig } from "@/lib/db";
+import { queryGcConfig } from "@/lib/dbApi";
 
 class GCData {
   public config: Record<string, string> = {};

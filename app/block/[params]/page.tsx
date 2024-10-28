@@ -1,7 +1,7 @@
 import Table, { blockDetailColumns } from "@/components/table";
-import type { BlockResponseData, TxResponseData } from "@/lib/db/type";
+import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
 
-import { queryBlockByNumber, queryBlockByHash, queryTransactionsByBlockNumber } from "@/lib/db";
+import { queryBlockByNumber, queryBlockByHash, queryTransactionsByBlockNumber } from "@/lib/dbApi";
 import { isHash, hexToDecimal } from "@/lib/utils";
 import Empty from "@/components/empty";
 import style from "./index.module.css";

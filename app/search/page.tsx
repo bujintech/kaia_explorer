@@ -1,7 +1,6 @@
 import Empty from "@/components/empty";
-import Search from "@/components/search";
-import { queryGcConfig, queryListFromBatch } from "@/lib/db";
-import type { GcResponseData } from "@/lib/db/type";
+import { queryGcConfig, queryListFromBatch } from "@/lib/dbApi";
+import type { GcResponseData } from "@/lib/dbApi/type";
 import style from "./index.module.css";
 
 function renderMatchText(str: string, matchChar: string) {

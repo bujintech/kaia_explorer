@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { queryDataByHash } from "@/lib/db";
+import { queryDataByHash } from "@/lib/dbApi";
 
 export async function POST(
   _: NextRequest,

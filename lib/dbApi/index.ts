@@ -2,6 +2,9 @@ import db from "../db";
 import { decompressJson } from "./util";
 import type { BlockResponseData, TxResponseData, GcResponseData } from "./type";
 
+export { default as queryBlockList } from "./queryBlockList";
+export { default as queryTxList } from "./queryTxList";
+
 export async function queryBlockByNumber(blockNumber: number): Promise<BlockResponseData | null> {
   const data = await db.getItem({
     Key: {
@@ -50,9 +53,7 @@ export async function queryTransactionByHash(hash: string): Promise<TxResponseDa
   return null;
 }
 
-export async function queryBlockGroup(
-  blockNumber: number
-): Promise<{ txsList: TxResponseData[] | null; blockData: BlockResponseData | null }> {
+export async function queryTransactionsByBlockNumber(blockNumber: number): Promise<TxResponseData[] | null> {
   const data = await db.query({
     KeyConditionExpression: `PK = :PK `,
     ExpressionAttributeValues: {
@@ -74,18 +75,10 @@ export async function queryBlockGroup(
     }
   });
 
-  return {
-    txsList: blockData ? txsList : null,
-    blockData,
-  };
+  return blockData ? txsList : null;
 }
 
-export async function queryTransactionsByBlockNumber(blockNumber: number): Promise<TxResponseData[] | null> {
-  const { txsList } = await queryBlockGroup(blockNumber);
-  return txsList;
-}
-
-export async function queryTransactionByAddress(address: string): Promise<TxResponseData[]> {
+export async function queryTransactionsByAddress(address: string): Promise<TxResponseData[]> {
   const data = await db.query({
     KeyConditionExpression: `GS2PK = :GS2PK`,
     ExpressionAttributeValues: {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Columns } from "@/components/table";
-import type { BlockResponseData } from "@/lib/db/type";
+import type { BlockResponseData } from "@/lib/dbApi/type";
 import { dayjs } from "@/lib/utils";
 
 const columns: Columns<BlockResponseData>[] = [

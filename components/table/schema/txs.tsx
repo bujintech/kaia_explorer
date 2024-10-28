@@ -1,7 +1,7 @@
 import type { Columns } from "@/components/table";
 import Link from "next/link";
 import { dayjs } from "@/lib/utils";
-import type { TxResponseData } from "@/lib/db/type";
+import type { TxResponseData } from "@/lib/dbApi/type";
 
 const columns: Columns<TxResponseData>[] = [
   {
