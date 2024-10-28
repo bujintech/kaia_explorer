@@ -8,7 +8,7 @@ import Empty from "@/components/empty";
 async function Hash({ params: { hash } }: { params: { hash: string } }) {
   const result = await queryDataByHash(hash);
 
-  if (!result) return <Empty type="hash"></Empty>;
+  if (!result) return <Empty></Empty>;
 
   const { type, data } = result;
 

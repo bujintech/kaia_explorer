@@ -3,12 +3,13 @@ import type { ReactNode } from "react";
 import addressColumns from "./schema/address";
 import blockColumns from "./schema/blocks";
 import blockColumns_home from "./schema/home_block";
+import txColumns_home from "./schema/home_tx";
 import blockDetailColumns from "./schema/blockDetail";
 import txsColumns from "./schema/txs";
 
 import style from "./index.module.css";
 
-export { addressColumns, blockColumns, blockColumns_home, txsColumns, blockDetailColumns };
+export { addressColumns, blockColumns, blockColumns_home, txColumns_home, txsColumns, blockDetailColumns };
 
 export interface Columns<T> {
   title: string;
@@ -40,7 +41,6 @@ function Table<T>({ dataSource, columns }: Props<T>) {
                 if (typeof columnsItem.render === "function") {
                   renderNode = columnsItem.render(dataItem, index);
                 }
-
                 return <td key={index}>{renderNode}</td>;
               })}
             </tr>
