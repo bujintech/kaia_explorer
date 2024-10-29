@@ -1,34 +1,33 @@
 import Empty from "@/components/empty";
 import { queryGcConfig, queryListFromBatch } from "@/lib/dbApi";
 import type { GcResponseData } from "@/lib/dbApi/type";
+import Table, { accountColumns } from "@/components/table";
 import style from "./index.module.css";
 
-function renderMatchText(str: string, matchChar: string) {
-  return str.replace(new RegExp(`(${matchChar})`, "gi"), `<span style="color:red">$1</span>`);
-}
+function Accounts({ list }: { list: GcResponseData[] }) {
+  const dataSource: {
+    name: string;
+    address: string;
+    type: string;
+  }[] = [];
 
-function renderContent(list: GcResponseData[], keyword: string) {
+  list.forEach((v) => {
+    if (Array.isArray(v.contracts)) {
+      v.contracts.map(({ address, type }) => {
+        dataSource.push({
+          name: v.name,
+          address,
+          type,
+        });
+      });
+    }
+  });
+
   return (
-    <>
-      <h4>address for GC</h4>
-      {list?.map((v) => {
-        return (
-          <div key={v.name} style={{ display: "flex" }}>
-            <div
-              style={{ width: 240 }}
-              dangerouslySetInnerHTML={{ __html: renderMatchText(v.name, keyword) }}
-            ></div>
-            <div>
-              {v.contracts.map(({ address }) => (
-                <p key={address}>{address}</p>
-              ))}
-            </div>
-          </div>
-        );
-      })}
-      <h4>address for Token</h4>
-      <span> todo...</span>
-    </>
+    <div className={style.card}>
+      <div className={style.title}>ACCOUNTS</div>
+      <Table columns={accountColumns} dataSource={dataSource}></Table>
+    </div>
   );
 }
 
@@ -53,7 +52,8 @@ async function SearchPage({ searchParams: { keyword = "" } }: { searchParams: { 
 
   return (
     <div className={style.searchPage}>
-      {searchData.length === 0 ? <Empty></Empty> : renderContent(searchData, _keyword)}
+      <Accounts list={searchData}></Accounts>
+      {searchData.length === 0 && <Empty></Empty>}
     </div>
   );
 }

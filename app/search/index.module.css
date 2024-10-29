@@ -1,8 +1,17 @@
-.flex {
-  display: flex;
+.searchPage {
+  margin: 30px 0;
 }
 
-.flex img {
-  width: 80px;
-  height: 80px;
+.card {
+  margin: 0 40px;
+  padding: 30px;
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 32px;
+  color: #3d4049;
+  margin-bottom: 20px;
+  font-weight: bold;
 }

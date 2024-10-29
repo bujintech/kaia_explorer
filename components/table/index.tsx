@@ -6,10 +6,19 @@ import blockColumns_home from "./schema/home_block";
 import txColumns_home from "./schema/home_tx";
 import blockDetailColumns from "./schema/blockDetail";
 import txsColumns from "./schema/txs";
+import accountColumns from "./schema/account";
 
 import style from "./index.module.css";
 
-export { addressColumns, blockColumns, blockColumns_home, txColumns_home, txsColumns, blockDetailColumns };
+export {
+  addressColumns,
+  blockColumns,
+  blockColumns_home,
+  txColumns_home,
+  txsColumns,
+  blockDetailColumns,
+  accountColumns,
+};
 
 export interface Columns<T> {
   title: string;
