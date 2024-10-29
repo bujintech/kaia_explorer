@@ -124,7 +124,6 @@ export async function queryListFromBatch(params: Record<"PK" | "SK", string>[]):
 
   const data = await db.batchGetItem(params);
 
-  console.log(params, data);
   const tableName = db.tableName;
 
   return (data.Responses?.[tableName] || []).map((v) => {

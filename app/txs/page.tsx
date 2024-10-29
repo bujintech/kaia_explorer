@@ -14,8 +14,6 @@ function Transactions() {
       }),
   });
 
-  console.log(dataSource);
-
   return (
     <div className={style.txsPage}>
       <div className={style.title}>Transactions</div>
