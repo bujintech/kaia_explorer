@@ -1,6 +1,7 @@
 import type { Columns } from "@/components/table";
 import type { TxResponseData } from "@/lib/dbApi/type";
 import * as render from "./render";
+import style from "../index.module.css";
 
 const columns: Columns<TxResponseData>[] = [
   {
@@ -21,7 +22,7 @@ const columns: Columns<TxResponseData>[] = [
   {
     title: "To",
     dataIndex: "to",
-    render: ({ to }) => render.renderAddress(to),
+    render: ({ to }) => render.renderAddress(to, { className: style.to }),
   },
 ];
 

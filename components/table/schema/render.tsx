@@ -1,26 +1,43 @@
 import { formatHash, hexToDecimal, dayjs } from "@/lib/utils";
 import Link from "next/link";
 
-export function renderHash(hash: string, stay?: boolean) {
-  if (stay) {
-    return formatHash(hash);
-  }
-  return <Link href={`/hash/${hash}`}>{formatHash(hash)}</Link>;
+interface Options {
+  className?: string;
+  stay?: boolean;
 }
 
-export function renderAddress(hash: string, stay?: boolean) {
-  if (stay) {
+export function renderHash(hash: string, options?: Options) {
+  if (options?.stay) {
     return formatHash(hash);
   }
-  return <Link href={`/address/${hash}`}>{formatHash(hash)}</Link>;
+  return (
+    <Link className={options?.className} href={`/hash/${hash}`}>
+      {formatHash(hash)}
+    </Link>
+  );
 }
 
-export function renderBlock(blockNumber: string, stay?: boolean) {
+export function renderAddress(hash: string, options?: Options) {
+  if (options?.stay) {
+    return formatHash(hash);
+  }
+  return (
+    <Link className={options?.className} href={`/address/${hash}`}>
+      {formatHash(hash)}
+    </Link>
+  );
+}
+
+export function renderBlock(blockNumber: string, options?: Options) {
   const _blockNumber = hexToDecimal(blockNumber);
-  if (stay) {
+  if (options?.stay) {
     return _blockNumber;
   }
-  return <Link href={`/block/${_blockNumber}`}>{_blockNumber}</Link>;
+  return (
+    <Link className={options?.className} href={`/block/${_blockNumber}`}>
+      {_blockNumber}
+    </Link>
+  );
 }
 
 export function renderAge(timestamp: string) {
