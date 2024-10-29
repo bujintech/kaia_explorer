@@ -5,7 +5,7 @@ import style from "./index.module.css";
 
 async function TableList() {
   const blockNumbr = await queryMaxBlockNumber();
-  const blockData = await queryBlockList(blockNumbr);
+  const blockData = await queryBlockList(blockNumbr, 10);
   const txData = await queryTxList(blockNumbr);
 
   if (txData.list.length > 10) txData.list.length = 10;

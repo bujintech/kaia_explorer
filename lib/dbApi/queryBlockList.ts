@@ -1,16 +1,18 @@
 import { queryListFromBatch } from "./index";
 import { hexToDecimal } from "../utils";
 import type { BlockResponseData } from "./type";
-const LIMIT = 10;
+const LIMIT = 30;
 
 export default async function queryBlockList(
-  blockNumber: number
+  blockNumber: number,
+  size?: number
 ): Promise<{ list: BlockResponseData[]; lastBlockNumber: number }> {
   let _blockNumber = blockNumber;
 
   const params = [];
+  size = size || LIMIT;
 
-  while (_blockNumber >= 0 && blockNumber - _blockNumber < LIMIT) {
+  while (_blockNumber >= 0 && blockNumber - _blockNumber < size) {
     params.push({
       PK: `${_blockNumber}`,
       SK: `BLOCK#${_blockNumber}`,

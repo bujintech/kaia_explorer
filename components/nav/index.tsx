@@ -20,9 +20,9 @@ function Nav() {
           <li>
             <Link href="/txs">TRANSACTIONS</Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/token">TOKEN</Link>
-          </li>
+          </li> */}
           <li>
             <Link href="/gcInfo">GC INFO</Link>
           </li>
