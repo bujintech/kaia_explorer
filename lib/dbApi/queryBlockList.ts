@@ -1,4 +1,5 @@
 import { queryListFromBatch } from "./index";
+import { hexToDecimal } from "../utils";
 import type { BlockResponseData } from "./type";
 const LIMIT = 10;
 
@@ -18,9 +19,8 @@ export default async function queryBlockList(
   }
 
   const list = (await queryListFromBatch(params)) as BlockResponseData[];
-
   return {
-    list,
+    list: list.sort((a, b) => hexToDecimal(b.number) - hexToDecimal(a.number)),
     lastBlockNumber: _blockNumber,
   };
 }

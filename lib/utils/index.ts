@@ -46,7 +46,7 @@ export function getValueType(value: string = ""): "address" | "hash" | "number" 
 export function formatNumber(num: string | number) {
   let numStr = "";
   if (typeof num === "number") {
-    numStr = num.toString();
+    numStr = isNaN(num) ? "" : num.toString();
   } else if (typeof num === "string") {
     const _num = hexToDecimal(num);
     if (!isNaN(_num)) {

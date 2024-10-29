@@ -1,8 +1,9 @@
 import { formatNumber } from "@/lib/utils";
+import { queryMaxBlockNumber } from "@/lib/dbApi";
 import style from "./index.module.css";
 
-function Welcome() {
-  const blockHeight = 28349723;
+async function Welcome() {
+  const blockHeight = await queryMaxBlockNumber();
 
   return (
     <div className={style.blockHeight}>

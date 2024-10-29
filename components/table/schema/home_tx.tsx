@@ -5,9 +5,9 @@ import style from "../index.module.css";
 
 const columns: Columns<TxResponseData>[] = [
   {
-    title: "Block",
-    dataIndex: "blockNumber",
-    render: ({ blockNumber }) => render.renderBlock(blockNumber),
+    title: "TX Hash",
+    dataIndex: "hash",
+    render: ({ hash }) => render.renderHash(hash),
   },
   {
     title: "Age",

@@ -1,11 +1,12 @@
 import Table, { blockColumns_home, txColumns_home } from "@/components/table";
-import { queryBlockList, queryTxList } from "@/lib/dbApi";
+import { queryBlockList, queryTxList, queryMaxBlockNumber } from "@/lib/dbApi";
 import Link from "next/link";
 import style from "./index.module.css";
 
 async function TableList() {
-  const blockData = await queryBlockList(166887911);
-  const txData = await queryTxList(166887911);
+  const blockNumbr = await queryMaxBlockNumber();
+  const blockData = await queryBlockList(blockNumbr);
+  const txData = await queryTxList(blockNumbr);
 
   if (txData.list.length > 10) txData.list.length = 10;
 

@@ -59,6 +59,7 @@ export async function queryTransactionsByBlockNumber(blockNumber: number): Promi
     ExpressionAttributeValues: {
       ":PK": `${blockNumber}`,
     },
+    ScanIndexForward: false,
   });
 
   const list = Array.isArray(data.Items) ? data.Items : [];
@@ -123,6 +124,7 @@ export async function queryListFromBatch(params: Record<"PK" | "SK", string>[]):
 
   const data = await db.batchGetItem(params);
 
+  console.log(params, data);
   const tableName = db.tableName;
 
   return (data.Responses?.[tableName] || []).map((v) => {
@@ -145,4 +147,15 @@ export async function queryGcInfoList(): Promise<GcResponseData[]> {
     .sort((a, b) => {
       return Number(b.total_staking) - Number(a.total_staking);
     });
+}
+
+export async function queryMaxBlockNumber() {
+  const data = await db.getItem({
+    Key: {
+      PK: "MAX_BLOCK",
+      SK: "MAX_BLOCK",
+    },
+  });
+  if (data?.Item?.RESULT) return Number(data.Item.RESULT);
+  return NaN;
 }

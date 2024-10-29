@@ -1,10 +1,15 @@
 import { NextResponse, NextRequest } from "next/server";
-import { queryBlockList } from "@/lib/dbApi";
+import { queryBlockList, queryMaxBlockNumber } from "@/lib/dbApi";
 
 export async function POST(res: NextRequest): Promise<NextResponse> {
   const { data } = (await res.json()) as { data: { startWith: number } };
 
-  const startBlockNumber = Number(data.startWith);
+  let startBlockNumber: number = 0;
+  if (data.startWith) {
+    startBlockNumber = Number(data.startWith);
+  } else {
+    startBlockNumber = await queryMaxBlockNumber();
+  }
 
   let obj = { code: 0, endBlockNumber: 0, result: [] };
 

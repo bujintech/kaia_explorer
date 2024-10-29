@@ -1,8 +1,23 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 require("dotenv").config();
-const { batchWrite, compressJson } = require("./db");
+const { batchWrite, compressJson, putItem } = require("./db");
+const fs = require("fs");
+const path = require("path");
 
 const BASE_NODE_RPC = process.env.BASE_NODE_RPC;
+
+const logPath = path.join(__dirname, "log.txt");
+
+function writeLogs(blockNumber, errStr) {
+  console.log(errStr);
+  const logs = fs.readFileSync(logPath, "utf-8");
+  fs.writeFileSync(logPath, `${logs},${blockNumber}`, (err) => {
+    if (err) {
+      process.exit(0);
+    }
+  });
+  process.exit(0);
+}
 
 function getblockItem(data) {
   const tx_total = data.transactions?.length || 0;
@@ -66,7 +81,7 @@ const getBlockByNumber = (blockNumber) => {
     }),
   }).then((res) => {
     if (!res.ok) {
-      throw new Error("Network response was not ok " + res.statusText);
+      writeLogs(blockNumber, "fetch is not OK");
     }
     return res.json();
   });
@@ -85,23 +100,37 @@ async function taskItem(blockNumber) {
         PutRequest: { Item },
       };
     });
+
     await batchWrite(dataList);
+  } else {
+    writeLogs(blockNumber, `current block height [${blockNumber}] not find data`);
   }
 }
+
+const maxBlockNumber = async (maxBlockNumber) => {
+  await putItem({
+    Item: {
+      PK: `MAX_BLOCK`,
+      SK: `MAX_BLOCK`,
+      RESULT: `${maxBlockNumber}`,
+      CHAIN: "KAIA",
+    },
+  });
+};
 
 async function main() {
-  let currentBlock = 166887901;
-  const max = 166887915;
-  while (currentBlock <= max) {
-    try {
+  // let currentBlock = 168177000;
+  let currentBlock = 168177567;
+  const max = 168177568;
+  try {
+    while (currentBlock <= max) {
       await taskItem(currentBlock);
-    } catch (e) {
-      console.log("blockNumber error:", currentBlock);
-      // console.log(e);
+      console.log("current block success", currentBlock);
+      currentBlock++;
     }
-    console.log("current block success", currentBlock);
-    currentBlock++;
+    maxBlockNumber(currentBlock--);
+  } catch (e) {
+    console.log(e);
+    writeLogs(currentBlock, "db error");
   }
 }
-
-main();

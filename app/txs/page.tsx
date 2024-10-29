@@ -10,11 +10,11 @@ function Transactions() {
   const { dataSource, loading } = useTable({
     apiFunction: () =>
       axios.post(`/api/transaction/list`, {
-        data: {
-          startWith: 166887911,
-        },
+        data: {},
       }),
   });
+
+  console.log(dataSource);
 
   return (
     <div className={style.txsPage}>

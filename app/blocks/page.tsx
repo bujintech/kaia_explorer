@@ -10,9 +10,7 @@ function Blocks() {
   const { dataSource, loading } = useTable({
     apiFunction: () =>
       axios.post(`/api/block/list`, {
-        data: {
-          startWith: 166887916,
-        },
+        data: {},
       }),
   });
 
