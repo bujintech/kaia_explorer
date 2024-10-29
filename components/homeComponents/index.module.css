@@ -8,6 +8,11 @@
   background-position: 380px 97%;
 }
 
+.place {
+  width: 100%;
+  height: auto;
+}
+
 .blockHeight {
   width: 367px;
   box-sizing: border-box;

@@ -1,8 +1,13 @@
 .navComponent {
   padding: 16px 40px 58px;
 }
-
+.logo img:nth-child(1) {
+  width: 90px;
+  height: auto;
+}
 .logo img:nth-child(2) {
+  width: 334px;
+  height: auto;
   margin-left: 25px;
 }
 

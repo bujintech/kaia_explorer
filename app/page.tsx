@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <div className={style.homePage}>
       <div className="flex fl_jb">
-        <div className="flex fl_jb" style={{ flexDirection: "column" }}>
+        <div className="flex fl_jb" style={{ flexDirection: "column", paddingRight: "1%" }}>
           <Welcome></Welcome>
           <div id="homePageSearchSolt"></div>
           <Place></Place>
         </div>
-        <div>
+        <div style={{ paddingLeft: "1%" }}>
           <div className="flex">
             <Chart></Chart>
             <div className="flex fl_jb" style={{ flexDirection: "column" }}>
