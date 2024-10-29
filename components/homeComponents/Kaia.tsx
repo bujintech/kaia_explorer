@@ -1,3 +1,4 @@
+import { formatNumber } from "@/lib/utils";
 import style from "./index.module.css";
 
 function Kaia() {
@@ -15,19 +16,19 @@ function Kaia() {
           <p>
             Volume<i>(24)</i>
           </p>
-          <p>$8462673</p>
+          <p>${formatNumber(8462673)}</p>
         </div>
         <div className={style.item}>
           <p>
             Ciculating<i>(Klay)</i>
           </p>
-          <p>5855155094</p>
+          <p>{formatNumber(5855155094)}</p>
         </div>
         <div className={style.item}>
           <p>
             Market Cap<i></i>
           </p>
-          <p>$732327000</p>
+          <p>${formatNumber(732327000)}</p>
         </div>
       </div>
     </div>

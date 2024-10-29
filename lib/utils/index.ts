@@ -42,3 +42,31 @@ export function getValueType(value: string = ""): "address" | "hash" | "number" 
   }
   return "normal";
 }
+
+export function formatNumber(num: string | number) {
+  let numStr = "";
+  if (typeof num === "number") {
+    numStr = num.toString();
+  } else if (typeof num === "string") {
+    const _num = hexToDecimal(num);
+    if (!isNaN(_num)) {
+      numStr = _num.toString();
+    }
+  }
+  if (!numStr) return "--";
+
+  // eslint-disable-next-line prefer-const
+  let [integerPart, decimalPart] = numStr.split(".");
+  integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return decimalPart ? `${integerPart}.${decimalPart}` : integerPart;
+}
+
+export function formatHash(hash: string) {
+  if (hash.length <= 10) {
+    return hash;
+  }
+  const start = hash.substring(0, 6);
+  const end = hash.substring(hash.length - 4);
+  return `${start}...${end}`;
+}

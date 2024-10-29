@@ -1,4 +1,5 @@
 import { queryGcInfoList } from "@/lib/dbApi";
+import { formatNumber } from "@/lib/utils";
 import style from "./index.module.css";
 
 async function GCInfo() {
@@ -29,7 +30,7 @@ async function GCInfo() {
                   className={style.countMsg}
                   style={{ fontWeight: "bold", borderTop: "1px solid #3d4049" }}
                 >
-                  <span>{item.total_staking || "0"}KALY</span>
+                  <span>{formatNumber(item.total_staking || "0")} KALY</span>
                   <span>{item.apy || "0"}%</span>
                 </div>
 

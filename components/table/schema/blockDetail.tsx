@@ -1,21 +1,33 @@
 import type { Columns } from "@/components/table";
 import type { TxResponseData } from "@/lib/dbApi/type";
-import Link from "next/link";
+import * as render from "./render";
 
 const columns: Columns<TxResponseData>[] = [
   {
     title: "TX Hash",
     dataIndex: "hash",
-    render: ({ hash }) => <Link href={`/tx/${hash}`}>{hash}</Link>,
+    render: ({ hash }) => render.renderHash(hash),
   },
   {
     title: "Block",
     dataIndex: "blockNumber",
-    render: ({ blockNumber }) => parseInt(blockNumber, 16).toString(),
+    render: ({ blockNumber }) => render.renderBlock(blockNumber),
   },
-  { title: "Age", dataIndex: "timestamp" },
-  { title: "From", dataIndex: "from", render: ({ from }) => <Link href={`/address/${from}`}>{from}</Link> },
-  { title: "To", dataIndex: "to", render: ({ to }) => <Link href={`/address/${to}`}>{to}</Link> },
+  {
+    title: "Age",
+    dataIndex: "timestamp",
+    render: ({ timestamp }) => render.renderAge(timestamp),
+  },
+  {
+    title: "From",
+    dataIndex: "from",
+    render: ({ from }) => render.renderAddress(from),
+  },
+  {
+    title: "To",
+    dataIndex: "to",
+    render: ({ to }) => render.renderAddress(to),
+  },
   { title: "Method", dataIndex: "blockNumber" },
   { title: "TX Type", dataIndex: "blockNumber" },
   { title: "Amount(KLAY)", dataIndex: "blockNumber" },
