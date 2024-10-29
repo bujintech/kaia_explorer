@@ -12,7 +12,9 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
 
   return (
     <>
-      <div className={style.title}>BLOCK</div>
+      <div className={style.title}>
+        BLOCK <span>{blockNumber}</span>
+      </div>
 
       <div className={`${style.detail} ${style.card}`}>
         <div>
