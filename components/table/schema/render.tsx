@@ -41,5 +41,14 @@ export function renderBlock(blockNumber: string, options?: Options) {
 }
 
 export function renderAge(timestamp: string) {
-  return dayjs(Number(timestamp) * 1000).fromNow();
+  const age = dayjs(Number(timestamp) * 1000).fromNow(true);
+  return age
+    .replace("an", "1")
+    .replace("minutes", "m")
+    .replace("seconds", "s")
+    .replace("hours", "h")
+    .replace("days", "D")
+    .replace("months", "M")
+    .replace("years", "Y")
+    .replace(/\s+/g, "");
 }
