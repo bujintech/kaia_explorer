@@ -27,6 +27,7 @@
     "eslint-config-next": "14.2.13",
     "postcss": "^8.4.47",
     "postcss-px-to-viewport": "^1.1.1",
+    "postcss-pxtorem": "^6.1.0",
     "typescript": "^5"
   }
 }

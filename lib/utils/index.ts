@@ -62,7 +62,7 @@ export function formatNumber(num: string | number) {
   return decimalPart ? `${integerPart}.${decimalPart}` : integerPart;
 }
 
-export function formatHash(hash: string) {
+export function formatHash(hash: string = "") {
   if (hash.length <= 10) {
     return hash;
   }

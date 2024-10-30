@@ -84,3 +84,24 @@
 .searchComponent_home .btn:active > span {
   transform: translateY(0px);
 }
+
+@media (max-width: 668px) {
+  .searchComponent_common input::placeholder,
+  .searchComponent_home input::placeholder {
+    font-size: 12px;
+  }
+
+  .searchComponent_common input {
+    font-size: 14px;
+    height: 48px;
+    padding: 0 73px 0 15px;
+    border-width: 1px;
+  }
+
+  .searchComponent_common .btn {
+    border: 1px solid #000;
+    width: 58px;
+    background: url("/images/btnBg_m.png") no-repeat center #a8d778;
+    background-size: 23px 27px;
+  }
+}

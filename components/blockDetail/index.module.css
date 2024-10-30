@@ -68,3 +68,40 @@
 .detail div:nth-child(10) > span:nth-child(1) {
   background-image: url("/images/blockIcon/validators.png");
 }
+
+@media (max-width: 668px) {
+  .title {
+    height: 54px;
+    line-height: 54px;
+    font-size: 20px;
+    padding: 0 15px;
+  }
+  .title > span {
+    font-size: 18px;
+  }
+
+  .card {
+    margin: 0 15px 10px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .detail div {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    font-size: 16px;
+    line-height: 40px;
+  }
+
+  .detail div > span:nth-child(1) {
+    width: auto;
+    padding-left: 25px;
+    background-size: 15px auto;
+    margin-right: 4px;
+  }
+  .detail div > span:nth-child(2) {
+    word-wrap: break-word;
+    display: inline-block;
+    width: 60%;
+    white-space: normal;
+  }
+}

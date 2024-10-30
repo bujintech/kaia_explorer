@@ -1,7 +1,7 @@
 import Nav from "@/components/nav";
 import Search from "@/components/search";
 import Footer from "@/components/footer";
-
+import Script from "next/script";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -17,12 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Script async src="/script/fontSize.js"></Script>
       <body>
         <Nav></Nav>
-
-        <main style={{ minHeight: "calc(100% - 170px)" }}>
+        <main>
           <Search></Search>
-
           {children}
         </main>
 

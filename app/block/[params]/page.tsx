@@ -13,7 +13,7 @@ async function BlockDetailPage({ params: { params } }: { params: { params: strin
   }
 
   return (
-    <div className={style.txDetailPage}>
+    <div className={style.blockDetailPage}>
       {data ? <BlockDetail data={data}></BlockDetail> : <Empty></Empty>}
     </div>
   );

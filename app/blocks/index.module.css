@@ -19,3 +19,27 @@
   border-radius: 30px;
   padding: 30px;
 }
+
+@media (max-width: 668px) {
+  .blocksPage {
+    padding-bottom: 30px;
+  }
+  .blocksPage table {
+    width: 1000px !important;
+  }
+
+  .title {
+    font-size: 24px;
+    height: 64px;
+    line-height: 64px;
+    background-size: 20px 20px;
+    background-position: 100px center;
+    padding-left: 15px;
+  }
+
+  .tableContainer {
+    margin: 0 15px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+}

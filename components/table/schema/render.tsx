@@ -44,10 +44,11 @@ export function renderAge(timestamp: string) {
   const age = dayjs(Number(timestamp) * 1000).fromNow(true);
   return age
     .replace("an", "1")
+    .replace("a", "1")
     .replace("minutes", "m")
     .replace("seconds", "s")
     .replace("hours", "h")
-    .replace("days", "D")
+    .replace("day", "d")
     .replace("months", "M")
     .replace("years", "Y")
     .replace(/\s+/g, "");

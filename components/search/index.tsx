@@ -49,7 +49,7 @@ function SearchInput() {
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
-        placeholder={"Search by Address / Txn Hash / Block /Block Hash / Domain Name"}
+        placeholder={"Search by Address / Hash / Block / Domain Name"}
       />
       <span className={style.btn} onClick={onSearch}>
         <span></span>

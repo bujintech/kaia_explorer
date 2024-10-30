@@ -22,7 +22,6 @@ i {
 
 html,
 body {
-  height: 100%;
   background: #f4f9f8;
   font-size: 16px;
 }
@@ -56,6 +55,9 @@ ul {
 }
 .fl_jb {
   justify-content: space-between;
+}
+.fl_ja {
+  justify-content: space-around;
 }
 
 .fl_ac {
