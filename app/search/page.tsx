@@ -5,6 +5,8 @@ import Table, { accountColumns } from "@/components/table";
 import style from "./index.module.css";
 
 function Accounts({ list }: { list: GcResponseData[] }) {
+  if (list.length === 0) return null;
+
   const dataSource: {
     name: string;
     address: string;
