@@ -4,7 +4,8 @@ import addressColumns from "./schema/address";
 import accountColumns from "./schema/account";
 
 import txsColumns from "./schema/txs";
-import txColumns_home from "./schema/home_tx";
+import txColumns_home from "./schema/txs_home";
+import txColumns_home_mobile from "./schema/txs_home_mobile";
 
 import blockColumns from "./schema/blocks";
 import blockDetailColumns from "./schema/blockDetail";
@@ -22,6 +23,7 @@ export {
   blockDetailColumns,
   accountColumns,
   blockColumns_home_mobile,
+  txColumns_home_mobile,
 };
 
 export interface Columns<T> {
