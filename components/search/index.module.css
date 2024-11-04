@@ -37,7 +37,7 @@
   border: 2px solid #000;
   border-right: none;
   width: 152px;
-  background: url("/images/btnBg.png") no-repeat center #a8d778;
+  background: url("/images/btnBg_pc.png") no-repeat center #a8d778;
   background-size: 70px 44px;
 }
 
@@ -75,10 +75,10 @@
   height: 100%;
   border-radius: 40px;
   box-shadow: 0 0 0 2px #000;
-  background: url("/images/h_btnBg.png") no-repeat center #a8d778;
+  background: url("/images/btnBg_pc_home.png") no-repeat center #a8d778;
   background-size: 60px 44px;
   transform: translateY(-8px);
-  transition: transform 0.2s;
+  transition: all 0.2s;
 }
 
 .searchComponent_home .btn:active > span {
@@ -101,7 +101,37 @@
   .searchComponent_common .btn {
     border: 1px solid #000;
     width: 58px;
-    background: url("/images/btnBg_m.png") no-repeat center #a8d778;
+    background: url("/images/btnBg_mobile.png") no-repeat center #a8d778;
     background-size: 23px 27px;
+  }
+
+  /* home page style */
+
+  .searchComponent_home input {
+    font-size: 14px;
+    height: 48px;
+    padding-left: 10px;
+    padding-right: 80px;
+    border: 1px solid #000;
+    border-radius: 0 24px 24px 0;
+  }
+
+  .searchComponent_home .btn {
+    border-radius: 24px;
+    border: 1px solid #000;
+    width: 70px;
+  }
+
+  .searchComponent_home .btn > span {
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px #000;
+    background: url("/images/btnBg_mobile_home.png") no-repeat center #a8d778;
+    background-size: 33px 21px;
+    transform: translateY(0px);
+    height: calc(100% - 4px);
+  }
+
+  .searchComponent_home .btn:active > span {
+    height: 100%;
   }
 }

@@ -1,14 +1,25 @@
-import Table, { blockColumns_home, txColumns_home } from "@/components/table";
-import { queryBlockList, queryTxList, queryMaxBlockNumber } from "@/lib/dbApi";
+"use client";
+
+import Table, { blockColumns_home, blockColumns_home_mobile, txColumns_home } from "@/components/table";
+import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
 import Link from "next/link";
 import style from "./index.module.css";
 
-async function TableList() {
-  const blockNumbr = await queryMaxBlockNumber();
-  const blockData = await queryBlockList(blockNumbr, 10);
-  const txData = await queryTxList(blockNumbr);
+function TableList({ blocks, txs }: { blocks: BlockResponseData[]; txs: TxResponseData[] }) {
+  const isMobile = document.body.clientWidth <= 668;
 
-  if (txData.list.length > 10) txData.list.length = 10;
+  if (isMobile) {
+    return (
+      <div className={style.tableList}>
+        <div>
+          <div className={style.title}>
+            <Link href="/blocks">RECENT BLOCK</Link>
+          </div>
+          <Table columns={blockColumns_home_mobile} dataSource={blocks}></Table>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={style.tableList}>
@@ -16,13 +27,13 @@ async function TableList() {
         <div className={style.title}>
           <Link href="/blocks">RECENT BLOCK</Link>
         </div>
-        <Table columns={blockColumns_home} dataSource={blockData.list}></Table>
+        <Table columns={blockColumns_home} dataSource={blocks}></Table>
       </div>
       <div>
         <div className={style.title}>
           <Link href="/blocks">RECENT TRANSACTIONS</Link>
         </div>
-        <Table columns={txColumns_home} dataSource={txData.list}></Table>
+        <Table columns={txColumns_home} dataSource={txs}></Table>
       </div>
     </div>
   );

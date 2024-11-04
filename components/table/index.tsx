@@ -1,12 +1,15 @@
 import type { ReactNode } from "react";
 
 import addressColumns from "./schema/address";
-import blockColumns from "./schema/blocks";
-import blockColumns_home from "./schema/home_block";
-import txColumns_home from "./schema/home_tx";
-import blockDetailColumns from "./schema/blockDetail";
-import txsColumns from "./schema/txs";
 import accountColumns from "./schema/account";
+
+import txsColumns from "./schema/txs";
+import txColumns_home from "./schema/home_tx";
+
+import blockColumns from "./schema/blocks";
+import blockDetailColumns from "./schema/blockDetail";
+import blockColumns_home from "./schema/blocks_home";
+import blockColumns_home_mobile from "./schema/blocks_home_mobile";
 
 import style from "./index.module.css";
 
@@ -18,10 +21,11 @@ export {
   txsColumns,
   blockDetailColumns,
   accountColumns,
+  blockColumns_home_mobile,
 };
 
 export interface Columns<T> {
-  title: string;
+  title: React.ReactNode;
   dataIndex: keyof T;
   render?: (record: T, index: number) => ReactNode;
 }

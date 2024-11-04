@@ -7,8 +7,17 @@ import Kaia from "@/components/homeComponents/Kaia";
 import TableList from "@/components/homeComponents/TableList";
 import GcList from "@/components/homeComponents/GcList";
 
+import { queryGcInfoList, queryBlockList, queryTxList, queryMaxBlockNumber } from "@/lib/dbApi";
+
 import style from "./index.module.css";
-export default function Home() {
+export default async function Home() {
+  const blockNumbr = await queryMaxBlockNumber();
+  const blocks = await queryBlockList(blockNumbr, 10);
+  const txs = await queryTxList(blockNumbr);
+
+  if (txs.list.length > 10) txs.list.length = 10;
+
+  const gcList = await queryGcInfoList();
   return (
     <div className={style.homePage}>
       <div className="flex fl_jb">
@@ -18,18 +27,18 @@ export default function Home() {
           <Place></Place>
         </div>
         <div style={{ paddingLeft: "1%" }}>
-          <div className="flex">
+          {/* <div className="flex">
             <Chart></Chart>
             <div className="flex fl_jb" style={{ flexDirection: "column" }}>
               <BlockHeight></BlockHeight>
               <Network></Network>
             </div>
           </div>
-          <Kaia></Kaia>
+          <Kaia></Kaia> */}
         </div>
       </div>
-      <TableList></TableList>
-      <GcList></GcList>
+      <TableList blocks={blocks.list} txs={txs.list}></TableList>
+      <GcList data={gcList}></GcList>
     </div>
   );
 }

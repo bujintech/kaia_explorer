@@ -1,0 +1,143 @@
+.gcList {
+  margin-top: 90px;
+}
+
+.gcList .pc_item {
+  width: 24%;
+  border-radius: 30px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.gcList .pc_item:nth-child(odd) {
+  background-color: #a8d778;
+}
+
+.gcList .pc_item:nth-child(even) {
+  background-color: #f5e761;
+}
+
+.gcList .pc_info {
+  display: flex;
+  align-items: center;
+}
+.gcList .pc_info > div {
+  font-weight: bolder;
+  font-size: 32px;
+  width: 82%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gcList .pc_info img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.gcList .pc_countMsg {
+  margin: 20px 0;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 0 25px;
+  line-height: 69px;
+  white-space: nowrap;
+}
+.gcList .pc_countMsg > div:nth-child(1) {
+  border-bottom: 1px solid #3d4049;
+}
+.gcList .pc_countMsg > div > span:nth-child(2) {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.gcList .pc_des {
+  font-size: 16px;
+  color: #333;
+}
+
+.gcList .pc_des > div {
+  height: 60px;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+
+  line-height: 20px;
+}
+
+.gcList .more {
+  width: 260px;
+  border-radius: 40px;
+  box-shadow: 0 0 0 2px #000;
+  margin: 50px auto 90px;
+  background-color: #91ac76;
+  cursor: pointer;
+}
+.gcList .more > a {
+  display: block;
+  background-color: #a8d778;
+  border-radius: 40px;
+  box-shadow: 0 0 0 2px #000;
+  transform: translateY(-8px);
+  line-height: 80px;
+  text-align: center;
+  font-size: 32px;
+  color: #3d4049;
+  transition: transform 0.2s;
+  font-weight: 500;
+}
+.gcList .more:active > a {
+  transform: translateY(0px);
+}
+
+.mb_container {
+  overflow: auto;
+}
+.mb_container > div {
+  /* width: 200%; */
+}
+
+.mb_item {
+  margin-left: 10px;
+}
+.mb_item:first-child {
+  margin-left: 0px;
+}
+.mb_item > img {
+  width: 78px;
+  height: 78px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+@media (max-width: 668px) {
+  .gcList {
+    margin-top: 25px;
+  }
+  .gcList .more {
+    width: 162px;
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px #000;
+    margin: 25px auto;
+  }
+  .gcList .more > a {
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px #000;
+    transform: translateY(-5px);
+    line-height: 48px;
+    font-size: 20px;
+  }
+  .gcList .more:active > a {
+    transform: translateY(0px);
+  }
+}

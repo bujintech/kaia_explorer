@@ -132,3 +132,12 @@
     left: -26px;
   }
 }
+
+.mb_th {
+  line-height: 20px;
+  padding: 10px 0;
+}
+.mb_td {
+  padding: 14px 0;
+  line-height: 24px;
+}
