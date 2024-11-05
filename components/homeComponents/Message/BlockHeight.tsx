@@ -1,11 +1,9 @@
 import { formatNumber } from "@/lib/utils";
-import { queryMaxBlockNumber } from "@/lib/dbApi";
+
 import style from "./index.module.css";
 import Link from "next/link";
 
-async function Welcome() {
-  const blockHeight = await queryMaxBlockNumber();
-
+function BlockHeight({ blockHeight }: { blockHeight: number }) {
   return (
     <div className={style.blockHeight}>
       <Link href={`/block/${blockHeight}`}>
@@ -16,4 +14,4 @@ async function Welcome() {
   );
 }
 
-export default Welcome;
+export default BlockHeight;

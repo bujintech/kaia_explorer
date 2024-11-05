@@ -1,0 +1,45 @@
+.homeInfo {
+  flex-direction: column;
+  padding-right: 25px;
+}
+
+.welcome {
+  width: 742px;
+  font-size: 96px;
+  line-height: 116px;
+  font-weight: 400;
+}
+.welcome > img {
+  width: 80px;
+  height: 78px;
+  margin-left: 16px;
+  display: inline-block;
+  transform: translateY(12px);
+}
+
+.place {
+  width: 281px;
+  height: auto;
+  margin: 0 auto;
+}
+
+@media (max-width: 668px) {
+  .homeInfo {
+    padding-right: 0;
+  }
+  .welcome {
+    width: 280px;
+    font-size: 34px;
+    line-height: 42px;
+    font-weight: 400;
+    margin-bottom: 18px;
+  }
+  .welcome > img {
+    width: 31px;
+    height: 30px;
+    transform: translateY(6px);
+  }
+  .place {
+    margin-top: 25px;
+  }
+}

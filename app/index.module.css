@@ -2,8 +2,15 @@
   padding: 40px 40px 0;
 }
 
+.top {
+  display: flex;
+}
+
 @media (max-width: 668px) {
   .homePage {
     padding: 15px 15px 0;
+  }
+  .top {
+    display: block;
   }
 }

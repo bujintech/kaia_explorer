@@ -33,6 +33,7 @@ const columns: Columns<TxResponseData>[] = [
       return (
         <div className={style.mb_td}>
           <div>{render.renderAddress(from)}</div>
+          <div>-</div>
           <div>{render.renderAddress(to)}</div>
         </div>
       );
