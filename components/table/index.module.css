@@ -119,17 +119,12 @@
     padding: 30px;
   }
 
-  .to {
-    position: relative;
-  }
   .to::after {
-    position: absolute;
-    content: "";
     width: 15px;
     height: 100%;
-    background: url("/images/next.png") no-repeat 100%/100%;
-    top: 0;
-    left: -26px;
+    background-size: 14px 10px;
+    top: 0px;
+    left: 0px;
   }
 }
 
