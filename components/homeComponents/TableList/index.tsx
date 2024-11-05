@@ -20,7 +20,7 @@ function TableList({ blocks, txs }: { blocks: BlockResponseData[]; txs: TxRespon
   if (isMobile) {
     return (
       <div className={style.tableList}>
-        <Swiper slidesPerView={1}>
+        <Swiper slidesPerView={1} spaceBetween={10}>
           <SwiperSlide className={style.mb_listItem}>
             <div className={style.title}>
               <Link href="/blocks">RECENT BLOCK</Link>

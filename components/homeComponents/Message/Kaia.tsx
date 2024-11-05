@@ -7,9 +7,7 @@ function Kaia() {
       <div>KLAY</div>
       <div>
         <div className={style.item}>
-          <p>
-            Price<i></i>
-          </p>
+          <p>Price</p>
           <p>$0.125074</p>
         </div>
         <div className={style.item}>
@@ -25,9 +23,7 @@ function Kaia() {
           <p>{formatNumber(5855155094)}</p>
         </div>
         <div className={style.item}>
-          <p>
-            Market Cap<i></i>
-          </p>
+          <p>Market Cap</p>
           <p>${formatNumber(732327000)}</p>
         </div>
       </div>

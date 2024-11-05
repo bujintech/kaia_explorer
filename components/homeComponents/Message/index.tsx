@@ -14,16 +14,16 @@ function Message({ blockHeight }: { blockHeight: number }) {
   if (isMobile) {
     return (
       <div className={style.message}>
-        <Swiper>
+        <Swiper slidesPerView={1} spaceBetween={10}>
           <SwiperSlide>
-            <Chart></Chart>
-          </SwiperSlide>
-          {/* <SwiperSlide>
             <Network></Network>
           </SwiperSlide>
           <SwiperSlide>
             <Kaia></Kaia>
-          </SwiperSlide> */}
+          </SwiperSlide>
+          <SwiperSlide>
+            <Chart></Chart>
+          </SwiperSlide>
         </Swiper>
       </div>
     );
