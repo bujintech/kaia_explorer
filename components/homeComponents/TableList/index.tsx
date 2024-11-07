@@ -1,6 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Table, {
   blockColumns_home,
@@ -15,8 +16,12 @@ import "swiper/swiper-bundle.css";
 import style from "./index.module.css";
 
 function TableList({ blocks, txs }: { blocks: BlockResponseData[]; txs: TxResponseData[] }) {
-  const isMobile = document.body.clientWidth <= 668;
+  const [isMobile, setIsMobile] = useState<boolean | undefined>();
 
+  useEffect(() => {
+    setIsMobile(document.body.clientWidth <= 668);
+  }, []);
+  if (typeof isMobile === "undefined") return null;
   if (isMobile) {
     return (
       <div className={style.tableList}>

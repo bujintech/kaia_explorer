@@ -1,6 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useState } from "react";
 import Chart from "./Chart";
 import BlockHeight from "./BlockHeight";
 import Network from "./Network";
@@ -9,7 +10,12 @@ import style from "./index.module.css";
 import "swiper/swiper-bundle.css";
 
 function Message({ blockHeight }: { blockHeight: number }) {
-  const isMobile = document.body.clientWidth <= 668;
+  const [isMobile, setIsMobile] = useState<boolean | undefined>();
+
+  useEffect(() => {
+    setIsMobile(document.body.clientWidth <= 668);
+  }, []);
+  if (typeof isMobile === "undefined") return null;
 
   if (isMobile) {
     return (

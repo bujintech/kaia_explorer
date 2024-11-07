@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { GcResponseData } from "@/lib/dbApi/type";
 
 import style from "./index.module.css";
+import { useEffect, useState } from "react";
 
 function PCList({ list }: { list: [GcResponseData[], GcResponseData[]] }) {
   return list.map((v, j) => {
@@ -56,7 +57,12 @@ function MobileList({ list }: { list: GcResponseData[] }) {
 }
 
 function GcList({ data }: { data: GcResponseData[] }) {
-  const isMobile = document.body.clientWidth <= 668;
+  const [isMobile, setIsMobile] = useState<boolean | undefined>();
+
+  useEffect(() => {
+    setIsMobile(document.body.clientWidth <= 668);
+  }, []);
+  if (typeof isMobile === "undefined") return null;
 
   return (
     <div className={style.gcList}>
