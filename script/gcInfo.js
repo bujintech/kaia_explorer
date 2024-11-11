@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 
-const { compressJson, batchWrite, putItem } = require("./db");
+const { compressJson, putItem } = require("./db");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
