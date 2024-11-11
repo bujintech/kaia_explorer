@@ -12,15 +12,13 @@ export default async function Layout({
   const methodConfig = await queryMethodConfig();
   const gcConfig = await queryGcConfig();
   return (
-    <>
+    <RenderChilden data={{ methodConfig: methodConfig || {}, gcConfig: gcConfig || {} }}>
       <Nav></Nav>
       <main>
         <Search></Search>
-        <RenderChilden data={{ methodConfig: methodConfig || {}, gcConfig: gcConfig || {} }}>
-          {children}
-        </RenderChilden>
+        {children}
       </main>
       <Footer></Footer>
-    </>
+    </RenderChilden>
   );
 }
