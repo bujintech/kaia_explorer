@@ -21,6 +21,7 @@ function TableList({ blocks, txs }: { blocks: BlockResponseData[]; txs: TxRespon
   useEffect(() => {
     setIsMobile(document.body.clientWidth <= 668);
   }, []);
+
   if (typeof isMobile === "undefined") return null;
   if (isMobile) {
     return (

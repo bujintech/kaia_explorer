@@ -1,5 +1,7 @@
 import { formatHash, hexToDecimal, dayjs } from "@/lib/utils";
 import Link from "next/link";
+import { context } from "@/components/layout/context";
+import { useContext } from "react";
 
 interface Options {
   className?: string;
@@ -52,4 +54,22 @@ export function renderAge(timestamp: string) {
     .replace("an", "1")
     .replace("a", "1")
     .replace(/\s+/g, "");
+}
+
+export function BlockProposer({ miner }: { miner: string }) {
+  const { gcConfig } = useContext(context);
+  return <>{gcConfig?.[miner] || "--"}</>;
+}
+
+export function Method({ input }: { input: string }) {
+  const startKey = input.substring(0, 10);
+  const { methodConfig } = useContext(context);
+
+  const method = methodConfig?.[startKey];
+
+  if (method) {
+    return method.split("(")[0];
+  }
+
+  return startKey;
 }

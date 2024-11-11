@@ -2,6 +2,8 @@ import type { Columns } from "@/components/table";
 import type { BlockResponseData } from "@/lib/dbApi/type";
 import * as render from "./render";
 
+const BlockProposer = render.BlockProposer;
+
 const columns: Columns<BlockResponseData>[] = [
   {
     title: "Block",
@@ -17,7 +19,7 @@ const columns: Columns<BlockResponseData>[] = [
   {
     title: "Block proposer",
     dataIndex: "miner",
-    render: ({ miner }) => render.renderAddress(miner),
+    render: ({ miner }) => <BlockProposer miner={miner}></BlockProposer>,
   },
   { title: "Base Fee", dataIndex: "number" },
   { title: "Rewards(KLAY)", dataIndex: "number" },

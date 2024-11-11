@@ -1,8 +1,6 @@
-import Nav from "@/components/nav";
-import Search from "@/components/search";
-import Footer from "@/components/footer";
-import Script from "next/script";
+import Layout from "@/components/layout";
 import type { Metadata } from "next";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,15 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Script async src="/script/fontSize.js"></Script>
       <body>
-        <Nav></Nav>
-        <main>
-          <Search></Search>
-          {children}
-        </main>
-
-        <Footer></Footer>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );

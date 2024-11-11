@@ -14,6 +14,7 @@ export default async function Home() {
   if (txs.list.length > 10) txs.list.length = 10;
 
   const gcList = await queryGcInfoList();
+
   return (
     <div className={style.homePage}>
       <div className={style.top}>

@@ -93,18 +93,6 @@ export async function queryTransactionsByAddress(address: string): Promise<TxRes
   });
 }
 
-export async function queryGcConfig(): Promise<Record<string, string> | null> {
-  const data = await db.getItem({
-    Key: {
-      PK: "GC_CONFIG",
-      SK: "GC_CONFIG",
-    },
-  });
-
-  if (data?.Item?.RESULT) return decompressJson(data.Item.RESULT);
-  return null;
-}
-
 export async function queryGcInfoByName(gcName: string): Promise<GcResponseData | null> {
   if (!gcName) return null;
 
@@ -157,4 +145,28 @@ export async function queryMaxBlockNumber() {
   });
   if (data?.Item?.RESULT) return Number(data.Item.RESULT);
   return NaN;
+}
+
+export async function queryGcConfig(): Promise<Record<string, string> | null> {
+  const data = await db.getItem({
+    Key: {
+      PK: "GC_CONFIG",
+      SK: "GC_CONFIG",
+    },
+  });
+
+  if (data?.Item?.RESULT) return decompressJson(data.Item.RESULT);
+  return null;
+}
+
+export async function queryMethodConfig(): Promise<Record<string, string> | null> {
+  const data = await db.getItem({
+    Key: {
+      PK: "METHOD_CONFIG",
+      SK: "METHOD_CONFIG",
+    },
+  });
+
+  if (data?.Item?.RESULT) return decompressJson(data.Item.RESULT);
+  return null;
 }
