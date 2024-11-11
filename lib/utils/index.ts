@@ -2,8 +2,8 @@ export * from "./day";
 
 export * from "./fetchProxy";
 
-export function hexToDecimal(value: string = "") {
-  const _val = value.trim();
+export function hexToDecimal(value: string | number = "") {
+  const _val = String(value).trim();
 
   if (_val.startsWith("0x") || _val.startsWith("0X")) {
     return parseInt(_val, 16);

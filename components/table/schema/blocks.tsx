@@ -1,18 +1,18 @@
+import { BlockProposer, Block, Age } from "@/components/map";
+
 import type { Columns } from "@/components/table";
 import type { BlockResponseData } from "@/lib/dbApi/type";
-import * as render from "./render";
-import { BlockProposer } from "@/components/map";
 
 const columns: Columns<BlockResponseData>[] = [
   {
     title: "Block",
     dataIndex: "number",
-    render: ({ number }) => render.renderBlock(number),
+    render: ({ number }) => <Block blockNumber={number}></Block>,
   },
   {
     title: "Time Ago",
     dataIndex: "timestamp",
-    render: ({ timestamp }) => render.renderAge(timestamp),
+    render: ({ timestamp }) => <Age timestamp={timestamp}></Age>,
   },
   { title: "Total TXs", dataIndex: "transactionsTotal" },
   {

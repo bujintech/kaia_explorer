@@ -1,7 +1,7 @@
 import type { Columns } from "@/components/table";
 import type { TxResponseData } from "@/lib/dbApi/type";
-import * as render from "./render";
 import style from "../index.module.css";
+import { Address, Age, Block } from "@/components/map";
 
 const columns: Columns<TxResponseData>[] = [
   {
@@ -15,8 +15,12 @@ const columns: Columns<TxResponseData>[] = [
     render: ({ blockNumber, timestamp }) => {
       return (
         <div className={style.mb_td}>
-          <div>{render.renderBlock(blockNumber)}</div>
-          <div>{render.renderAge(timestamp)}</div>
+          <div>
+            <Block blockNumber={blockNumber}></Block>
+          </div>
+          <div>
+            <Age timestamp={timestamp}></Age>
+          </div>
         </div>
       );
     },
@@ -32,9 +36,13 @@ const columns: Columns<TxResponseData>[] = [
     render: ({ from, to }) => {
       return (
         <div className={style.mb_td}>
-          <div>{render.renderAddress(from)}</div>
+          <div>
+            <Address address={from}></Address>
+          </div>
           <div className={style.to}>{"\u3000"}</div>
-          <div>{render.renderAddress(to)}</div>
+          <div>
+            <Address address={to}></Address>
+          </div>
         </div>
       );
     },

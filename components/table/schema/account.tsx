@@ -1,6 +1,5 @@
+import { Address } from "@/components/map";
 import type { Columns } from "@/components/table";
-
-import Link from "next/link";
 
 interface Account {
   name: string;
@@ -16,9 +15,7 @@ const columns: Columns<Account>[] = [
   {
     title: "Address",
     dataIndex: "address",
-    render: ({ address }) => {
-      return <Link href={`/address/${address}`}>{address}</Link>;
-    },
+    render: ({ address }) => <Address address={address}></Address>,
   },
   {
     title: "Type",

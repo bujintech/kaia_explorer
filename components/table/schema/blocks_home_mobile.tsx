@@ -1,8 +1,7 @@
 import type { Columns } from "@/components/table";
 import type { BlockResponseData } from "@/lib/dbApi/type";
-import * as render from "./render";
 import style from "../index.module.css";
-import { BlockProposer } from "@/components/map";
+import { Age, Block, BlockProposer } from "@/components/map";
 
 const columns: Columns<BlockResponseData>[] = [
   {
@@ -16,8 +15,12 @@ const columns: Columns<BlockResponseData>[] = [
     render: ({ number, timestamp, transactionsTotal }) => {
       return (
         <div className={style.mb_td}>
-          <div>{render.renderBlock(number)}</div>
-          <div>{render.renderAge(timestamp)}</div>
+          <div>
+            <Block blockNumber={number}></Block>
+          </div>
+          <div>
+            <Age timestamp={timestamp}></Age>
+          </div>
           <div>{transactionsTotal}</div>
         </div>
       );
