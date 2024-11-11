@@ -1,0 +1,10 @@
+.copy {
+  cursor: pointer;
+  background: url("/images/copy.png") no-repeat;
+  background-size: 15px 19px;
+  background-position: center;
+  display: inline-block;
+  width: 15px;
+  height: 19px;
+  padding: 10px;
+}

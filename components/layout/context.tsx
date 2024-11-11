@@ -32,7 +32,6 @@ export default function RenderChilden({ children, data }: { children: React.Reac
       }
       document.documentElement.style.fontSize = newSize + "px"; // 设置根字体大小
     }
-
     setRem();
     window.addEventListener("resize", setRem);
 

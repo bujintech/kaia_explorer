@@ -5,6 +5,8 @@ import style from "./index.module.css";
 
 import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
 import { BlockProposer, Age } from "../map";
+import Copy from "../copy";
+import Link from "next/link";
 
 async function BlockDetail({ data }: { data: BlockResponseData }) {
   const blockNumber = hexToDecimal(data.number);
@@ -26,11 +28,14 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         </div>
         <div>
           <span>Hash</span>
-          <span>{data.hash}</span>
+          <span>{data.hash}</span> <Copy text={data.hash}></Copy>
         </div>
         <div>
           <span>Parent Hash</span>
-          <span>{data.parentHash}</span>
+          <Link className="color weight" href={`/block/${blockNumber - 1}`}>
+            {data.parentHash}
+          </Link>
+          <Copy text={data.parentHash}></Copy>
         </div>
 
         <div>
@@ -39,7 +44,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         </div>
         <div>
           <span>Block Proposer</span>
-          <span>
+          <span className="color">
             <BlockProposer miner={data.miner}></BlockProposer>
           </span>
         </div>

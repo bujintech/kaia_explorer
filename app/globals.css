@@ -70,3 +70,11 @@ ul {
 .fl_ae {
   align-items: self-end;
 }
+
+.color {
+  color: #569341 !important;
+}
+
+.weight {
+  font-weight: 500 !important;
+}
