@@ -1,4 +1,5 @@
 import style from "./index.module.css";
+import { Age, Block } from "../map";
 
 import type { TxResponseData } from "@/lib/dbApi/type";
 
@@ -14,7 +15,9 @@ async function TransactionDetail({ data }: { data: TxResponseData }) {
         </div>
         <div>
           <span>Block</span>
-          <span>{data.blockNumber}</span>
+          <span>
+            <Block blockNumber={data.blockNumber}></Block>
+          </span>
         </div>
         <div>
           <span>From-To</span>
@@ -22,7 +25,9 @@ async function TransactionDetail({ data }: { data: TxResponseData }) {
         </div>
         <div>
           <span>Age</span>
-          <span>{data.timestamp}</span>
+          <span>
+            <Age timestamp={data.timestamp}></Age>
+          </span>
         </div>
         <div>
           <span>Amount</span>

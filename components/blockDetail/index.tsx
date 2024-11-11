@@ -4,7 +4,7 @@ import { hexToDecimal } from "@/lib/utils";
 import style from "./index.module.css";
 
 import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
-import { BlockProposer } from "../map";
+import { BlockProposer, Age } from "../map";
 
 async function BlockDetail({ data }: { data: BlockResponseData }) {
   const blockNumber = hexToDecimal(data.number);
@@ -20,7 +20,9 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
       <div className={`${style.detail} ${style.card}`}>
         <div>
           <span>Age</span>
-          <span>{data.timestamp}</span>
+          <span>
+            <Age timestamp={data.timestamp}></Age>
+          </span>
         </div>
         <div>
           <span>Hash</span>
