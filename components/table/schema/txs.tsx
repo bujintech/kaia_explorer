@@ -1,9 +1,8 @@
 import type { Columns } from "@/components/table";
 import type { TxResponseData } from "@/lib/dbApi/type";
 import * as render from "./render";
+import { Method } from "@/components/map";
 import style from "../index.module.css";
-
-const Method = render.Method;
 
 const columns: Columns<TxResponseData>[] = [
   {

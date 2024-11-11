@@ -2,6 +2,7 @@ import type { Columns } from "@/components/table";
 import type { TxResponseData } from "@/lib/dbApi/type";
 import * as render from "./render";
 import style from "../index.module.css";
+import { Method } from "@/components/map";
 
 const columns: Columns<TxResponseData>[] = [
   {
@@ -29,7 +30,7 @@ const columns: Columns<TxResponseData>[] = [
     dataIndex: "to",
     render: ({ to }) => render.renderAddress(to, { className: style.to }),
   },
-  { title: "Method", dataIndex: "blockNumber" },
+  { title: "Method", dataIndex: "input", render: ({ input }) => <Method input={input}></Method> },
   { title: "TX Type", dataIndex: "blockNumber" },
   { title: "Amount(KLAY)", dataIndex: "blockNumber" },
   { title: "TX Fee(KLAY)", dataIndex: "blockNumber" },

@@ -2,6 +2,7 @@ import type { Columns } from "@/components/table";
 import type { BlockResponseData } from "@/lib/dbApi/type";
 import * as render from "./render";
 import style from "../index.module.css";
+import { BlockProposer } from "@/components/map";
 
 const columns: Columns<BlockResponseData>[] = [
   {
@@ -33,7 +34,9 @@ const columns: Columns<BlockResponseData>[] = [
     render: ({ miner, transactionsTotal }) => {
       return (
         <div className={style.mb_td} style={{ textAlign: "right" }}>
-          <div>{render.renderAddress(miner)}</div>
+          <div>
+            <BlockProposer miner={miner}></BlockProposer>
+          </div>
           <div>{transactionsTotal}</div>
         </div>
       );

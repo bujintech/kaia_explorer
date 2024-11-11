@@ -1,8 +1,7 @@
 import type { Columns } from "@/components/table";
 import type { BlockResponseData } from "@/lib/dbApi/type";
 import * as render from "./render";
-
-const BlockProposer = render.BlockProposer;
+import { BlockProposer } from "@/components/map";
 
 const columns: Columns<BlockResponseData>[] = [
   {

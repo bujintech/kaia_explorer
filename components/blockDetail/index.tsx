@@ -4,6 +4,7 @@ import { hexToDecimal } from "@/lib/utils";
 import style from "./index.module.css";
 
 import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
+import { BlockProposer } from "../map";
 
 async function BlockDetail({ data }: { data: BlockResponseData }) {
   const blockNumber = hexToDecimal(data.number);
@@ -36,7 +37,9 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         </div>
         <div>
           <span>Block Proposer</span>
-          <span>{data.miner}</span>
+          <span>
+            <BlockProposer miner={data.miner}></BlockProposer>
+          </span>
         </div>
         <div>
           <span>Gas Limit</span>
