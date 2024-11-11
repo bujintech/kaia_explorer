@@ -16,7 +16,9 @@ export default async function Layout({
       <Nav></Nav>
       <main>
         <Search></Search>
-        <RenderChilden data={{ methodConfig, gcConfig }}>{children}</RenderChilden>
+        <RenderChilden data={{ methodConfig: methodConfig || {}, gcConfig: gcConfig || {} }}>
+          {children}
+        </RenderChilden>
       </main>
       <Footer></Footer>
     </>

@@ -1,7 +1,6 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Table, {
   blockColumns_home,
@@ -14,15 +13,11 @@ import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
 
 import "swiper/swiper-bundle.css";
 import style from "./index.module.css";
+import { useGlobalData } from "@/components/layout/context";
 
 function TableList({ blocks, txs }: { blocks: BlockResponseData[]; txs: TxResponseData[] }) {
-  const [isMobile, setIsMobile] = useState<boolean | undefined>();
+  const { isMobile } = useGlobalData();
 
-  useEffect(() => {
-    setIsMobile(document.body.clientWidth <= 668);
-  }, []);
-
-  if (typeof isMobile === "undefined") return null;
   if (isMobile) {
     return (
       <div className={style.tableList}>

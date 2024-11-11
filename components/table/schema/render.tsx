@@ -1,7 +1,6 @@
 import { formatHash, hexToDecimal, dayjs } from "@/lib/utils";
 import Link from "next/link";
-import { context } from "@/components/layout/context";
-import { useContext } from "react";
+import { useGlobalData } from "@/components/layout/context";
 
 interface Options {
   className?: string;
@@ -57,13 +56,13 @@ export function renderAge(timestamp: string) {
 }
 
 export function BlockProposer({ miner }: { miner: string }) {
-  const { gcConfig } = useContext(context);
+  const { gcConfig } = useGlobalData();
   return <>{gcConfig?.[miner] || "--"}</>;
 }
 
 export function Method({ input }: { input: string }) {
   const startKey = input.substring(0, 10);
-  const { methodConfig } = useContext(context);
+  const { methodConfig } = useGlobalData();
 
   const method = methodConfig?.[startKey];
 
