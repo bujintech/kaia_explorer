@@ -18,54 +18,53 @@
   border-radius: 30px;
 }
 
-.detail div {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+.detail > div {
   font-size: 20px;
   line-height: 56px;
   color: #333;
-  display: flex;
-  align-items: center;
-}
-
-.detail div > span:nth-child(1) {
-  display: block;
-  width: 254px;
-  flex-shrink: 0;
   padding-left: 28px;
-  background: url("/images/blockIcon/age.png") no-repeat;
-  background-size: 18px auto;
-  background-position: 0 center;
+  background: url("/images/blockIcon/age.png") no-repeat 0 50% / 18px auto;
 }
 
-.detail div > span:nth-child(2) {
-  font-weight: 500;
+.detail .copyBtn {
+  margin-left: 10px;
+  padding: 10px 8px;
 }
 
-.detail div:nth-child(2) > span:nth-child(1) {
+.detail > div:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.detail > div > span:nth-child(1) {
+  width: 254px;
+  display: inline-block;
+}
+
+.detail > div:nth-child(2) {
   background-image: url("/images/blockIcon/hash.png");
 }
-.detail div:nth-child(3) > span:nth-child(1) {
+.detail > div:nth-child(3) {
   background-image: url("/images/blockIcon/phash.png");
 }
-.detail div:nth-child(4) > span:nth-child(1) {
+.detail > div:nth-child(4) {
   background-image: url("/images/blockIcon/total.png");
 }
-.detail div:nth-child(5) > span:nth-child(1) {
+.detail > div:nth-child(5) {
   background-image: url("/images/blockIcon/proposer.png");
 }
-.detail div:nth-child(6) > span:nth-child(1) {
+.detail > div:nth-child(6) {
   background-image: url("/images/blockIcon/gaslimit.png");
 }
-.detail div:nth-child(7) > span:nth-child(1) {
+.detail > div:nth-child(7) {
   background-image: url("/images/blockIcon/basefee.png");
 }
-.detail div:nth-child(8) > span:nth-child(1) {
+.detail > div:nth-child(8) {
   background-image: url("/images/blockIcon/burntfee.png");
 }
-.detail div:nth-child(9) > span:nth-child(1) {
+.detail > div:nth-child(9) {
   background-image: url("/images/blockIcon/blockrew.png");
 }
-.detail div:nth-child(10) > span:nth-child(1) {
+.detail > div:nth-child(10) {
   background-image: url("/images/blockIcon/validators.png");
 }
 
@@ -86,22 +85,31 @@
     border-radius: 10px;
   }
 
-  .detail div {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  .detail > div {
     font-size: 16px;
-    line-height: 40px;
+    line-height: 22px;
+    padding: 10px 0 10px 22px;
+    background-size: 15px auto;
+    background-position-y: 13px;
+  }
+
+  .detail .copyBtn {
+    margin-left: 10px;
+    padding: 8px 5px;
   }
 
   .detail div > span:nth-child(1) {
-    width: auto;
-    padding-left: 25px;
-    background-size: 15px auto;
-    margin-right: 4px;
+    width: fit-content;
+    float: left;
+    padding-right: 4px;
   }
+  .detail div > span:nth-child(1)::after {
+    font-size: 16px;
+    content: ":";
+  }
+
   .detail div > span:nth-child(2) {
     word-wrap: break-word;
-    display: inline-block;
-    width: 60%;
     white-space: normal;
   }
 }

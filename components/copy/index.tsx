@@ -2,7 +2,7 @@
 
 import style from "./index.module.css";
 
-export default function Copy({ text }: { text: string }) {
+export default function Copy({ text, className }: { text: string; className?: string }) {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
@@ -11,5 +11,5 @@ export default function Copy({ text }: { text: string }) {
       console.log(err);
     }
   };
-  return <span className={style.copy} onClick={handleCopy}></span>;
+  return <span className={`${style.copy} ${className || ""}`} onClick={handleCopy}></span>;
 }
