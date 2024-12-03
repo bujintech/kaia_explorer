@@ -24,7 +24,7 @@ export default function FromTo({ from, to }: { from: string; to: string }) {
         onClick={() => setVisible(!visible)}
       ></span>
 
-      <div className={style.mobileAddress} style={{ maxHeight: visible ? "1000px" : "0" }}>
+      <div className={style.mobileAddress} style={{ maxHeight: visible ? "600px" : "0" }}>
         <p>
           From:&nbsp;<Address className="color_primary" address={from} noFormat></Address>
           <Copy text={from}></Copy>

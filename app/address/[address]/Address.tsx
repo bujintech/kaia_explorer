@@ -20,7 +20,7 @@ export default function GcAddress({ gcData, address }: { gcData: GcResponseData 
           onClick={() => setVisible(!visible)}
         ></span>
 
-        <div style={{ maxHeight: visible ? "1000px" : "0" }}>
+        <div style={{ maxHeight: visible ? "600px" : "0" }}>
           {gcData.contracts.map((v) => {
             return (
               <p key={v.address}>
