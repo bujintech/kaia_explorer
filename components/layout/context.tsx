@@ -30,7 +30,7 @@ export default function RenderChilden({ children, data }: { children: React.Reac
       if (width <= 668) {
         newSize = (width / 375) * baseSize;
       }
-      document.documentElement.style.fontSize = newSize + "px"; // 设置根字体大小
+      document.documentElement.style.fontSize = newSize + "px";
     }
     setRem();
     window.addEventListener("resize", setRem);
