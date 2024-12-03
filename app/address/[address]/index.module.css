@@ -27,53 +27,41 @@
   border-radius: 30px;
 }
 
-.detail div {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+.detail > div {
+  word-wrap: break-word;
   font-size: 20px;
   line-height: 56px;
   color: #333;
-  display: flex;
-  align-items: flex-start;
-}
-
-.detail div > span:nth-child(1) {
-  display: block;
-  width: 254px;
-  flex-shrink: 0;
   padding-left: 28px;
-  background: url("/images/addressIcon/label.png") no-repeat;
-  background-size: 18px auto;
-  background-position: 0 center;
+  background: url("/images/addressIcon/label.png") no-repeat 0 50% / 18px auto;
 }
 
-.detail div > span:nth-child(2) {
-  font-weight: 500;
+.detail > div:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.gcAddress span {
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 56px;
-}
-.gcAddress span:nth-child(1) {
+.detail > div > span:nth-child(1) {
   display: inline-block;
-  width: 100px;
-  color: #666;
-  text-transform: capitalize;
+  width: 254px;
 }
 
-.detail div:nth-child(2) > span:nth-child(1) {
+.detail .gcAddress {
+  background-position-y: 16px;
+  display: flex;
+}
+
+.detail > div:nth-child(2) {
   background-image: url("/images/addressIcon/address.png");
 }
 
-.detail div:nth-child(3) > span:nth-child(1) {
+.detail > div:nth-child(3) {
   background-image: url("/images/addressIcon/balance.png");
 }
 
-.detail div:nth-child(4) > span:nth-child(1) {
+.detail > div:nth-child(4) {
   background-image: url("/images/addressIcon/key.png");
 }
-.detail div:nth-child(5) > span:nth-child(1) {
+.detail > div:nth-child(5) {
   background-image: url("/images/addressIcon/total.png");
 }
 
@@ -105,27 +93,49 @@
     border-radius: 10px;
   }
 
-  .detail div {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  .detail > div {
     font-size: 16px;
-    line-height: 40px;
-  }
-
-  .detail div > span:nth-child(1) {
-    width: auto;
-    padding-left: 25px;
+    line-height: 22px;
+    padding: 10px 0 10px 22px;
     background-size: 15px auto;
-    margin-right: 4px;
-  }
-  .detail div > span:nth-child(2) {
-    word-wrap: break-word;
-    display: inline-block;
-    width: 60%;
-    white-space: normal;
+    background-position-y: 14px;
   }
 
-  .gcAddress span {
+  .detail .gcAddress {
+    background-position-y: 12px;
+    display: block;
   }
-  .gcAddress span:nth-child(1) {
+  .detail .gcAddress > span:nth-child(1) {
+    float: none;
+  }
+  .detail .gcAddress_icon {
+    display: inline-block;
+    transition: all 0.3s;
+    float: right;
+    width: 16px;
+    height: 12px;
+    margin-top: 2px;
+    background: url("/images/select_icon.png") no-repeat center / 100%;
+  }
+  .detail .gcAddress div {
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .detail .gcAddress p {
+    padding: 4px 0;
+  }
+  .detail .gcAddress p:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .detail > div > span:nth-child(1) {
+    width: fit-content;
+    float: left;
+    padding-right: 4px;
+  }
+  .detail > div > span:nth-child(1)::after {
+    font-size: 16px;
+    content: ":";
   }
 }

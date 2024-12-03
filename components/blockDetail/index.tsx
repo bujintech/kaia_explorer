@@ -30,7 +30,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
           <span>Hash</span>
           <span>
             {data.hash}
-            <Copy className={style.copyBtn} text={data.hash}></Copy>
+            <Copy text={data.hash}></Copy>
           </span>
         </div>
         <div>
@@ -39,7 +39,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
             <Link className="color_primary weight_5" href={`/block/${blockNumber - 1}`}>
               {data.parentHash}
             </Link>
-            <Copy className={style.copyBtn} text={data.parentHash}></Copy>
+            <Copy text={data.parentHash}></Copy>
           </span>
         </div>
 

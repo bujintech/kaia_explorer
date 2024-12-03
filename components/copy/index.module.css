@@ -1,4 +1,13 @@
 .copy {
   cursor: pointer;
-  background: url("/images/copy.png") no-repeat center / 100% auto;
+  background: url("/images/copy.png") no-repeat center / contain;
+  margin-left: 10px;
+  padding: 10px 8px;
+}
+
+@media (max-width: 668px) {
+  .copy {
+    margin-left: 10px;
+    padding: 8px 5px;
+  }
 }

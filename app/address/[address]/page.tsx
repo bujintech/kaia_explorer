@@ -1,6 +1,7 @@
 import type { GcResponseData, TxResponseData } from "@/lib/dbApi/type";
 import Table, { addressColumns } from "@/components/table";
 import { queryGcConfig, queryTransactionsByAddress, queryGcInfoByName } from "@/lib/dbApi";
+import GcAddress from "./Address";
 import style from "./index.module.css";
 
 async function Address({ params: { address } }: { params: { address: string } }) {
@@ -17,15 +18,6 @@ async function Address({ params: { address } }: { params: { address: string } })
 
   return (
     <div className={style.addressPage}>
-      {/* {gcName && gcData ? (
-        <div className={style.gcTitle}>
-          
-          <div>{gcData.name}</div>
-        </div>
-      ) : (
-        <div className={style.title}>Address</div>
-      )} */}
-
       {gcName && gcData ? (
         <div className={style.gcTitle}>
           <img src={gcData.thumbnail}></img>
@@ -40,23 +32,9 @@ async function Address({ params: { address } }: { params: { address: string } })
           <span>Label</span>
           <span>{gcData?.name}</span>
         </div>
-        <div>
-          <span>Address</span>
-          {gcName && gcData ? (
-            <span className={style.gcAddress}>
-              {gcData.contracts.map((v) => {
-                return (
-                  <p key={v.address}>
-                    <span>{v.type.toLocaleLowerCase()}:</span>
-                    <span>{v.address}</span>
-                  </p>
-                );
-              })}
-            </span>
-          ) : (
-            <span>{address}</span>
-          )}
-        </div>
+
+        <GcAddress gcData={gcData} address={address}></GcAddress>
+
         <div>
           <span>Balance</span>
           <span>111</span>

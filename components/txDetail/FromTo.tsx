@@ -12,10 +12,10 @@ export default function FromTo({ from, to }: { from: string; to: string }) {
       <span>From-To</span>
       <span className={style.pcAddress}>
         <Address className="color_primary" address={from} noFormat></Address>
-        <Copy className={style.copyBtn} text={from}></Copy>
+        <Copy text={from}></Copy>
         <i></i>
         <Address className="color_primary" address={to} noFormat></Address>
-        <Copy className={style.copyBtn} text={to}></Copy>
+        <Copy text={to}></Copy>
       </span>
 
       <span
@@ -24,14 +24,14 @@ export default function FromTo({ from, to }: { from: string; to: string }) {
         onClick={() => setVisible(!visible)}
       ></span>
 
-      <div className={style.mobileAddress} style={{ height: visible ? "88px" : "0" }}>
+      <div className={style.mobileAddress} style={{ maxHeight: visible ? "1000px" : "0" }}>
         <p>
           From:&nbsp;<Address className="color_primary" address={from} noFormat></Address>
-          <Copy className={style.copyBtn} text={from}></Copy>
+          <Copy text={from}></Copy>
         </p>
         <p>
           To:&nbsp;<Address className="color_primary" address={to} noFormat></Address>
-          <Copy className={style.copyBtn} text={to}></Copy>
+          <Copy text={to}></Copy>
         </p>
       </div>
     </div>

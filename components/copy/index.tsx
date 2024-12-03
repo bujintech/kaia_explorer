@@ -6,7 +6,7 @@ export default function Copy({ text, className }: { text: string; className?: st
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
-      console.log("复");
+      console.log("success");
     } catch (err) {
       console.log(err);
     }

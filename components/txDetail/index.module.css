@@ -24,11 +24,6 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.detail .copyBtn {
-  margin-left: 10px;
-  padding: 10px 8px;
-}
-
 .detail > div > span:nth-child(1) {
   display: inline-block;
   width: 254px;
@@ -81,11 +76,6 @@
     background-position-y: 14px;
   }
 
-  .detail .copyBtn {
-    margin-left: 10px;
-    padding: 8px 5px;
-  }
-
   .detail div > span:nth-child(1) {
     width: fit-content;
     float: left;
@@ -112,6 +102,7 @@
   .detail .mobileAddress_icon {
     display: inline-block;
     transition: all 0.3s;
+    margin-top: 2px;
     float: right;
     width: 16px;
     height: 12px;
