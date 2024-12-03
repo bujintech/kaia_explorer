@@ -36,7 +36,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         <div>
           <span>Parent Hash</span>
           <span>
-            <Link className="color weight" href={`/block/${blockNumber - 1}`}>
+            <Link className="color_primary weight_5" href={`/block/${blockNumber - 1}`}>
               {data.parentHash}
             </Link>
             <Copy className={style.copyBtn} text={data.parentHash}></Copy>
@@ -49,7 +49,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         </div>
         <div>
           <span>Block Proposer</span>
-          <span className="color">
+          <span className="color_primary">
             <BlockProposer miner={data.miner}></BlockProposer>
           </span>
         </div>

@@ -62,11 +62,10 @@ export function formatNumber(num: string | number) {
   return decimalPart ? `${integerPart}.${decimalPart}` : integerPart;
 }
 
-export function formatHash(hash: string = "") {
+export function formatHash(hash: string = "", flag?: boolean) {
+  if (flag) return hash;
   if (hash.length <= 10) {
     return hash;
   }
-  const start = hash.substring(0, 6);
-  const end = hash.substring(hash.length - 4);
-  return `${start}...${end}`;
+  return `${hash.substring(0, 6)}...${hash.substring(hash.length - 4)}`;
 }

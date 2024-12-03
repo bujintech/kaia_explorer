@@ -71,10 +71,22 @@ ul {
   align-items: self-end;
 }
 
-.color {
+.color_primary {
   color: #569341 !important;
 }
 
-.weight {
+.weight_5 {
   font-weight: 500 !important;
+}
+.weight_6 {
+  font-weight: 600 !important;
+}
+.weight_7 {
+  font-weight: 700 !important;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
 }

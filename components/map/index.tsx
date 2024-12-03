@@ -21,17 +21,19 @@ export function Address({
   address,
   className,
   stay,
+  noFormat,
 }: {
   address: string;
   className?: string;
   stay?: boolean;
+  noFormat?: boolean;
 }) {
   if (stay) {
-    return formatHash(address);
+    return formatHash(address, noFormat);
   }
   return (
-    <Link className={className || ""} href={`/hash/${address}`}>
-      {formatHash(address)}
+    <Link className={className || ""} href={`/address/${address}`}>
+      {formatHash(address, noFormat)}
     </Link>
   );
 }

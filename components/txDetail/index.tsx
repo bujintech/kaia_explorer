@@ -1,9 +1,11 @@
 import style from "./index.module.css";
 import { Age, Block } from "../map";
+import FromTo from "./FromTo";
+import Copy from "../copy";
 
 import type { TxResponseData } from "@/lib/dbApi/type";
 
-async function TransactionDetail({ data }: { data: TxResponseData }) {
+function TransactionDetail({ data }: { data: TxResponseData }) {
   return (
     <>
       <div className={style.title}>TRANSACTIONS</div>
@@ -11,18 +13,18 @@ async function TransactionDetail({ data }: { data: TxResponseData }) {
       <div className={`${style.detail} ${style.card}`}>
         <div>
           <span>TXN Hash</span>
-          <span>{data.hash}</span>
+          <span>
+            {data.hash}
+            <Copy className={style.copyBtn} text={data.hash}></Copy>
+          </span>
         </div>
         <div>
           <span>Block</span>
           <span>
-            <Block blockNumber={data.blockNumber}></Block>
+            <Block className="color_primary weight" blockNumber={data.blockNumber}></Block>
           </span>
         </div>
-        <div>
-          <span>From-To</span>
-          <span>{data.from}</span>
-        </div>
+        <FromTo from={data.from} to={data.to}></FromTo>
         <div>
           <span>Age</span>
           <span>

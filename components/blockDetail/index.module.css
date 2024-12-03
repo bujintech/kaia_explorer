@@ -19,6 +19,7 @@
 }
 
 .detail > div {
+  word-wrap: break-word;
   font-size: 20px;
   line-height: 56px;
   color: #333;
@@ -90,7 +91,7 @@
     line-height: 22px;
     padding: 10px 0 10px 22px;
     background-size: 15px auto;
-    background-position-y: 13px;
+    background-position-y: 14px;
   }
 
   .detail .copyBtn {
@@ -106,10 +107,5 @@
   .detail div > span:nth-child(1)::after {
     font-size: 16px;
     content: ":";
-  }
-
-  .detail div > span:nth-child(2) {
-    word-wrap: break-word;
-    white-space: normal;
   }
 }
