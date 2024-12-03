@@ -3,6 +3,8 @@
   padding-top: 180px;
 }
 .emptyComponent > img {
+  width: 280px;
+  height: auto;
   margin: 0 auto;
 }
 .emptyComponent > div {
@@ -18,4 +20,25 @@
 }
 .emptyComponent > p:last-child {
   margin-top: 20px;
+}
+
+@media (max-width: 668px) {
+  .emptyComponent {
+    padding-top: 80px;
+  }
+  .emptyComponent > img {
+    width: 146px;
+  }
+
+  .emptyComponent > div {
+    font-size: 14px;
+    margin: 10px 0 4px;
+  }
+
+  .emptyComponent > p {
+    font-size: 10px;
+  }
+  .emptyComponent > p:last-child {
+    margin-top: 10px;
+  }
 }
