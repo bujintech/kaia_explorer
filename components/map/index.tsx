@@ -106,3 +106,11 @@ export function Method({ input, noFormat }: { input: string; noFormat?: boolean 
 
   return startKey;
 }
+
+export function TxType({ type }: { type: string }) {
+  // return type;
+  return type
+    .replace("TxType", "")
+    .replace(/([A-Z])/g, " $1")
+    .trim();
+}

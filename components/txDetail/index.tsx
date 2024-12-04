@@ -1,5 +1,5 @@
 import style from "./index.module.css";
-import { Age, Block, Method } from "../map";
+import { Age, Block, Method, TxType } from "../map";
 import { hexToDecimal } from "@/lib/utils";
 import FromTo from "./FromTo";
 import Copy from "../copy";
@@ -40,8 +40,10 @@ function TransactionDetail({ data }: { data: TxResponseData }) {
           </span>
         </div>
         <div>
-          <span>Type</span>
-          <span>{hexToDecimal(data.type)}</span>
+          <span>TX Type</span>
+          <span>
+            <TxType type={data.type}></TxType>
+          </span>
         </div>
         <div>
           <span>Nonce</span>
