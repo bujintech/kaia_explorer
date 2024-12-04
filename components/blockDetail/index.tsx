@@ -23,7 +23,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         <div>
           <span>Age</span>
           <span>
-            <Age timestamp={data.timestamp}></Age>
+            <Age timestamp={data.timestamp}></Age> ago
           </span>
         </div>
         <div>
@@ -56,7 +56,7 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
 
         <div>
           <span>Base Fee</span>
-          <span>{hexToDecimal(data.baseFeePerGas) / 1000000000} GWEI</span>
+          <span>{hexToDecimal(data.baseFeePerGas) / 1000000000} GWei</span>
         </div>
         <div>
           <span>Gas Used</span>

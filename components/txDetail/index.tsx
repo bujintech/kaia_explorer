@@ -1,5 +1,6 @@
 import style from "./index.module.css";
-import { Age, Block } from "../map";
+import { Age, Block, Method } from "../map";
+import { hexToDecimal } from "@/lib/utils";
 import FromTo from "./FromTo";
 import Copy from "../copy";
 
@@ -8,7 +9,7 @@ import type { TxResponseData } from "@/lib/dbApi/type";
 function TransactionDetail({ data }: { data: TxResponseData }) {
   return (
     <>
-      <div className={style.title}>TRANSACTIONS</div>
+      <div className={style.title}>TRANSACTION DETAILS</div>
 
       <div className={`${style.detail} ${style.card}`}>
         <div>
@@ -24,20 +25,55 @@ function TransactionDetail({ data }: { data: TxResponseData }) {
             <Block className="color_primary weight" blockNumber={data.blockNumber}></Block>
           </span>
         </div>
+        <div>
+          <span>Block Hash</span>
+          <span>
+            {data.blockHash}
+            <Copy className={style.copyBtn} text={data.hash}></Copy>
+          </span>
+        </div>
         <FromTo from={data.from} to={data.to}></FromTo>
         <div>
-          <span>Age</span>
+          <span>Time</span>
           <span>
-            <Age timestamp={data.timestamp}></Age>
+            <Age timestamp={data.timestamp}></Age> ago
           </span>
         </div>
         <div>
+          <span>Type</span>
+          <span>{hexToDecimal(data.type)}</span>
+        </div>
+        <div>
+          <span>Nonce</span>
+          <span>{hexToDecimal(data.nonce)}</span>
+        </div>
+        <div>
           <span>Amount</span>
-          <span>{data.gas}</span>
+          <span>{hexToDecimal(data.value) / 1000000000000000000} KAIA</span>
+        </div>
+        <div>
+          <span>Gas Limit</span>
+          <span>{hexToDecimal(data.gas)}</span>
+        </div>
+        <div>
+          <span>Gas Price</span>
+          <span>{hexToDecimal(data.gasPrice) / 1000000000} GWei</span>
         </div>
         <div>
           <span>TXN Fee</span>
           <span>{data.gasPrice}</span>
+        </div>
+        <div>
+          <span>Method ID</span>
+          <span>
+            <Method input={data.input}></Method>
+          </span>
+        </div>
+        <div>
+          <span>Method Sig</span>
+          <span>
+            <Method input={data.input} noFormat></Method>
+          </span>
         </div>
       </div>
     </>

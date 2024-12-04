@@ -5,7 +5,6 @@ import style from "./index.module.css";
 
 async function TxDetailPage({ params: { hash } }: { params: { hash: string } }) {
   const data = await queryTransactionByHash(hash);
-
   return (
     <div className={style.txDetailPage}>{data ? <TxDetail data={data}></TxDetail> : <Empty></Empty>}</div>
   );

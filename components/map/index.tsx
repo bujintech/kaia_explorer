@@ -94,14 +94,14 @@ export function BlockProposer({ miner }: { miner: string }) {
   return gcConfig?.[miner] || "--";
 }
 
-export function Method({ input }: { input: string }) {
+export function Method({ input, noFormat }: { input: string; noFormat?: boolean }) {
   const startKey = input.substring(0, 10);
   const { methodConfig } = useGlobalData();
 
   const method = methodConfig?.[startKey];
 
   if (method) {
-    return method.split("(")[0];
+    return noFormat ? method : method.split("(")[0];
   }
 
   return startKey;

@@ -21,7 +21,7 @@ const columns: Columns<BlockResponseData>[] = [
     render: ({ miner }) => <BlockProposer miner={miner}></BlockProposer>,
   },
   {
-    title: "Base Fee(GWEI)",
+    title: "Base Fee(GWei)",
     dataIndex: "baseFeePerGas",
     render: ({ baseFeePerGas }) => hexToDecimal(baseFeePerGas) / 1000000000,
   },
