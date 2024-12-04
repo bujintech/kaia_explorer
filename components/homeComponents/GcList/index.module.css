@@ -102,9 +102,11 @@
 
 .mb_container {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
-.mb_container > div {
-  /* width: 200%; */
+
+.mb_container::-webkit-scrollbar {
+  background: transparent;
 }
 
 .mb_item {

@@ -14,7 +14,8 @@
   height: 78px;
   margin-left: 16px;
   display: inline-block;
-  transform: translateY(12px);
+  margin-bottom: -12px;
+  animation: wave 1.5s ease-in-out infinite;
 }
 
 .place {
@@ -37,11 +38,31 @@
   .welcome > img {
     width: 31px;
     height: 30px;
-    transform: translateY(6px);
+    margin-bottom: -6px;
   }
   .place {
     display: none;
     width: 281px;
     margin-top: 25px;
+  }
+}
+
+@keyframes wave {
+  10%,
+  30% {
+    transform: rotate(20deg);
+  }
+  20%,
+  40% {
+    transform: rotate(-20deg);
+  }
+  0%,
+  50%,
+  60%,
+  70%,
+  80%,
+  90%,
+  100% {
+    transform: rotate(0deg);
   }
 }
