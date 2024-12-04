@@ -34,13 +34,13 @@ const columns: Columns<BlockResponseData>[] = [
       </div>
     ),
     dataIndex: "number",
-    render: ({ miner, transactionsTotal }) => {
+    render: ({ miner }) => {
       return (
         <div className={style.mb_td} style={{ textAlign: "right" }}>
           <div>
             <BlockProposer miner={miner}></BlockProposer>
           </div>
-          <div>{transactionsTotal}</div>
+          <div>{9.6}</div>
         </div>
       );
     },

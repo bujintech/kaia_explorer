@@ -1,6 +1,7 @@
 import type { Columns } from "@/components/table";
 import type { BlockResponseData } from "@/lib/dbApi/type";
 import { Age, Block } from "@/components/map";
+
 import { BlockProposer } from "@/components/map";
 
 const columns: Columns<BlockResponseData>[] = [
@@ -20,7 +21,7 @@ const columns: Columns<BlockResponseData>[] = [
     dataIndex: "miner",
     render: ({ miner }) => <BlockProposer miner={miner}></BlockProposer>,
   },
-  { title: "Reward", dataIndex: "transactionsTotal" },
+  { title: "Reward", dataIndex: "transactionsTotal", render: () => 9.6 },
 ];
 
 export default columns;

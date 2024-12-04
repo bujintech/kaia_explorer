@@ -39,7 +39,7 @@ const columns: Columns<TxResponseData>[] = [
           <div>
             <Address address={from}></Address>
           </div>
-          <div className={style.to}>{"\u3000"}</div>
+          <div className={style.to}>&nbsp;&nbsp;</div>
           <div>
             <Address address={to}></Address>
           </div>

@@ -1,5 +1,5 @@
 import { BlockProposer, Block, Age } from "@/components/map";
-
+import { hexToDecimal } from "@/lib/utils";
 import type { Columns } from "@/components/table";
 import type { BlockResponseData } from "@/lib/dbApi/type";
 
@@ -20,9 +20,12 @@ const columns: Columns<BlockResponseData>[] = [
     dataIndex: "miner",
     render: ({ miner }) => <BlockProposer miner={miner}></BlockProposer>,
   },
-  { title: "Base Fee", dataIndex: "number" },
-  { title: "Rewards(KLAY)", dataIndex: "number" },
-  { title: "Burnt Fee", dataIndex: "number" },
+  {
+    title: "Base Fee(GWEI)",
+    dataIndex: "baseFeePerGas",
+    render: ({ baseFeePerGas }) => hexToDecimal(baseFeePerGas) / 1000000000,
+  },
+  { title: "Rewards(KLAY)", dataIndex: "number", render: () => 9.6 },
 ];
 
 export default columns;
