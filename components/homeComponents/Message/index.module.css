@@ -25,7 +25,7 @@
   padding: 30px;
   border-radius: 30px;
   box-shadow: 0 0 0 2px #000;
-  background-color: #f5e761;
+  background: url("/images/block_h.png") no-repeat 270px 40px / 64px 97px #f5e761;
   transform: translateY(-10px);
   transition: transform 0.2s;
 }
@@ -154,8 +154,9 @@
   }
 
   .blockHeight > a {
-    padding: 18px;
+    padding: 20px;
     border-radius: 10px;
+    background: url("/images/block_h.png") no-repeat 224px center / 32px 50px #f5e761;
     transform: translateY(-5px);
   }
 
