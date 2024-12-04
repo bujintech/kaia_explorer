@@ -131,7 +131,6 @@
 
 .kaia .item > p:last-child {
   border-top: 1px solid rgba(255, 255, 255, 0.7);
-  font-weight: bold;
 }
 
 @media (max-width: 668px) {
@@ -149,39 +148,26 @@
   }
 
   .blockHeight {
-    width: 367px;
-    box-sizing: border-box;
-    border-radius: 30px;
-    box-shadow: 0 0 0 2px #000;
-    background-color: #aca776;
-    margin-top: 10px;
+    width: 281px;
+    margin: 25px auto 0;
+    border-radius: 10px;
   }
 
   .blockHeight > a {
-    display: block;
-    padding: 30px;
-    border-radius: 30px;
-    box-shadow: 0 0 0 2px #000;
-    background-color: #f5e761;
-    transform: translateY(-10px);
-    transition: transform 0.2s;
+    padding: 18px;
+    border-radius: 10px;
+    transform: translateY(-5px);
   }
-  .blockHeight > a:active {
-    transform: translateY(0px);
-  }
+
   .blockHeight > a > div:nth-child(1) {
-    font-size: 32px;
-    line-height: 39px;
-    color: #3d4049;
-    font-weight: bolder;
+    font-size: 18px;
+    line-height: 22px;
   }
 
   .blockHeight > a > div:nth-child(2) {
-    font-size: 36px;
-    line-height: 44px;
-    color: #569341;
-    font-weight: 500;
-    margin-top: 20px;
+    font-size: 26px;
+    line-height: 32px;
+    margin-top: 6px;
   }
 
   .network {
@@ -222,7 +208,6 @@
     line-height: 26px;
     padding-left: 38px;
 
-    background: url("/images/kaia.png") no-repeat;
     background-size: 26px 26px;
   }
 

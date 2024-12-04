@@ -40,6 +40,7 @@
     transform: translateY(6px);
   }
   .place {
+    display: none;
     width: 281px;
     margin-top: 25px;
   }

@@ -14,19 +14,22 @@ function Message({ blockHeight }: { blockHeight: number }) {
 
   if (isMobile) {
     return (
-      <div className={style.message}>
-        <Swiper slidesPerView={1} spaceBetween={10}>
-          <SwiperSlide>
-            <Network></Network>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Kaia></Kaia>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Chart></Chart>
-          </SwiperSlide>
-        </Swiper>
-      </div>
+      <>
+        <BlockHeight blockHeight={blockHeight}></BlockHeight>
+        <div className={style.message}>
+          <Swiper slidesPerView={1} spaceBetween={10}>
+            <SwiperSlide>
+              <Kaia></Kaia>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Network></Network>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Chart></Chart>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </>
     );
   }
 
