@@ -53,26 +53,31 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
             <BlockProposer miner={data.miner}></BlockProposer>
           </span>
         </div>
+
         <div>
-          <span>Gas Limit</span>
-          <span>{data.gasLimit}</span>
+          <span>Base Fee</span>
+          <span>{hexToDecimal(data.baseFeePerGas) / 1000000000} GWEI</span>
         </div>
         <div>
-          <span>Gas Fee</span>
-          <span>{data.gasUsed}</span>
+          <span>Gas Used</span>
+          <span>{hexToDecimal(data.gasUsed) / 1000000000} Billion Gas</span>
         </div>
         <div>
-          <span>Burnt Fee</span>
-          <span>{data.gasUsed}</span>
+          <span>GAS Limit</span>
+          <span>{hexToDecimal(data.gasLimit) / 1000000000} Billion Gas</span>
+        </div>
+        <div>
+          <span>Block Size</span>
+          <span>{hexToDecimal(data.size)} Bytes</span>
         </div>
         <div>
           <span>Block Rewards</span>
-          <span>{data.gasUsed}</span>
+          <span>9.6 KAIA</span>
         </div>
-        <div>
+        {/* <div>
           <span>Validators</span>
           <span>{data.gasUsed}</span>
-        </div>
+        </div> */}
       </div>
 
       <div className={`${style.card}`}>
