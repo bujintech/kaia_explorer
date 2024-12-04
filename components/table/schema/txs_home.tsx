@@ -10,7 +10,7 @@ const columns: Columns<TxResponseData>[] = [
     render: ({ hash }) => <Hash hash={hash}></Hash>,
   },
   {
-    title: "Age",
+    title: "Age (ago)",
     dataIndex: "timestamp",
     render: ({ timestamp }) => <Age timestamp={timestamp}></Age>,
   },

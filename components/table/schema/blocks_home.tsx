@@ -11,7 +11,7 @@ const columns: Columns<BlockResponseData>[] = [
     render: ({ number }) => <Block blockNumber={number}></Block>,
   },
   {
-    title: "Age",
+    title: "Age (ago)",
     dataIndex: "timestamp",
     render: ({ timestamp }) => <Age timestamp={timestamp}></Age>,
   },

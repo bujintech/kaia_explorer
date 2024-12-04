@@ -1,5 +1,6 @@
 import type { Columns } from "@/components/table";
 import type { TxResponseData } from "@/lib/dbApi/type";
+import { hexToDecimal } from "@/lib/utils";
 
 import { Address, Age, Block, Hash, Method } from "@/components/map";
 import style from "../index.module.css";
@@ -16,7 +17,7 @@ const columns: Columns<TxResponseData>[] = [
     render: ({ blockNumber }) => <Block blockNumber={blockNumber}></Block>,
   },
   {
-    title: "Age",
+    title: "Age (ago)",
     dataIndex: "timestamp",
     render: ({ timestamp }) => <Age timestamp={timestamp}></Age>,
   },
@@ -32,8 +33,8 @@ const columns: Columns<TxResponseData>[] = [
   },
   { title: "Method", dataIndex: "input", render: ({ input }) => <Method input={input}></Method> },
 
-  { title: "Tx Type", dataIndex: "blockNumber" },
-  { title: "Amount(KLAY)", dataIndex: "blockNumber" },
+  { title: "Tx Type", dataIndex: "type", render: ({ type }) => hexToDecimal(type) },
+  { title: "Amount(KLAY)", dataIndex: "value", render: ({ value }) => hexToDecimal(value) },
   { title: "TX Fee(KLAY)", dataIndex: "blockNumber" },
 ];
 
