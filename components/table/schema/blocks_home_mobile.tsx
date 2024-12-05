@@ -12,7 +12,7 @@ const columns: Columns<BlockResponseData>[] = [
       </div>
     ),
     dataIndex: "number",
-    render: ({ number, timestamp, transactionsTotal }) => {
+    render: ({ number, timestamp }) => {
       return (
         <div className={style.mb_td}>
           <div>
