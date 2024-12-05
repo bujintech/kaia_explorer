@@ -15,3 +15,20 @@
   margin-bottom: 20px;
   font-weight: bold;
 }
+
+@media (max-width: 668px) {
+  .searchPage {
+    margin: 30px 0;
+  }
+
+  .card {
+    margin: 0 15px 10px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
