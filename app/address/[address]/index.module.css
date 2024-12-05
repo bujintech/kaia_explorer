@@ -66,9 +66,6 @@
 }
 
 @media (max-width: 668px) {
-  .addressPage table {
-    width: 1500px !important;
-  }
   .title {
     height: 54px;
     line-height: 54px;

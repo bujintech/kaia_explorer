@@ -3,9 +3,13 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+.table::-webkit-scrollbar {
+  background: transparent;
+}
+
 .table table {
-  width: 100%;
-  table-layout: fixed;
+  min-width: 100%;
+  /* table-layout: fixed; */
   border-collapse: collapse;
   text-align: left;
   white-space: nowrap;
@@ -101,7 +105,7 @@
   }
 
   .table tbody > tr {
-    font-size: 20px;
+    font-size: 18px;
     height: 44px;
     line-height: 44px;
   }
