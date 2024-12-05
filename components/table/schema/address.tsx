@@ -8,7 +8,11 @@ const columns: Columns<TxResponseData>[] = [
   {
     title: "TX Hash",
     dataIndex: "hash",
-    render: ({ hash }) => <Hash hash={hash}></Hash>,
+    render: ({ hash }) => (
+      <div className="ellipsis">
+        <Hash hash={hash} noFormat></Hash>
+      </div>
+    ),
   },
   {
     title: "Block",
