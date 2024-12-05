@@ -47,3 +47,5 @@ async function GCInfo() {
 }
 
 export default GCInfo;
+
+export const revalidate = 100;

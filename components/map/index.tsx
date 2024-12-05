@@ -105,7 +105,7 @@ export function BlockProposer({ miner }: { miner: string }) {
 }
 
 export function Method({ input, noFormat }: { input: string; noFormat?: boolean }) {
-  const startKey = input.substring(0, 10);
+  const startKey = input?.substring(0, 10);
   const { methodConfig } = useGlobalData();
 
   const method = methodConfig?.[startKey];

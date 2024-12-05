@@ -69,7 +69,10 @@ export async function queryTransactionsByBlockNumber(blockNumber: number): Promi
 
   list.map((v) => {
     if (v.GS1SK === "TX") {
-      txsList.push(decompressJson(v.RESULT));
+      txsList.push({
+        ...decompressJson(v.RESULT),
+        timestamp: v.TIMESTAMP,
+      });
     }
     if (v.GS1SK === "BLOCK") {
       blockData = decompressJson(v.RESULT);
@@ -89,7 +92,10 @@ export async function queryTransactionsByAddress(address: string): Promise<TxRes
     IndexName: "GS2",
   });
   return (Array.isArray(data.Items) ? data.Items : []).map((v) => {
-    return decompressJson<TxResponseData>(v.RESULT);
+    return {
+      ...decompressJson<TxResponseData>(v.RESULT),
+      timestamp: v.TIMESTAMP,
+    };
   });
 }
 

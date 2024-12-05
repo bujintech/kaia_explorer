@@ -56,3 +56,5 @@ async function Address({ params: { address } }: { params: { address: string } })
 }
 
 export default Address;
+
+export const revalidate = 1000;

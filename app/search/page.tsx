@@ -61,3 +61,5 @@ async function SearchPage({ searchParams: { keyword = "" } }: { searchParams: { 
 }
 
 export default SearchPage;
+
+export const revalidate = 1;

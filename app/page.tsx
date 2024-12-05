@@ -10,7 +10,6 @@ export default async function Home() {
   const blockHeight = await queryMaxBlockNumber();
   const blocks = await queryBlockList(blockHeight, 10);
   const txs = await queryTxList(blockHeight);
-
   if (txs.list.length > 10) txs.list.length = 10;
 
   const gcList = await queryGcInfoList();
