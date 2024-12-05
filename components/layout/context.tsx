@@ -20,9 +20,9 @@ export default function RenderChilden({ children, data }: { children: React.Reac
   const [isMobile, setIsMobile] = useState<boolean | undefined>();
 
   useEffect(() => {
-    setIsMobile(document.body.clientWidth <= 668);
-
     function setRem() {
+      setIsMobile(document.body.clientWidth <= 668);
+
       const baseSize = 16;
       const width = document.body.clientWidth;
 
