@@ -27,6 +27,11 @@
   background: url("/images/blockIcon/age.png") no-repeat 0 50% / 18px auto;
 }
 
+.detail > div i {
+  font-size: 16px;
+  color: #999999;
+}
+
 .detail > div:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
@@ -87,6 +92,16 @@
     padding: 10px 0 10px 22px;
     background-size: 15px auto;
     background-position-y: 14px;
+  }
+
+  .detail > div i {
+    font-size: 10px;
+  }
+
+  .detail > div::after {
+    content: "";
+    display: table;
+    clear: both;
   }
 
   .detail div > span:nth-child(1) {

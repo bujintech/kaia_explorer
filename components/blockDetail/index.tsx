@@ -23,7 +23,8 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         <div>
           <span>Age</span>
           <span>
-            <Age timestamp={data.timestamp}></Age> ago
+            <Age timestamp={data.timestamp}></Age> ago&nbsp;
+            <i>({new Date().toUTCString()})</i>
           </span>
         </div>
         <div>

@@ -75,6 +75,11 @@
     background-size: 15px auto;
     background-position-y: 14px;
   }
+  .detail > div::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
   .detail div > span:nth-child(1) {
     width: fit-content;
