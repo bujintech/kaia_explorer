@@ -30,7 +30,7 @@ function TableList({ blocks, txs }: { blocks: BlockResponseData[]; txs: TxRespon
           </SwiperSlide>
           <SwiperSlide className={style.mb_listItem}>
             <div className={style.title}>
-              <Link href="/blocks">RECENT TRANSACTIONS</Link>
+              <Link href="/txs">RECENT TRANSACTIONS</Link>
             </div>
             <Table columns={txColumns_home_mobile} dataSource={txs}></Table>
           </SwiperSlide>

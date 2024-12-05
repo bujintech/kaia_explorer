@@ -80,7 +80,7 @@
   height: 100%;
   background: url("/images/next.png") no-repeat 100%/100%;
   top: 0;
-  left: -26px;
+  left: -18px;
 }
 
 @media (max-width: 668px) {
@@ -124,11 +124,9 @@
   }
 
   .to::after {
-    width: 15px;
-    height: 100%;
-    background-size: 14px 10px;
-    top: 0px;
-    left: 0px;
+    width: 10px;
+    background-size: 10px auto;
+    left: -11px;
   }
 }
 
