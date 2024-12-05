@@ -1,7 +1,7 @@
 import type { Columns } from "@/components/table";
 import type { TxResponseData } from "@/lib/dbApi/type";
 import style from "../index.module.css";
-import { Address, Age, Block } from "@/components/map";
+import { Address, Age, Hash } from "@/components/map";
 
 const columns: Columns<TxResponseData>[] = [
   {
@@ -12,11 +12,11 @@ const columns: Columns<TxResponseData>[] = [
       </div>
     ),
     dataIndex: "hash",
-    render: ({ blockNumber, timestamp }) => {
+    render: ({ hash, timestamp }) => {
       return (
         <div className={style.mb_td}>
-          <div>
-            <Block blockNumber={blockNumber}></Block>
+          <div className="ellipsis">
+            <Hash hash={hash} noFormat></Hash>
           </div>
           <div>
             <Age timestamp={timestamp}></Age>
@@ -39,7 +39,6 @@ const columns: Columns<TxResponseData>[] = [
           <div>
             <Address address={from}></Address>
           </div>
-          <div className={style.to}>&nbsp;&nbsp;</div>
           <div>
             <Address address={to}></Address>
           </div>

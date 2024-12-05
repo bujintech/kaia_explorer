@@ -19,13 +19,13 @@ function Message({ blockHeight }: { blockHeight: number }) {
         <div className={style.message}>
           <Swiper slidesPerView={1} spaceBetween={10}>
             <SwiperSlide>
-              <Kaia></Kaia>
+              <Chart></Chart>
             </SwiperSlide>
             <SwiperSlide>
               <Network></Network>
             </SwiperSlide>
             <SwiperSlide>
-              <Chart></Chart>
+              <Kaia></Kaia>
             </SwiperSlide>
           </Swiper>
         </div>

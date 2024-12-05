@@ -6,8 +6,8 @@ function Network() {
       <div>Network</div>
       <div>
         <div className={style.item}>
-          <span>consensus nodes</span>
-          <span>5</span>
+          <span>Consensus nodes</span>
+          <span>45</span>
         </div>
         <div className={style.item}>
           <span>
@@ -23,9 +23,9 @@ function Network() {
         </div>
         <div className={style.item}>
           <span>
-            Avg TX Per Block<i>(24h)</i>
+            Avg TX Per Block<i></i>
           </span>
-          <span>5.2</span>
+          <span>7.7</span>
         </div>
       </div>
     </div>

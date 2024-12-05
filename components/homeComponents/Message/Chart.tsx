@@ -1,3 +1,5 @@
+"use client";
+
 import style from "./index.module.css";
 
 function Chart() {

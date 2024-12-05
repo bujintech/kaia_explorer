@@ -6,13 +6,23 @@ import { formatHash, hexToDecimal, dayjs } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export function Hash({ hash, className, stay }: { hash: string; className?: string; stay?: boolean }) {
+export function Hash({
+  hash,
+  className,
+  stay,
+  noFormat,
+}: {
+  hash: string;
+  className?: string;
+  stay?: boolean;
+  noFormat?: boolean;
+}) {
   if (stay) {
-    return formatHash(hash);
+    return noFormat ? hash : formatHash(hash);
   }
   return (
     <Link className={className || ""} href={`/hash/${hash}`}>
-      {formatHash(hash)}
+      {noFormat ? hash : formatHash(hash)}
     </Link>
   );
 }
@@ -29,11 +39,11 @@ export function Address({
   noFormat?: boolean;
 }) {
   if (stay) {
-    return formatHash(address, noFormat);
+    return noFormat ? address : formatHash(address);
   }
   return (
     <Link className={className || ""} href={`/address/${address}`}>
-      {formatHash(address, noFormat)}
+      {noFormat ? address : formatHash(address)}
     </Link>
   );
 }

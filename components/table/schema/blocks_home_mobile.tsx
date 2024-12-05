@@ -8,7 +8,7 @@ const columns: Columns<BlockResponseData>[] = [
     title: (
       <div className={style.mb_th}>
         <div>Block#</div>
-        <div>Age / Total Txs</div>
+        <div>Age</div>
       </div>
     ),
     dataIndex: "number",
@@ -19,9 +19,8 @@ const columns: Columns<BlockResponseData>[] = [
             <Block blockNumber={number}></Block>
           </div>
           <div>
-            <Age timestamp={timestamp}></Age>
+            <Age timestamp={timestamp}></Age> ago
           </div>
-          <div>{transactionsTotal}</div>
         </div>
       );
     },
@@ -30,17 +29,18 @@ const columns: Columns<BlockResponseData>[] = [
     title: (
       <div className={style.mb_th} style={{ textAlign: "right" }}>
         <div>Block Proposer</div>
-        <div>Reward(Klay)</div>
+        <div>Total Txs</div>
       </div>
     ),
     dataIndex: "number",
-    render: ({ miner }) => {
+    render: ({ miner, transactionsTotal }) => {
       return (
         <div className={style.mb_td} style={{ textAlign: "right" }}>
           <div>
             <BlockProposer miner={miner}></BlockProposer>
           </div>
-          <div>{9.6}</div>
+
+          <div>{transactionsTotal} txns</div>
         </div>
       );
     },

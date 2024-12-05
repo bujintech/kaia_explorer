@@ -85,10 +85,10 @@ ul {
   font-weight: 700 !important;
 }
 
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 main {
