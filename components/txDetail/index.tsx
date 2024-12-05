@@ -61,10 +61,7 @@ function TransactionDetail({ data }: { data: TxResponseData }) {
           <span>Gas Price</span>
           <span>{hexToDecimal(data.gasPrice) / 1000000000} GWei</span>
         </div>
-        <div>
-          <span>TXN Fee</span>
-          <span>{data.gasPrice}</span>
-        </div>
+
         <div>
           <span>Method ID</span>
           <span>

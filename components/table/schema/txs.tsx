@@ -39,7 +39,6 @@ const columns: Columns<TxResponseData>[] = [
 
   { title: "Tx Type", dataIndex: "type", render: ({ type }) => <TxType type={type}></TxType> },
   { title: "Amount(KLAY)", dataIndex: "value", render: ({ value }) => hexToDecimal(value) },
-  { title: "TX Fee(KLAY)", dataIndex: "blockNumber" },
 ];
 
 export default columns;
