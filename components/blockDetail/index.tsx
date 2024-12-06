@@ -3,15 +3,40 @@ import { queryTransactionsByBlockNumber } from "@/lib/dbApi";
 import { hexToDecimal } from "@/lib/utils";
 import style from "./index.module.css";
 
-import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
+import type { BlockResponseData, TxResponseData, TransferResponseData } from "@/lib/dbApi/type";
 import { BlockProposer, Age } from "../map";
 import Copy from "../copy";
 import Link from "next/link";
+import TabbedTable, { TabProps } from "../tabbedTable";
+import { nftTransferColumns, tokenTransferColumns } from "../table/schema/transfers";
 
-async function BlockDetail({ data }: { data: BlockResponseData }) {
+async function BlockDetail({ data, transfers }: { data: BlockResponseData, transfers: TransferResponseData[] }) {
   const blockNumber = hexToDecimal(data.number);
 
   const txList = await queryTransactionsByBlockNumber(blockNumber);
+
+  console.log("transfers", transfers);
+
+  const transactions: TabProps<TxResponseData> = {
+    title: "Transactions",
+    key: "tx",
+    data: txList ?? [],
+    columns: blockDetailColumns.map(v => ({ ...v, render: undefined }))
+  }
+
+  const tokenTransfers: TabProps<TransferResponseData> = {
+    title: "Token Transfers",
+    key: "token",
+    data: transfers.filter(v => v.type === "token"),
+    columns: tokenTransferColumns
+  }
+
+  const nftTransfers: TabProps<TransferResponseData> = {
+    title: "NFT Transfers",
+    key: "nft",
+    data: transfers.filter(v => v.type === "nft"),
+    columns: nftTransferColumns
+  }
 
   return (
     <>
@@ -79,7 +104,9 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
       </div>
 
       <div className={`${style.card}`}>
-        <Table<TxResponseData> columns={blockDetailColumns} dataSource={txList || []}></Table>
+        {/* @ts-ignore */}
+        <TabbedTable<TxResponseData | TransferResponseData> tabs={[transactions, tokenTransfers, nftTransfers]}></TabbedTable>
+        {/* <Table<TxResponseData> columns={blockDetailColumns} dataSource={txList || []}></Table> */}
       </div>
     </>
   );

@@ -29,10 +29,10 @@ export {
 export interface Columns<T> {
   title: React.ReactNode;
   dataIndex: keyof T;
-  render?: (record: T, index: number) => ReactNode;
+  render?: (record: T, index: number, value: any) => ReactNode;
 }
 
-interface Props<T> {
+export interface TableProps<T> {
   loading?: boolean;
   dataSource: T[] | null;
   columns: Columns<T>[];
@@ -46,7 +46,7 @@ function NoData() {
   return <div className={style.noData}>No Data</div>;
 }
 
-function Table<T>({ dataSource, columns, loading }: Props<T>) {
+function Table<T>({ dataSource, columns, loading }: TableProps<T>) {
   return (
     <div className={style.table}>
       <table>
@@ -65,12 +65,14 @@ function Table<T>({ dataSource, columns, loading }: Props<T>) {
                   if (typeof columnsItem.render === "function") {
                     return (
                       <td key={index}>
-                        <div>{columnsItem.render(dataItem, index)}</div>
+                        {/* @ts-ignore */}
+                        <div>{columnsItem.render(dataItem, index, dataItem[columnsItem.dataIndex])}</div>
                       </td>
                     );
                   }
                   return (
                     <td key={index}>
+                      {/* @ts-ignore */}
                       <div>{dataItem[columnsItem.dataIndex] as ReactNode}</div>
                     </td>
                   );

@@ -1,6 +1,7 @@
 import db from "../db";
 import { decompressJson } from "./util";
-import type { BlockResponseData, TxResponseData, GcResponseData } from "./type";
+import type { BlockResponseData, TxResponseData, GcResponseData, TransferResponseData } from "./type";
+import { hexToDecimal } from "../utils";
 
 export { default as queryBlockList } from "./queryBlockList";
 export { default as queryTxList } from "./queryTxList";
@@ -21,13 +22,15 @@ export async function queryDataByHash(hash: string): Promise<{ type: "TX" | "BLO
 
   const data = await db.query({
     IndexName: "GS1",
-    KeyConditionExpression: `GS1PK = :GS1PK `,
+    KeyConditionExpression: `GS1PK = :GS1PK`,
     ExpressionAttributeValues: {
       ":GS1PK": hash || "",
     },
   });
 
-  const itemData = data.Items?.[0];
+  const itemData = data.Items?.filter((v) => {
+    return v.GS1SK.toString() === 'TX' || v.GS1SK.toString() === 'BLOCK';
+  })[0];
 
   if (!itemData) return null;
 
@@ -79,14 +82,15 @@ export async function queryTransactionsByBlockNumber(blockNumber: number): Promi
     }
   });
 
-  return blockData ? txsList : null;
+  return blockData ? txsList : [];
 }
 
 export async function queryTransactionsByAddress(address: string): Promise<TxResponseData[]> {
   const data = await db.query({
-    KeyConditionExpression: `GS2PK = :GS2PK`,
+    KeyConditionExpression: `GS2PK = :GS2PK and begins_with(GS2SK, :GS2SK)`,
     ExpressionAttributeValues: {
       ":GS2PK": `${address}`,
+      ":GS2SK": "TX",
     },
     ScanIndexForward: true,
     IndexName: "GS2",
@@ -140,6 +144,99 @@ export async function queryGcInfoList(): Promise<GcResponseData[]> {
     .sort((a, b) => {
       return Number(b.total_staking) - Number(a.total_staking);
     });
+}
+
+function dbObjToTransfer(v: Record<string, any>): TransferResponseData {
+  console.log(v);
+  return {
+    txHash: v.GS1PK.toString(),
+    type: v.SK.toString().startsWith("TRANSFER#TOKEN") ? "token" : "nft",
+    from: v.GS2PK.toString(),
+    to: v.GS3PK.toString(),
+    amount: v.AMOUNT?.toString() ?? "--",
+    tokenContract: v.GS4PK.toString(),
+    tokenName: v.NAME?.toString() ?? "--",
+    timestamp: v.TIMESTAMP,
+    nftId: v.NFTID ? v.NFTID.toString() : '',
+  }
+}
+
+export async function queryTransfersByTxHash(hash: string): Promise<TransferResponseData[] | null> {
+  if (!hash) return null;
+
+  const data = await db.query({
+    IndexName: "GS1",
+    KeyConditionExpression: `GS1PK = :GS1PK and begins_with(GS1SK, :GS1SK)`,
+    ExpressionAttributeValues: {
+      ":GS1PK": hash || "",
+      ":GS1SK": "TRANSFER#",
+    },
+  });
+
+  return data.Items?.map(v => ({
+    txHash: hash,
+    type: v.SK.toString().startsWith("TRANSFER#TOKEN") ? "token" : "nft",
+    from: v.GS2PK.toString(),
+    to: v.GS3PK.toString(),
+    amount: v.AMOUNT.toString(),
+    tokenContract: v.GS4PK.toString(),
+    tokenName: v.NAME?.toString() ?? "",
+    timestamp: v.TIMESTAMP,
+    nftId: v.NFTID ? v.NFTID.toString() : '',
+  })) ?? [];
+}
+
+export async function queryTransfersByBlockNumber(blockNumber: number): Promise<TransferResponseData[] | null> {
+  if (!blockNumber) return null;
+
+  const data = await db.query({
+    KeyConditionExpression: `PK = :PK and begins_with(SK, :SK)`,
+    ExpressionAttributeValues: {
+      ":PK": hexToDecimal(blockNumber).toString() || "",
+      ":SK": "TRANSFER#",
+    },
+  })
+
+  return data.Items?.map(v => ({
+    txHash: v.GS1PK.toString(),
+    type: v.SK.toString().startsWith("TRANSFER#TOKEN") ? "token" : "nft",
+    from: v.GS2PK.toString(),
+    to: v.GS3PK.toString(),
+    amount: v.AMOUNT.toString(),
+    tokenContract: v.GS4PK.toString(),
+    tokenName: v.NAME?.toString() ?? "--",
+    timestamp: v.TIMESTAMP,
+    nftId: v.NFTID ? v.NFTID.toString() : '',
+  })) ?? [];
+}
+
+export async function queryTransfersByFromOrTo(address: string): Promise<TransferResponseData[] | null> {
+  if (!address) return null;
+
+  const dataFrom = await db.query({
+    KeyConditionExpression: `GS2PK = :GS2PK and begins_with(GS2SK, :GS2SK)`,
+    IndexName: "GS2",
+    ExpressionAttributeValues: {
+      ":GS2PK": address || "",
+      ":GS2SK": "TRANSFER#",
+    },
+  })
+
+  const dataTo = await db.query({
+    KeyConditionExpression: `GS3PK = :GS3PK and begins_with(GS3SK, :GS3SK)`,
+    IndexName: "GS3",
+    ExpressionAttributeValues: {
+      ":GS3PK": address || "",
+      ":GS3SK": "TRANSFER#",
+    },
+  })
+
+  console.log("address:", address, "dataFrom:", dataFrom.Items?.length, "dataTo:", dataTo.Items?.length);
+
+  return [
+    ...dataFrom.Items?.map(v => dbObjToTransfer(v)) ?? [],
+    ...(dataTo.Items?.map(v => dbObjToTransfer(v)) ?? [])
+  ];
 }
 
 export async function queryMaxBlockNumber() {
