@@ -36,7 +36,7 @@ function TransactionDetail({ data }: { data: TxResponseData }) {
         <div>
           <span>Time</span>
           <span>
-            <Age timestamp={data.timestamp}></Age> ago
+            <Age timestamp={data.timestamp}></Age>
           </span>
         </div>
         <div>

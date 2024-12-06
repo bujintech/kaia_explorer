@@ -19,7 +19,7 @@ const columns: Columns<BlockResponseData>[] = [
             <Block blockNumber={number}></Block>
           </div>
           <div>
-            <Age timestamp={timestamp}></Age> ago
+            <Age timestamp={timestamp}></Age>
           </div>
         </div>
       );
