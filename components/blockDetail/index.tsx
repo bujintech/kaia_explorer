@@ -61,12 +61,9 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
         </div>
         <div>
           <span>Gas Used</span>
-          <span>{hexToDecimal(data.gasUsed) / 1000000000} billion</span>
+          <span>{hexToDecimal(data.gasUsed)} Unit</span>
         </div>
-        {/* <div>
-          <span>GAS Limit</span>
-          <span>{hexToDecimal(data.gasLimit) / 1000000000} Billion Gas</span>
-        </div> */}
+
         <div>
           <span>Block Size</span>
           <span>{hexToDecimal(data.size)} Bytes</span>
