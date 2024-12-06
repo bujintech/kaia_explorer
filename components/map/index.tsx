@@ -2,7 +2,7 @@
 
 import { useGlobalData } from "../layout/context";
 
-import { formatHash, hexToDecimal, dayjs } from "@/lib/utils";
+import { formatHash, hexToDecimal, formatTime } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -69,8 +69,9 @@ export function Block({
 }
 
 function formatAge(timestamp: string) {
-  const age = dayjs(Number(timestamp) * 1000).fromNow(true);
-  return age;
+  return formatTime(timestamp);
+  // const age = dayjs(Number(timestamp) * 1000).fromNow(true);
+  // return age;
   // .replace("minutes", "m")
   // .replace("seconds", "s")
   // .replace("hours", "h")
