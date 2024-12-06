@@ -39,12 +39,9 @@ async function Address({ params: { address } }: { params: { address: string } })
           <span>Balance</span>
           <span>111</span>
         </div>
+
         <div>
-          <span>Key</span>
-          <span>222</span>
-        </div>
-        <div>
-          <span>Totao TXs</span>
+          <span>Total TXs</span>
           <span>{(txs || []).length}</span>
         </div>
       </div>

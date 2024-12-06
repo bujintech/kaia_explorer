@@ -7,7 +7,7 @@ import { useState } from "react";
 import type { GcResponseData } from "@/lib/dbApi/type";
 
 export default function GcAddress({ gcData, address }: { gcData: GcResponseData | null; address: string }) {
-  const [visible, setVisible] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(true);
 
   if (gcData) {
     return (
