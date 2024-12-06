@@ -70,17 +70,15 @@ export function Block({
 
 function formatAge(timestamp: string) {
   const age = dayjs(Number(timestamp) * 1000).fromNow(true);
-  return (
-    age
-      // .replace("minutes", "m")
-      // .replace("seconds", "s")
-      // .replace("hours", "h")
-      // .replace("days", "d")
-      // .replace("month", "M")
-      // .replace("year", "Y")
-      .replace("an ", "1 ")
-      .replace("a ", "1 ")
-  );
+  return age;
+  // .replace("minutes", "m")
+  // .replace("seconds", "s")
+  // .replace("hours", "h")
+  // .replace("days", "d")
+  // .replace("month", "M")
+  // .replace("year", "Y")
+  // .replace("an ", "1 ")
+  // .replace("a ", "1 ")
   // .replace(/\s+/g, "")
 }
 
