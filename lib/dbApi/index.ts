@@ -21,19 +21,25 @@ export async function queryDataByHash(hash: string): Promise<{ type: "TX" | "BLO
 
   const data = await db.query({
     IndexName: "GS1",
-    KeyConditionExpression: `GS1PK = :GS1PK `,
+    KeyConditionExpression: `GS1PK = :GS1PK`,
     ExpressionAttributeValues: {
       ":GS1PK": hash || "",
     },
   });
 
-  const itemData = data.Items?.[0];
+  const itemData = data.Items?.filter((v) => {
+    return v.GS1SK.toString() === "TX" || v.GS1SK.toString() === "BLOCK";
+  })[0];
 
   if (!itemData) return null;
 
+  const _data = decompressJson(itemData.RESULT);
   return {
     type: itemData.GS1SK,
-    data: decompressJson(itemData.RESULT),
+    data: {
+      ...((_data && _data) || {}),
+      timestamp: itemData.TIMESTAMP,
+    },
   };
 }
 

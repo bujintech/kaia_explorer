@@ -1,5 +1,6 @@
 import type { GcResponseData, TxResponseData } from "@/lib/dbApi/type";
 import Table, { addressColumns } from "@/components/table";
+import Balance from "@/components/balance";
 import { queryGcConfig, queryTransactionsByAddress, queryGcInfoByName } from "@/lib/dbApi";
 import GcAddress from "./Address";
 import style from "./index.module.css";
@@ -37,7 +38,9 @@ async function Address({ params: { address } }: { params: { address: string } })
 
         <div>
           <span>Balance</span>
-          <span>111</span>
+          <span>
+            <Balance address={address}></Balance>
+          </span>
         </div>
 
         <div>
