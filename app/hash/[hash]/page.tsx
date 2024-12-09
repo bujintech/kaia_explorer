@@ -2,7 +2,7 @@ import BlockDetail from "@/components/blockDetail";
 import TxDetail from "@/components/txDetail";
 import { queryDataByHash, queryTransfersByBlockNumber, queryTransfersByTxHash } from "@/lib/dbApi";
 
-import type { BlockResponseData, TransferResponseData, TxResponseData } from "@/lib/dbApi/type";
+import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
 import Empty from "@/components/empty";
 
 async function Hash({ params: { hash } }: { params: { hash: string } }) {

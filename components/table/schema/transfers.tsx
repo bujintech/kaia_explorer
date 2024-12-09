@@ -1,41 +1,49 @@
 import { TransferResponseData } from "@/lib/dbApi/type";
-import type { Columns } from "@/components/table";
+import { TabbedTableColumn } from "@/components/tabbedTable";
+import { RenderMethod } from "@/components/tabbedTable/types";
 
-const basicColumns: Omit<Columns<TransferResponseData>, "render">[] = [
+const basicColumns: TabbedTableColumn<TransferResponseData>[] = [
     {
         dataIndex: "tokenContract",
         title: "Contract",
+        renderMethod: RenderMethod.Address
     },
     {
         dataIndex: "txHash",
         title: "Tx Hash",
+        renderMethod: RenderMethod.Hash
     },
     {
         dataIndex: "tokenName",
         title: "Name",
+        renderMethod: RenderMethod.Span
     },
     {
         dataIndex: "from",
         title: "From",
+        renderMethod: RenderMethod.Address
     },
     {
         dataIndex: "to",
         title: "To",
+        renderMethod: RenderMethod.Address
     },
     {
         dataIndex: "amount",
         title: "Amount",
+        renderMethod: RenderMethod.Span
     }
-]
+];
 
-export const tokenTransferColumns: Omit<Columns<TransferResponseData>, "render">[] = [
+export const tokenTransferColumns: TabbedTableColumn<TransferResponseData>[] = [
     ...basicColumns,
 ];
 
-export const nftTransferColumns: Omit<Columns<TransferResponseData>, "render">[] = [
+export const nftTransferColumns: TabbedTableColumn<TransferResponseData>[] = [
     ...basicColumns,
     {
         dataIndex: "nftId",
         title: "NFT ID",
+        renderMethod: RenderMethod.Span
     }
 ];

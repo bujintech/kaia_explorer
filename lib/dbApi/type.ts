@@ -71,7 +71,7 @@ export interface TransferResponseData {
   to: string;
   tokenContract: string;
   tokenName: string;
-  amount: bigint;
+  amount: string;
   timestamp: number;
   type: string;
   nftId: string;

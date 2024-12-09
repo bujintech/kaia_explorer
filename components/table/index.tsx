@@ -29,7 +29,7 @@ export {
 export interface Columns<T> {
   title: React.ReactNode;
   dataIndex: keyof T;
-  render?: (record: T, index: number, value: any) => ReactNode;
+  render?: (record: T, index: number, value: unknown) => ReactNode;
 }
 
 export interface TableProps<T> {
@@ -65,14 +65,12 @@ function Table<T>({ dataSource, columns, loading }: TableProps<T>) {
                   if (typeof columnsItem.render === "function") {
                     return (
                       <td key={index}>
-                        {/* @ts-ignore */}
                         <div>{columnsItem.render(dataItem, index, dataItem[columnsItem.dataIndex])}</div>
                       </td>
                     );
                   }
                   return (
                     <td key={index}>
-                      {/* @ts-ignore */}
                       <div>{dataItem[columnsItem.dataIndex] as ReactNode}</div>
                     </td>
                   );

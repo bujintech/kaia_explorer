@@ -12,7 +12,7 @@ async function BlockDetailPage({ params: { params } }: { params: { params: strin
     data = await queryBlockByNumber(hexToDecimal(params));
   }
 
-  const transfers = await queryTransfersByBlockNumber(data?.number ?? "");
+  const transfers = await queryTransfersByBlockNumber(data ? parseInt(data.number) : undefined);
 
   return (
     <div className={style.blockDetailPage}>

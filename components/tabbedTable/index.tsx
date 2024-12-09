@@ -1,23 +1,30 @@
 "use client"
-import { useEffect, useState } from "react";
-import Table, { Columns, TableProps } from "../table";
+import { useState } from "react";
+import Table, { Columns } from "../table";
 import style from "./index.module.css";
-import { Address, Age, Block, Hash, Method, TxType } from "@/components/map";
+import { Address, Age, Block, Hash, Method } from "@/components/map";
 import { hexToDecimal } from "@/lib/utils";
+import { RenderMethod } from "./types";
 
-export interface TabProps<T> {
+export interface TabProps<T extends Record<string, unknown> = Record<string, unknown>> {
   title: string;
   key: string;
-  columns: Columns<T>[];
+  columns: TabbedTableColumn<T>[];
   data?: T[];
 }
 
-interface TableTabProps<T> {
-  tabs: TabProps<T>[];
+export interface TabbedTableColumn<T> extends Omit<Columns<T>, "render"> {
+  renderMethod: RenderMethod;
+}
+
+interface TableTabProps {
+  tabs: TabProps[];
 };
 
-function TabbedTable<T>({ tabs }: TableTabProps<T>) {
-  const [currentTab, setCurrentTab] = useState<TabProps<T>>(tabs[0]);
+function TabbedTable({ tabs }: TableTabProps) {
+  const [currentTab, setCurrentTab] = useState<TabProps>(tabs[0]);
+
+  console.log(`Tabs: ${JSON.stringify(tabs, null, 2)}`);
 
   return (
     <>
@@ -37,30 +44,31 @@ function TabbedTable<T>({ tabs }: TableTabProps<T>) {
         }
       </div>
       <Table
-        // @ts-ignore
         dataSource={currentTab?.data ?? []}
-        // @ts-ignore
-        columns={currentTab?.columns.map(column => ({
-          ...column,
-          render: (record, index, value) => {
-            const key = column.dataIndex.toString().toLowerCase();
-            if (key.includes("hash")) {
-              return <Hash hash={value}></Hash>
-            } else if (key.includes("address") || key.includes("contract") || key === "from" || key === "to") {
-              const address = value as string;
-              return <Address address={address}></Address>
-            } else if (key.includes("block")) {
-              if (JSON.stringify(value)?.startsWith("0x")) {
-                return <Block blockNumber={hexToDecimal(value)}></Block>
-              } else {
-                return <span>{value}</span>
+        columns={currentTab?.columns.map(column => {
+          return {
+            ...column,
+            render: (_record: Record<string, unknown>, _index: number, value: unknown) => {
+              switch (column.renderMethod) {
+                case RenderMethod.Address:
+                  return <Address address={String(value)}></Address>
+                case RenderMethod.Age:
+                  return <Age timestamp={String(value)}></Age>
+                case RenderMethod.Block:
+                  return <Block blockNumber={String(value)}></Block>
+                case RenderMethod.Decimal:
+                  return <span>{hexToDecimal(String(value))}</span>
+                case RenderMethod.Hash:
+                  return <Hash hash={String(value)}></Hash>
+                case RenderMethod.Method:
+                  return <Method input={String(value)}></Method>
+                case RenderMethod.Span:
+                  return <span>{String(value)}</span>
               }
-            } else if (key === "method" && value?.toString().startsWith("0x")) {
-              return <Method input={value}></Method>
+              return <span>{String(value)}</span>
             }
-            return <span>{value}</span>
           }
-        })) ?? []}
+        }) ?? []}
       ></Table>
     </>
   )

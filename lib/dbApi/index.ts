@@ -6,6 +6,23 @@ import { hexToDecimal } from "../utils";
 export { default as queryBlockList } from "./queryBlockList";
 export { default as queryTxList } from "./queryTxList";
 
+interface DbStruct {
+  PK: string;
+  SK: string;
+  GS1PK: string;
+  GS1SK: string;
+  GS2PK: string;
+  GS2SK: string;
+  GS3PK: string;
+  GS3SK: string;
+  GS4PK: string;
+  RESULT?: Buffer;
+  TIMESTAMP: number;
+  AMOUNT: number;
+  NAME: string;
+  NFTID: string;
+}
+
 export async function queryBlockByNumber(blockNumber: number): Promise<BlockResponseData | null> {
   const data = await db.getItem({
     Key: {
@@ -150,7 +167,7 @@ export async function queryGcInfoList(): Promise<GcResponseData[]> {
     });
 }
 
-function dbObjToTransfer(v: Record<string, any>): TransferResponseData {
+function dbObjToTransfer(v: DbStruct): TransferResponseData {
   console.log(v);
   return {
     txHash: v.GS1PK.toString(),
@@ -190,7 +207,7 @@ export async function queryTransfersByTxHash(hash: string): Promise<TransferResp
   })) ?? [];
 }
 
-export async function queryTransfersByBlockNumber(blockNumber: number): Promise<TransferResponseData[] | null> {
+export async function queryTransfersByBlockNumber(blockNumber?: number): Promise<TransferResponseData[] | null> {
   if (!blockNumber) return null;
 
   const data = await db.query({
@@ -238,8 +255,8 @@ export async function queryTransfersByFromOrTo(address: string): Promise<Transfe
   console.log("address:", address, "dataFrom:", dataFrom.Items?.length, "dataTo:", dataTo.Items?.length);
 
   return [
-    ...dataFrom.Items?.map(v => dbObjToTransfer(v)) ?? [],
-    ...(dataTo.Items?.map(v => dbObjToTransfer(v)) ?? [])
+    ...dataFrom.Items?.map(v => dbObjToTransfer(v as DbStruct)) ?? [],
+    ...(dataTo.Items?.map(v => dbObjToTransfer(v as DbStruct)) ?? [])
   ];
 }
 

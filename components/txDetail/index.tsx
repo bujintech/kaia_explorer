@@ -6,6 +6,7 @@ import Copy from "../copy";
 
 import type { TransferResponseData, TxResponseData } from "@/lib/dbApi/type";
 import TabbedTable from "../tabbedTable";
+import { nftTransferColumns, tokenTransferColumns } from "../table/schema/transfers";
 
 function TransactionDetail({ data, transfers }: { data: TxResponseData, transfers: TransferResponseData[] }) {
   return (
@@ -78,63 +79,20 @@ function TransactionDetail({ data, transfers }: { data: TxResponseData, transfer
       </div>
 
       <div className={`${style.card}`}>
-        <TabbedTable<TransferResponseData>
-          dataSource={transfers}
-          tabs={[
-            {
-              title: "Token Transfers",
-              key: "token",
-              data: transfers.filter(v => v.type === "token"),
-              columns: [
-                {
-                  dataIndex: "tokenName",
-                  title: "Name",
-                },
-                {
-                  dataIndex: "tokenContract",
-                  title: "Contract",
-                },
-                {
-                  dataIndex: "from",
-                  title: "From",
-                },
-                {
-                  dataIndex: "to",
-                  title: "To",
-                },
-                {
-                  dataIndex: "amount",
-                  title: "Amount",
-                },
-              ]
-            },
-            {
-              title: "NFT Transfers",
-              key: "nft",
-              columns: [
-                {
-                  dataIndex: "tokenContract",
-                  title: "Contract",
-                },
-                {
-                  dataIndex: "tokenName",
-                  title: "Name",
-                },
-                {
-                  dataIndex: "from",
-                  title: "From",
-                },
-                {
-                  dataIndex: "to",
-                  title: "To",
-                },
-                {
-                  dataIndex: "amount",
-                  title: "Amount",
-                },
-              ]
-            }
-          ]}
+        <TabbedTable tabs={[
+          {
+            title: "Token Transfers",
+            key: "token",
+            data: transfers.filter(v => v.type === "token") as unknown as Record<string, unknown>[],
+            columns: tokenTransferColumns.map(v => ({ ...v }))
+          },
+          {
+            title: "NFT Transfers",
+            key: "nft",
+            data: transfers.filter(v => v.type === "nft") as unknown as Record<string, unknown>[],
+            columns: nftTransferColumns.map(v => ({ ...v }))
+          }
+        ]}
         ></TabbedTable>
       </div>
     </>

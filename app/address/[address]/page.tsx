@@ -1,5 +1,5 @@
-import type { GcResponseData, TransferResponseData, TxResponseData } from "@/lib/dbApi/type";
-import Table, { addressColumns } from "@/components/table";
+import type { GcResponseData } from "@/lib/dbApi/type";
+import { addressColumns } from "@/components/table";
 import Balance from "@/components/balance";
 import { queryGcConfig, queryTransactionsByAddress, queryGcInfoByName, queryTransfersByFromOrTo } from "@/lib/dbApi";
 import GcAddress from "./Address";
@@ -19,30 +19,27 @@ async function Address({ params: { address } }: { params: { address: string } })
     gcData = (await queryGcInfoByName(gcName)) as GcResponseData;
   }
 
-
-  // console.log("transfers", transfers);
-
-  const txTab: TabProps<TxResponseData> = {
-    data: txs,
+  const txTab: TabProps = {
+    data: txs as unknown as Record<string, unknown>[],
     title: "Transactions",
     key: "tx",
-    columns: addressColumns.map(v => ({ ...v, render: undefined }))
+    columns: addressColumns.map(v => ({ ...v }))
   }
 
   const transfers = await queryTransfersByFromOrTo(address);
 
-  const tokenTransfers: TabProps<TransferResponseData> = {
-    data: transfers?.filter(v => v.type === "token") ?? [],
+  const tokenTransfers: TabProps = {
+    data: transfers?.filter(v => v.type === "token") as unknown as Record<string, unknown>[],
     title: "Token Transfers",
     key: "token",
-    columns: tokenTransferColumns,
+    columns: tokenTransferColumns.map(v => ({ ...v })),
   }
 
-  const nftTransfers: TabProps<TransferResponseData> = {
-    data: transfers?.filter(v => v.type === "nft") ?? [],
+  const nftTransfers: TabProps = {
+    data: transfers?.filter(v => v.type === "nft") as unknown as Record<string, unknown>[],
     title: "NFT Transfers",
     key: "nft",
-    columns: nftTransferColumns,
+    columns: nftTransferColumns.map(v => ({ ...v })),
   }
 
   return (
@@ -77,7 +74,6 @@ async function Address({ params: { address } }: { params: { address: string } })
         </div>
       </div>
       <div className={`${style.card}`}>
-        {/* @ts-ignore */}
         <TabbedTable tabs={[txTab, tokenTransfers, nftTransfers]}></TabbedTable>
         {/* <Table<TxResponseData> columns={addressColumns} dataSource={txs || []}></Table> */}
       </div>
