@@ -23,7 +23,7 @@ async function Address({ params: { address } }: { params: { address: string } })
     data: txs as unknown as Record<string, unknown>[],
     title: "Transactions",
     key: "tx",
-    columns: addressColumns.map(v => ({ ...v }))
+    columns: addressColumns.map(v => ({ ...v, render: undefined })),
   }
 
   const transfers = await queryTransfersByFromOrTo(address);
