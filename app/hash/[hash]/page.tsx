@@ -1,6 +1,6 @@
 import BlockDetail from "@/components/blockDetail";
 import TxDetail from "@/components/txDetail";
-import { queryDataByHash } from "@/lib/dbApi";
+import { queryDataByHash, queryTransfersByBlockNumber, queryTransfersByTxHash } from "@/lib/dbApi";
 
 import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
 import Empty from "@/components/empty";
@@ -13,9 +13,13 @@ async function Hash({ params: { hash } }: { params: { hash: string } }) {
   const { type, data } = result;
 
   if (type === "TX") {
-    return <TxDetail data={data as TxResponseData}></TxDetail>;
+    const transfers = await queryTransfersByTxHash(hash);
+    console.log("Transfers:", transfers);
+    return <TxDetail data={data as TxResponseData} transfers={transfers ?? []}></TxDetail>;
   } else if (type === "BLOCK") {
-    return <BlockDetail data={data as BlockResponseData}></BlockDetail>;
+    const blockNumber = (data as BlockResponseData).number;
+    const transfers = await queryTransfersByBlockNumber(parseInt(blockNumber));
+    return <BlockDetail data={data as BlockResponseData} transfers={transfers ?? []}></BlockDetail>;
   } else {
     return null;
   }

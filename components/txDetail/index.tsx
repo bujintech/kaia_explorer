@@ -4,9 +4,11 @@ import { hexToDecimal } from "@/lib/utils";
 import FromTo from "./FromTo";
 import Copy from "../copy";
 
-import type { TxResponseData } from "@/lib/dbApi/type";
+import type { TransferResponseData, TxResponseData } from "@/lib/dbApi/type";
+import TabbedTable from "../tabbedTable";
+import { nftTransferColumns, tokenTransferColumns } from "../table/schema/transfers";
 
-function TransactionDetail({ data }: { data: TxResponseData }) {
+function TransactionDetail({ data, transfers }: { data: TxResponseData, transfers: TransferResponseData[] }) {
   return (
     <>
       <div className={style.title}>TRANSACTION DETAILS</div>
@@ -74,6 +76,24 @@ function TransactionDetail({ data }: { data: TxResponseData }) {
             <Method input={data.input} noFormat></Method>
           </span>
         </div>
+      </div>
+
+      <div className={`${style.card}`}>
+        <TabbedTable tabs={[
+          {
+            title: "Token Transfers",
+            key: "token",
+            data: transfers.filter(v => v.type === "token") as unknown as Record<string, unknown>[],
+            columns: tokenTransferColumns.map(v => ({ ...v }))
+          },
+          {
+            title: "NFT Transfers",
+            key: "nft",
+            data: transfers.filter(v => v.type === "nft") as unknown as Record<string, unknown>[],
+            columns: nftTransferColumns.map(v => ({ ...v }))
+          }
+        ]}
+        ></TabbedTable>
       </div>
     </>
   );

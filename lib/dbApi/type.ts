@@ -58,3 +58,21 @@ export interface GcResponseData {
   }[];
   summary: string;
 }
+
+export enum NftType {
+  ERC721 = "ERC721",
+  ERC1155 = "ERC1155",
+  KIP37 = "KIP37",
+}
+
+export interface TransferResponseData {
+  txHash: string;
+  from: string;
+  to: string;
+  tokenContract: string;
+  tokenName: string;
+  amount: string;
+  timestamp: number;
+  type: string;
+  nftId: string;
+}

@@ -1,17 +1,42 @@
-import Table, { blockDetailColumns } from "../table";
+import { blockDetailColumns } from "../table";
 import { queryTransactionsByBlockNumber } from "@/lib/dbApi";
 import { hexToDecimal } from "@/lib/utils";
 import style from "./index.module.css";
 
-import type { BlockResponseData, TxResponseData } from "@/lib/dbApi/type";
+import type { BlockResponseData, TransferResponseData } from "@/lib/dbApi/type";
 import { BlockProposer, Age } from "../map";
 import Copy from "../copy";
 import Link from "next/link";
+import TabbedTable, { TabProps } from "../tabbedTable";
+import { nftTransferColumns, tokenTransferColumns } from "../table/schema/transfers";
 
-async function BlockDetail({ data }: { data: BlockResponseData }) {
+async function BlockDetail({ data, transfers }: { data: BlockResponseData, transfers: TransferResponseData[] }) {
   const blockNumber = hexToDecimal(data.number);
 
   const txList = await queryTransactionsByBlockNumber(blockNumber);
+
+  console.log("transfers", transfers);
+
+  const transactions: TabProps = {
+    title: "Transactions",
+    key: "tx",
+    data: txList as unknown as Record<string, unknown>[],
+    columns: blockDetailColumns.map(v => ({ ...v, render: undefined }))
+  }
+
+  const tokenTransfers: TabProps = {
+    title: "Token Transfers",
+    key: "token",
+    data: transfers.filter(v => v.type === "token") as unknown as Record<string, unknown>[],
+    columns: tokenTransferColumns.map(v => ({ ...v }))
+  }
+
+  const nftTransfers: TabProps = {
+    title: "NFT Transfers",
+    key: "nft",
+    data: transfers.filter(v => v.type === "nft") as unknown as Record<string, unknown>[],
+    columns: nftTransferColumns.map(v => ({ ...v }))
+  }
 
   return (
     <>
@@ -79,7 +104,8 @@ async function BlockDetail({ data }: { data: BlockResponseData }) {
       </div>
 
       <div className={`${style.card}`}>
-        <Table<TxResponseData> columns={blockDetailColumns} dataSource={txList || []}></Table>
+        <TabbedTable tabs={[transactions, tokenTransfers, nftTransfers]}></TabbedTable>
+        {/* <Table<TxResponseData> columns={blockDetailColumns} dataSource={txList || []}></Table> */}
       </div>
     </>
   );

@@ -1,9 +1,11 @@
-import type { GcResponseData, TxResponseData } from "@/lib/dbApi/type";
-import Table, { addressColumns } from "@/components/table";
+import type { GcResponseData } from "@/lib/dbApi/type";
+import { addressColumns } from "@/components/table";
 import Balance from "@/components/balance";
-import { queryGcConfig, queryTransactionsByAddress, queryGcInfoByName } from "@/lib/dbApi";
+import { queryGcConfig, queryTransactionsByAddress, queryGcInfoByName, queryTransfersByFromOrTo } from "@/lib/dbApi";
 import GcAddress from "./Address";
 import style from "./index.module.css";
+import TabbedTable, { TabProps } from "@/components/tabbedTable";
+import { nftTransferColumns, tokenTransferColumns } from "@/components/table/schema/transfers";
 
 async function Address({ params: { address } }: { params: { address: string } }) {
   const gc_config = await queryGcConfig();
@@ -15,6 +17,29 @@ async function Address({ params: { address } }: { params: { address: string } })
   let gcData = null;
   if (gcName) {
     gcData = (await queryGcInfoByName(gcName)) as GcResponseData;
+  }
+
+  const txTab: TabProps = {
+    data: txs as unknown as Record<string, unknown>[],
+    title: "Transactions",
+    key: "tx",
+    columns: addressColumns.map(v => ({ ...v }))
+  }
+
+  const transfers = await queryTransfersByFromOrTo(address);
+
+  const tokenTransfers: TabProps = {
+    data: transfers?.filter(v => v.type === "token") as unknown as Record<string, unknown>[],
+    title: "Token Transfers",
+    key: "token",
+    columns: tokenTransferColumns.map(v => ({ ...v })),
+  }
+
+  const nftTransfers: TabProps = {
+    data: transfers?.filter(v => v.type === "nft") as unknown as Record<string, unknown>[],
+    title: "NFT Transfers",
+    key: "nft",
+    columns: nftTransferColumns.map(v => ({ ...v })),
   }
 
   return (
@@ -49,7 +74,8 @@ async function Address({ params: { address } }: { params: { address: string } })
         </div>
       </div>
       <div className={`${style.card}`}>
-        <Table<TxResponseData> columns={addressColumns} dataSource={txs || []}></Table>
+        <TabbedTable tabs={[txTab, tokenTransfers, nftTransfers]}></TabbedTable>
+        {/* <Table<TxResponseData> columns={addressColumns} dataSource={txs || []}></Table> */}
       </div>
     </div>
   );
