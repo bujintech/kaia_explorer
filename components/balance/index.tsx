@@ -5,10 +5,12 @@ import { hexToDecimal } from "@/lib/utils";
 export default function Balance({ address }: { address: string }) {
   const [value, setValue] = useState<undefined | number>();
   useEffect(() => {
-    getBalance({ params: [address, "latest"] }).then((res) => {
-      setValue(hexToDecimal(res.result as string));
-    });
-  }, []);
+    if (address) {
+      getBalance({ params: [address, "latest"] }).then((res) => {
+        setValue(hexToDecimal(res.result as string));
+      });
+    }
+  }, [address]);
 
   if (typeof value === "undefined") {
     return "";
