@@ -1,12 +1,21 @@
 "use client";
 import { getBalance } from "@/lib/rpcApi";
 import { useEffect, useState } from "react";
+import { hexToDecimal } from "@/lib/utils";
 export default function Balance({ address }: { address: string }) {
   const [value, setValue] = useState<undefined | number>();
   useEffect(() => {
     getBalance({ params: [address, "latest"] }).then((res) => {
-      setValue(Number(res.result));
+      setValue(hexToDecimal(res.result as string));
     });
   }, []);
-  return typeof value === "undefined" ? "--" : value;
+
+  if (typeof value === "undefined") {
+    return "";
+  }
+  if (value === 0) {
+    return "0 KAIA";
+  }
+
+  return `${value / 1000000000000000000} KAIA`;
 }
