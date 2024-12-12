@@ -6,7 +6,11 @@
     background-color: #E0E5E4;
     margin-bottom: 10px;
     overflow-x: scroll;
-    white-space: nowrap
+    white-space: nowrap;
+}
+
+.rootBox::-webkit-scrollbar {
+    display: none;
 }
 
 .selector {
