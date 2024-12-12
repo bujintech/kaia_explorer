@@ -25,7 +25,7 @@ function Network() {
           <span>
             Avg TX Per Block<i></i>
           </span>
-          <span>7.7</span>
+          <span>6.0</span>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ const columns: Columns<BlockResponseData>[] = [
     dataIndex: "baseFeePerGas",
     render: ({ baseFeePerGas }) => hexToDecimal(baseFeePerGas) / 1000000000,
   },
-  { title: "Rewards(KLAY)", dataIndex: "number", render: () => 9.6 },
+  { title: "Rewards(KAIA)", dataIndex: "number", render: () => 9.6 },
 ];
 
 export default columns;
