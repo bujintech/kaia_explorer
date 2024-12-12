@@ -35,7 +35,10 @@ const columns: Columns<BlockResponseData>[] = [
     dataIndex: "number",
     render: ({ miner, transactionsTotal }) => {
       return (
-        <div className={style.mb_td} style={{ textAlign: "right" }}>
+        <div
+          className={style.mb_td}
+          style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "end" }}
+        >
           <div className={style.mb_proposerText}>
             <BlockProposer miner={miner}></BlockProposer>
           </div>
