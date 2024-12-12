@@ -5,6 +5,8 @@
     border-radius: 15px;
     background-color: #E0E5E4;
     margin-bottom: 10px;
+    overflow-x: scroll;
+    white-space: nowrap
 }
 
 .selector {
@@ -14,4 +16,13 @@
 
 .selected {
     background-color: #A8D778;
+}
+
+.tabText {
+    user-select: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    margin: 4px 10px;
 }

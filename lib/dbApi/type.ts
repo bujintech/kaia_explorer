@@ -75,4 +75,5 @@ export interface TransferResponseData {
   timestamp: number;
   type: string;
   nftId: string;
+  tokenType: string;
 }

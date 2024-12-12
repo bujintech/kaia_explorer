@@ -45,5 +45,10 @@ export const nftTransferColumns: TabbedTableColumn<TransferResponseData>[] = [
         dataIndex: "nftId",
         title: "NFT ID",
         renderMethod: RenderMethod.Span
+    },
+    {
+        dataIndex: "tokenType",
+        title: "Type",
+        renderMethod: RenderMethod.Span
     }
 ];

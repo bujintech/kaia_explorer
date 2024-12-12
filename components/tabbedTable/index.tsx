@@ -36,7 +36,7 @@ function TabbedTable({ tabs }: TableTabProps) {
               className={`${style.selector} ${currentTab?.key === tab.key ? style.selected : ""}`}
               onClick={() => setCurrentTab(tab)}
             >
-              <span style={{ display: 'flex', margin: '10px 4px' }}>
+              <span className={style.tabText}>
                 {tab.title}
               </span>
             </div>

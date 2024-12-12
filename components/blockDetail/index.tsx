@@ -15,8 +15,6 @@ async function BlockDetail({ data, transfers }: { data: BlockResponseData, trans
 
   const txList = await queryTransactionsByBlockNumber(blockNumber);
 
-  console.log("transfers", transfers);
-
   const transactions: TabProps = {
     title: "Transactions",
     key: "tx",

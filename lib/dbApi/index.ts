@@ -21,6 +21,7 @@ interface DbStruct {
   AMOUNT: number;
   NAME: string;
   NFTID: string;
+  TYPE: string;
 }
 
 export async function queryBlockByNumber(blockNumber: number): Promise<BlockResponseData | null> {
@@ -179,6 +180,7 @@ function dbObjToTransfer(v: DbStruct): TransferResponseData {
     tokenName: v.NAME?.toString() ?? "--",
     timestamp: v.TIMESTAMP,
     nftId: v.NFTID ? v.NFTID.toString() : '',
+    tokenType: v.TYPE.toString(),
   }
 }
 
@@ -204,6 +206,7 @@ export async function queryTransfersByTxHash(hash: string): Promise<TransferResp
     tokenName: v.NAME?.toString() ?? "",
     timestamp: v.TIMESTAMP,
     nftId: v.NFTID ? v.NFTID.toString() : '',
+    tokenType: v.TYPE.toString(),
   })) ?? [];
 }
 
@@ -228,6 +231,7 @@ export async function queryTransfersByBlockNumber(blockNumber?: number): Promise
     tokenName: v.NAME?.toString() ?? "--",
     timestamp: v.TIMESTAMP,
     nftId: v.NFTID ? v.NFTID.toString() : '',
+    tokenType: v.TYPE.toString(),
   })) ?? [];
 }
 

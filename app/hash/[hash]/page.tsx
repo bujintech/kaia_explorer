@@ -14,7 +14,6 @@ async function Hash({ params: { hash } }: { params: { hash: string } }) {
 
   if (type === "TX") {
     const transfers = await queryTransfersByTxHash(hash);
-    console.log("Transfers:", transfers);
     return <TxDetail data={data as TxResponseData} transfers={transfers ?? []}></TxDetail>;
   } else if (type === "BLOCK") {
     const blockNumber = (data as BlockResponseData).number;
