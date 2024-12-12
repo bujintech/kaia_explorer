@@ -56,7 +56,7 @@ const columns: (Columns<TxResponseData> & TabbedTableColumn<TxResponseData>)[] =
   {
     title: "Amount(KAIA)",
     dataIndex: "value",
-    render: ({ value }) => hexToDecimal(value),
+    render: ({ value }) => hexToDecimal(value) / 1000000000000000000,
     renderMethod: RenderMethod.Span,
   },
 ];
