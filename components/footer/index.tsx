@@ -9,7 +9,7 @@ function Footer() {
       </div>
 
       <div>
-        <p>COMPANNY</p>
+        <p>COMPANY</p>
         <p>CONTACT US</p>
         <p>TERMS PRIVACY</p>
       </div>

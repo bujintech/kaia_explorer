@@ -30,7 +30,7 @@ async function GCInfo() {
                   className={style.countMsg}
                   style={{ fontWeight: "bold", borderTop: "1px solid #3d4049" }}
                 >
-                  <span>{formatNumber(item.total_staking || "0")} KALY</span>
+                  <span>{formatNumber(item.total_staking || "0")} KAIA</span>
                   <span>{item.apy || "0"}%</span>
                 </div>
 
