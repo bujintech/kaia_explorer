@@ -10,7 +10,14 @@ function Footer() {
 
       <div>
         <p>COMPANY</p>
-        <p>CONTACT US</p>
+        <p>
+          <a
+            target="_blank"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=coinelementfintech@gmail.com&su=&body= "
+          >
+            CONTACT US
+          </a>
+        </p>
         <p>TERMS PRIVACY</p>
       </div>
     </div>
