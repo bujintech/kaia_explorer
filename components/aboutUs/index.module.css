@@ -1,0 +1,95 @@
+.aboutUsContainer {
+    background-color: #a8d778;
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutUsTitle {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    user-select: none;
+    font-size: 96px;
+    font-weight: 600;
+}
+
+.aboutUsCard {
+    background-color: #F4F9F8;
+    border: 2px solid #000000;
+    border-radius: 40px;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    padding: 80px;
+    gap: 93px;
+}
+
+.companyInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 62px;
+    gap: 31px;
+}
+
+.companyName {
+    margin: 0px;
+    display: flex;
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.companyInfoDivider {
+    height: 2px;
+    width: 748px;
+    margin-top: 26px;
+    background: #0000008A;
+}
+
+.companyDescription {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 45px;
+}
+
+.companyImage {
+    width: 514px;
+    height: 496px;
+}
+
+@media (max-width: 668px) {
+    .aboutUsContainer {
+        padding: 0px;
+    }
+
+    .aboutUsTitle {
+        font-size: 36px;
+        font-weight: 600;
+    }
+
+    .aboutUsCard {
+        flex-direction: column;
+        padding: 20px 25px 18px 30px;
+    }
+
+    .companyName {
+        width: 152px;
+        height: 45px;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 45px;
+    }
+
+    .companyInfoDivider {
+        width: 285px;
+    }
+
+    .companyImage {
+        width: 287px;
+        height: 277px;
+        margin-left: 19px;
+        margin-right: 19px;
+        margin-bottom: 30px;
+    }
+}
