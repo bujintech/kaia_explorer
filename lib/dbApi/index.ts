@@ -275,6 +275,18 @@ export async function queryMaxBlockNumber() {
   return NaN;
 }
 
+export async function queryKaiaPrice() {
+  const data = await db.getItem({
+    Key: {
+      PK: "KAIA_PRICE",
+      SK: "KAIA_PRICE",
+    },
+  });
+
+  if (data?.Item?.RESULT) return Number(data.Item.RESULT);
+  return NaN;
+}
+
 export async function queryGcConfig(): Promise<Record<string, string> | null> {
   const data = await db.getItem({
     Key: {

@@ -1,14 +1,32 @@
 import { formatNumber } from "@/lib/utils";
 import style from "./index.module.css";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 function Kaia() {
+  const [price, setPrice] = useState(NaN);
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const data = await axios.post(`/api/kaiaPrice`, {
+        data: {},
+      });
+      setPrice(data.data);
+    };
+    fetchPrice().catch(err => {
+      console.log("fetchPrice error:", err);
+      setPrice(NaN);
+    });
+  }, []);
+
   return (
     <div className={style.kaia}>
       <div>KAIA</div>
       <div>
         <div className={style.item}>
           <p>Price</p>
-          <p>$0.272618</p>
+          <p>{isNaN(price) ? "-" : `$${price}`}</p>
         </div>
         <div className={style.item}>
           <p>
