@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { queryKaiaPrice } from "@/lib/dbApi";
+import { queryKaiaQuote } from "@/lib/dbApi";
+import type { KaiaQuoteData } from "@/lib/dbApi/type";
 
-export async function POST(): Promise<NextResponse> {
-    const data = await queryKaiaPrice();
+export async function POST(): Promise<NextResponse<KaiaQuoteData>> {
+    const data = await queryKaiaQuote();
     return NextResponse.json(data);
 }

@@ -3,20 +3,32 @@ import style from "./index.module.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import type { KaiaQuoteData } from "@/lib/dbApi/type";
 
 function Kaia() {
-  const [price, setPrice] = useState(NaN);
+  const [price, setPrice] = useState<KaiaQuoteData>({
+    price: NaN,
+    volume: NaN,
+    marketCap: NaN,
+    circulatingSupply: NaN,
+  });
 
   useEffect(() => {
     const fetchPrice = async () => {
       const data = await axios.post(`/api/kaiaPrice`, {
         data: {},
       });
+      console.log("data:", data);
       setPrice(data.data);
     };
     fetchPrice().catch(err => {
       console.log("fetchPrice error:", err);
-      setPrice(NaN);
+      setPrice({
+        price: NaN,
+        volume: NaN,
+        marketCap: NaN,
+        circulatingSupply: NaN,
+      });
     });
   }, []);
 
@@ -26,21 +38,21 @@ function Kaia() {
       <div>
         <div className={style.item}>
           <p>Price</p>
-          <p>{isNaN(price) ? "-" : `$${price}`}</p>
+          <p>${formatNumber(price.price)}</p>
         </div>
         <div className={style.item}>
           <p>
             Volume<i>(24)</i>
           </p>
-          <p>${formatNumber(98691620)}</p>
+          <p>${formatNumber(price.volume)}</p>
         </div>
         <div className={style.item}>
           <p>Ciculating Supply</p>
-          <p>{formatNumber(5891585282)}</p>
+          <p>{formatNumber(price.circulatingSupply)}</p>
         </div>
         <div className={style.item}>
           <p>Market Cap</p>
-          <p>${formatNumber(1603474074)}</p>
+          <p>${formatNumber(price.marketCap)}</p>
         </div>
       </div>
     </div>

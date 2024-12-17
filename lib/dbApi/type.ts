@@ -77,3 +77,10 @@ export interface TransferResponseData {
   nftId: string;
   tokenType: string;
 }
+
+export interface KaiaQuoteData {
+  price: number;
+  volume: number;
+  marketCap: number;
+  circulatingSupply: number;
+}

@@ -1,6 +1,6 @@
 import db from "../db";
 import { decompressJson } from "./util";
-import type { BlockResponseData, TxResponseData, GcResponseData, TransferResponseData } from "./type";
+import type { BlockResponseData, TxResponseData, GcResponseData, TransferResponseData, KaiaQuoteData } from "./type";
 import { hexToDecimal } from "../utils";
 
 export { default as queryBlockList } from "./queryBlockList";
@@ -275,16 +275,26 @@ export async function queryMaxBlockNumber() {
   return NaN;
 }
 
-export async function queryKaiaPrice() {
+export async function queryKaiaQuote(): Promise<KaiaQuoteData> {
   const data = await db.getItem({
     Key: {
-      PK: "KAIA_PRICE",
-      SK: "KAIA_PRICE",
+      PK: "KAIA_QUOTE",
+      SK: "KAIA_QUOTE",
     },
   });
 
-  if (data?.Item?.RESULT) return Number(data.Item.RESULT);
-  return NaN;
+  if (data?.Item) return {
+    price: Number(data.Item.PRICE),
+    volume: Number(data.Item.VOLUME),
+    marketCap: Number(data.Item.MARKETCAP),
+    circulatingSupply: Number(data.Item.CIRCULATINGSUPPLY),
+  };
+  return {
+    price: NaN,
+    volume: NaN,
+    marketCap: NaN,
+    circulatingSupply: NaN,
+  };
 }
 
 export async function queryGcConfig(): Promise<Record<string, string> | null> {
