@@ -168,6 +168,23 @@ export async function queryGcInfoList(): Promise<GcResponseData[]> {
     });
 }
 
+export async function queryGcInfo(): Promise<Record<string, { amount: number }>> {
+  const data = await db.query({
+    KeyConditionExpression: `PK = :PK`,
+    ExpressionAttributeValues: {
+      ":PK": "GCINFO",
+    },
+  })
+  return (Array.isArray(data.Items) ? data.Items : []).reduce((acc, v) => {
+    return {
+      ...acc,
+      [v.NAME.toString()]: {
+        amount: Number(v.AMOUNT),
+      },
+    };
+  }, {});
+}
+
 function dbObjToTransfer(v: DbStruct): TransferResponseData {
   console.log(v);
   return {

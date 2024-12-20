@@ -1,9 +1,12 @@
-import { queryGcInfoList } from "@/lib/dbApi";
+import { queryGcInfo, queryGcInfoList } from "@/lib/dbApi";
 import { formatNumber } from "@/lib/utils";
 import style from "./index.module.css";
 
 async function GCInfo() {
   const data = await queryGcInfoList();
+  const gcInfo = await queryGcInfo();
+
+  console.log(gcInfo);
 
   return (
     <div className={style.gcPage}>
@@ -12,7 +15,7 @@ async function GCInfo() {
       </div>
 
       <div className={style.gcContainer}>
-        {data.map((item, i) => {
+        {data.filter(item => gcInfo[item.name]).map((item, i) => {
           return (
             <div key={i} className={style.itemwrap}>
               <div className={style.iteminner}>
@@ -30,7 +33,7 @@ async function GCInfo() {
                   className={style.countMsg}
                   style={{ fontWeight: "bold", borderTop: "1px solid #3d4049" }}
                 >
-                  <span>{formatNumber(item.total_staking || "0")} KAIA</span>
+                  <span>{formatNumber(gcInfo[item.name]?.amount || "0")} KAIA</span>
                   <span>{item.apy || "0"}%</span>
                 </div>
 
